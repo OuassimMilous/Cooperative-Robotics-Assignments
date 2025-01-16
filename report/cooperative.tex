@@ -1,0 +1,272 @@
+\documentclass{article}
+\usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry} 
+\usepackage{makeidx}         % allows index generation
+\usepackage[pdftex]{graphicx,color}          % standard LaTeX graphics tool
+\DeclareGraphicsRule{.pdftex}{pdf}{.pdftex}{}
+                             % when including figure files
+\usepackage{multicol}        % used for the two-column index
+\usepackage[bottom]{footmisc}% places footnotes at page bottom
+
+\usepackage{booktabs}
+\usepackage{arydshln}
+\setlength\dashlinedash{0.5pt}
+\setlength\dashlinegap{1.5pt}
+\setlength\arrayrulewidth{0.3pt}
+
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{pifont}
+\usepackage{bm}
+\usepackage{cancel}
+\usepackage{multirow}
+\usepackage{amsmath}
+\usepackage{epstopdf}
+\usepackage[caption=false,font=footnotesize]{subfig}
+
+
+\DeclareMathOperator*{\argmin}{arg\,min}
+
+\DeclareGraphicsExtensions{.eps, .pdf, .png, .jpg}
+\graphicspath{{./images/},{./}}
+
+\newcommand{\red}[1]{{\color{red}#1}}
+\renewcommand{\vec}[1]{\bm{#1}}
+\newcommand{\mat}[1]{\bm{#1}}
+\newcommand{\cframe}[1]{$\langle #1 \rangle$}
+\newcommand{\prescript}[2]{\phantom{}^{#1}_{#2}}
+
+\newcommand\frontmatter{%
+    \cleardoublepage
+%%  \@mainmatterfalse
+  \pagenumbering{roman}}
+\newcommand\mainmatter{%
+    \cleardoublepage
+%%  \@mainmattertrue
+  \pagenumbering{arabic}}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{document}
+\frontmatter
+\onecolumn 
+\vskip 1cm
+%\pagestyle{empty}
+\begin{center}
+\huge \textsc{Cooperative Robotics}\\
+\vskip 1cm
+
+\skip 0.5cm
+
+\vskip 5cm
+
+\normalsize
+Authors: ``names'' \\
+Ouassim Milous
+Email: ``email'' \\
+Date: ``date'' \\
+\end{center}
+\clearpage
+\mainmatter
+\section*{General notes}
+
+\begin{itemize}
+	\item Exercise 1 is done with the ROBUST matlab main and unity visualization tools. Exercises 2-3 are done with the Franka simulation tools.
+	\item Comment and discuss the simulations, in a concise scientific manner. Further comments, other than the questions, can be added, although there is no need to write 10 pages for each exercise.
+	\item Aid the discussion with screenshots of the simulated environment (compress them to maintain a small overall file size), and graphs of the relevant variables (i.e. activation functions of inequality tasks, task variables, and so on). Graphs should always report the units of measure in both axes, and legends whenever relevant.
+	\item Report the thresholds whenever relevant.
+	\item Report the mathematical formula employed to derive the task jacobians and the control laws when asked, including where they are projected.
+	\item If needed, part of the code can be inserted as a discussion reference.
+\end{itemize} 
+
+
+Use the following template when you need to discuss the hierarchy of tasks of a given action or set of actions:
+\begin{table}[htb]
+	\caption{Example of actions/hierarchy table: a number in a given cell represents the priority of the control task (row) in the hierarchy of the control action (column). The type column indicates whether the objective is an equality (E) or inequality (I) one.}
+	\label{tbl:actions_table}
+	\begin{center}
+		\footnotesize
+		\begin{tabular}{ccccc}
+			\toprule		
+			Task & Type & $\mathcal{A}_{1}$ & $\mathcal{A}_{2}$ & $\mathcal{A}_{3} $	 \\
+			\midrule
+			Task A                    & I & 1 &   & 1  \\
+			\hdashline
+			Task B                & I & 2 & 1 &   \\
+			\hdashline
+			Task C                       & E &   & 2 & 2   \\
+		
+			\bottomrule
+		\end{tabular}
+	\end{center}
+\end{table}% %
+
+\clearpage
+
+\section{Exercise 1: Implement a Complete Mission}
+Implement several actions to reach a point, land, and then perform the manipulation of a target object.
+
+Initialize the vehicle at the position:
+\begin{displaymath}
+	\begin{bmatrix} 8.5 & 38.5 & -36 & 0 & -0.06 & 0.5 \end{bmatrix}^\top
+\end{displaymath} 
+Use a "safe waypoint navigation action" to reach the following position: 
+\begin{displaymath}
+	\begin{bmatrix} 10.5 & 37.5 & -38 & 0 & -0.06 & 0.5 \end{bmatrix}^\top
+\end{displaymath} 
+Then land, aligning to the nodule. In particular, the $x$ axis of the vehicle should align to the projection, on the inertial horizontal plane, of the unit vector joining the vehicle frame to the nodule frame.
+Once landed, implement a ``fixed-based manipulation action'' to reach the target nodule (mimicking the scanning of the nodule). During this manipulation phase, the vehicle should not move for any reason.
+
+\subsection{Q1: Report the unified hierarchy of tasks used and their priorities in each action.}
+
+\subsection{Q2: Comment the behaviour of the robots, supported by relevant plots.}
+
+\subsection{Q3: What is the Jacobian relationship for the Alignment to Target control task? How was the task reference computed?}
+
+\subsection{Q4: Try changing the gain of the alignment task. Try three different values: 0.001, 0.1, 1.0. What is the observed behaviour? Implement a solution that is gain-independent guaranteeing that the landing is accomplished aligned to the target.}
+
+\subsection{Q5: After the landing is accomplished, what happens if you try to move the end-effector? Is the distance to the nodule sufficient to reach it with the end-effector? Comment the observed behaviour.}
+
+\subsection{Q6: Implement a solution that guarantees that, once landed, the nodule is certainly within the manipulator's workspace.}
+
+\clearpage
+
+\section{Exercise 2: Bimanual manipulation}
+
+\begin{figure}
+	\centering
+	\includegraphics[width=\textwidth]{dh-diagram.png}
+	\caption{\label{fig:robot_spec}Robot Specifications}
+\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\textwidth]{initial_position.png}
+	\caption{\label{fig:1}Initial position of the robots}
+\end{figure}
+%\begin{figure}
+%	\centering
+%	\includegraphics[width=\textwidth]{Diapositiva2.JPG}
+%	\caption{\label{fig:2} E-E frame and Tool frame of Left Arm}
+%\end{figure}
+\begin{figure}
+	\centering
+	\includegraphics[width=0.6\textwidth]{grasping_position.png}
+	\caption{\label{fig:3}Relative orientation at the grasping position}
+\end{figure}
+
+In this exercise it is required to perform a bimanual manipulation by implementing the task priority algorithm considering two manipulators as a single robot. The manipulator adopted for this assignment is the Franka Panda by Emika (see Figure \ref{fig:robot_spec})). A simulation in python is provided, in order to visualize the two robots and test your Matlab implementation.
+
+\begin{enumerate}
+	\item The transformations between the world and the base of each robot must be computed knowing that: 
+	\begin{enumerate}
+		\item The left arm base coincides with the world frame.
+		\item The right arm base is rotated of $\pi$ w.r.t. z-axis and is positioned 1.06 m along the x-axis and -0.01 m along the y-axis.
+		
+	\end{enumerate}
+
+	\item The transformation from each base to the respective end-effector is given in the code and is retrieved from the URDF model thanks to the \textit{Robotic System Toolbox} of Matlab.
+	
+	\item Then, define the tool frame for both manipulators; the tool frames must be placed at 21.04 cm along the z-axis of the end-effector frame and rotated with an angle of -44.9949 deg around the z-axis of the end-effector.
+	
+	\item Implement a ``move to'' action that includes the joint limits task.
+	
+	
+	\item The first phase foresees to move the tool frame of both manipulators to the grasping points, by implementing  a ``move to'' action and its corresponding tasks. Define the goal frames for each manipulator such that their origin corresponds to the grasping points. \textbf{HINT}: the position of the grasping points can be computed by knowing the origin of the object frame $^{w}\textrm{O}_{o}$ and the object length $l_{obj}$. The goal orientation of the tool frames is obtained by rotating the tool frames 30 deg around their y-axis; the manipulators should reach the configuration depicted in Figure \ref{fig:3}. 
+	
+
+	\begin{equation}
+		^{w}\textrm{O}_{o} = [0.5, 0, 0.59];
+	\end{equation}
+	\begin{equation}
+		l_{obj} = 10\,  \text{(cm)}.
+	\end{equation}
+
+	\item During this phase of the mission, the following safety tasks must be implemented: \textit{end-effector minimum altitude} and \textit{joint limits}. The joint limits specifications can be found in the datasheet of the robot. The minimum altitude from the table should be 15 cm. 
+\end{enumerate}
+
+
+Once the manipulators reach the grasping points, the second phase of the mission should start. Now, implement the Bimanual Rigid Grasping Constraint task to carry the object as a rigid body. 
+\begin{enumerate}
+	\item Define the object frame as a rigid body attached to the tool frame of each manipulator. \textbf{HINT:} Compute this quantity after reaching the grasping point.
+	\item Define the rigid grasp task.
+	\item Then, move the object to another position while both manipulators hold it firmly, e.g. $ ^{w}\textrm{O}_{g} = [0.65, -0.35, 0.28]^{\top}(m)$
+	\item Note that the transition for the \textit{Bimanual Rigid Constraint} should be a binary one, i.e., without smoothness. This is the nature of the constraint, i.e., either it exists or not. Modify the \emph{ActionTransition} script seen during the class to take into account the different nature of this task (a constraint one).
+	
+	
+\end{enumerate}
+ 
+Once the object has been moved to the required position you have to implement a final phase of the mission in which the joint velocities are set to zero, and every action is deactivated except for the minimum altitude task.
+
+Repeat the simulation, using a goal position or by changing the grasping in such a way that one of the two manipulators activates multiple safety tasks, to stress the constraint task.
+
+\subsection{Q1: Report the unified hierarchy of tasks used and their priorities in each action.}
+
+\subsection{Q2: What is the Jacobian relationship for the Joint Limits task? How was the task reference computed?}
+
+\subsection{Q3: What is the Jacobian relationship for the Bimanual Rigid Grasping Constraint task? How was the task reference computed?}
+
+\subsection{Q4: Comment the behaviour of the robots, using relevant plots. In particular, show the difference (if any) between the desired object velocity, and the velocities of the two end-effectors in the two cases.}
+
+\clearpage
+
+\section{Exercise 3: Cooperative manipulation}
+In this exercise, it is required to perform cooperative manipulation by implementing the task priority algorithm considering the two Franka Panda manipulators as two distinct robots. 
+
+\begin{enumerate}
+	
+\item The first phase foresees to move the tool frames to the grasping points, by implementing the ``move to'' action for both manipulators. \textbf{Please note: each manipulator has his own Task Priority Inverse Kinematic Algorithm}. Define the goal frames for each manipulator such that their origin corresponds to the grasping points. \textbf{HINT}: the position of the grasping points can be computed by knowing the origin of the object frame $^{w}\textrm{O}_{o}$ and the object length $l_{obj}$. The goal orientation of the tool frames is obtained by rotating the tool frames 20 deg around their y-axis.
+
+\begin{equation}
+	^{w}\textrm{O}_{o} = [0.5, 0, 0.59]^{\top}(m);
+\end{equation}
+\begin{equation}
+	l_{obj} = 6\,  \text{(cm)}.
+\end{equation}
+
+During this phase of the mission, the following safety tasks must be implemented: \textit{end-effector minimum altitude} and \textit{joint limits}. The joint limits specifications can be found in the datasheet of the robot. The minimum altitude from the table should be 15 cm. 
+
+\item Once the manipulators reach the grasping points the second phase of the mission should start. Implement the \textit{Cooperative Rigid Constraint} task to carry the object as a rigid body. 
+\begin{enumerate}
+	\item Define the object frame as a rigid body attached to the tool frame of each manipulator. 
+	\item Define the rigid grasp task. 
+	\item You have to move the object to another position while both manipulators hold it firmly. The desired object goal position is
+	\begin{equation}
+		^{w}\textrm{O}_{g} = [0.60, 0.40, 0.48]^{\top}(m)
+	\end{equation}
+	\item Compute the \textit{non-cooperative} object frame velocities. \textbf{HINT:} Suppose manipulators communicate ideally and can exchange the respective end-effector velocities
+	\item Apply the coordination policy to the \textit{non-cooperative} object frame velocities.
+	\item Compute the \textit{cooperative} object frame velocities.
+\end{enumerate}
+
+Note that the transition for the \textit{Cooperative Rigid Constraint} should be a binary one, i.e., without smoothness. This is the nature of the constraint, i.e., either it exists or not. Modify the \emph{ActionTransition} script seen during the class to take into account the different nature of this task (a constraint one).
+
+\item Once the object has been moved to the required position you have to implement a final phase of the mission in which the joint velocities are set to zero, and every action is deactivated except for the minimum altitude task.
+\end{enumerate}
+
+ Again, test it twice, once with the provided (reachable) goal, and then with a goal or with a different grasp configuration that triggers the activation of multiple joint limits or a joint limit and minimum altitude by one manipulator. The idea is that this second position should trigger the cooperation policy (i.e., the cooperative velocity should be different than the original desired object velocity).
+
+\subsection{Q1: Report the unified hierarchy of tasks used and their priorities in each action, and report clearly the actions used in the two phases of the cooperation algorithm.}
+
+\subsection{Q2: Comment the behaviour of the robots, using relevant plots. In particular, make sure there are differences between the desired object velocity and the non-cooperative Cartesian velocities at least in one simulation. Show also how the cooperative velocities of the two end-effectors behave.}
+
+%\begin{figure}[t]
+%	\centering
+%	\subfloat[]{\includegraphics[height=7cm]{trident.jpg}}\label{fig:trident}
+%	\subfloat[]{\includegraphics[height=7cm]{maris.jpg}}\label{fig:maris}
+%	\caption{(a) TRIDENT UVMS (b) MARIS UVMS.}\label{fig:uvms_examples}
+%\end{figure}
+
+
+		
+%		\begin{figure}[b]
+%			\centering
+%			\subfloat[]{\frame{\includegraphics[keepaspectratio,height=3cm]{trident1.eps}}} 
+%			\subfloat[]{\frame{\includegraphics[keepaspectratio,height=3cm]{trident2.eps}}}
+%			\subfloat[]{\frame{\includegraphics[keepaspectratio,height=3cm]{trident3.eps}}}
+%			\subfloat[]{\frame{\includegraphics[keepaspectratio,height=3cm]{trident4.eps}}}
+%			\caption{Sequence of snapshots taken from the onboard camera during the TRIDENT final experiments.}
+%			\label{fig_tri_trial_maiorca_img}
+%		\end{figure}
+
+
+\end{document}
+
+
