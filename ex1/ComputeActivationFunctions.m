@@ -3,21 +3,20 @@ function [uvms] = ComputeActivationFunctions(uvms, mission)
 %IN GOING TO SEA FLOOR , WE DON'T NEED MINIMUM ALTITUDE FUNCTION SO VALUE OF uvms.Ap.ma WILL GET ZERO.
     switch mission.phase
         case 1
-            uvms.Ap.v_l = eye(3);
-            uvms.Ap.v_a = eye(3);
+            uvms.Ap.v_l = 1;
+            uvms.Ap.v_a = 1;
             uvms.Ap.ha = 1;
             uvms.Ap.ma= 1;
             uvms.Ap.a= 0;
-            uvms.Ap.t = zeros(6); %FOR THE TOOL TASK
-
-        case 2
-
-            uvms.Ap.v_l = eye(3);
-            uvms.Ap.v_a = eye(3);
-            uvms.Ap.ha = 1;
-            uvms.Ap.ma= DecreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); 
-            uvms.Ap.a= 0 % IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); IT IS A LANDING TASK
-            uvms.Ap.t = eye(6) * IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time);
+            uvms.Ap.t = 0; %FOR THE TOOL TASK
+    
+         case 2
+             uvms.Ap.v_l = 0;
+             uvms.Ap.v_a = 0;
+             uvms.Ap.ha = 1;
+             uvms.Ap.ma= DecreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); 
+             uvms.Ap.a= IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); %IT IS A LANDING TASK
+             uvms.Ap.t = 0; % eye(6) * IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time);
     end 
 % arm tool position control
 % always active
@@ -30,6 +29,7 @@ uvms.A.t = eye(6) * uvms.Ap.t;
 %ACTIVATION FUNCTION FOR POSITION AND ORIENTATION CONTROL TASK FOR VEHICLE. 
 uvms.A.v_l = eye(3) * uvms.Ap.v_l;
 uvms.A.v_a = eye(3) * uvms.Ap.v_a;
+
 
 %HORIZONTAL ACTIVATION FUNCTION DEFINATION
 uvms.A.ha = IncreasingBellShapedFunction(0.1, 0.2, 0, 1, norm(uvms.v_rho_ha)) * uvms.Ap.ha;
