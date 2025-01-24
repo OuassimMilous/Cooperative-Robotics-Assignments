@@ -1,4 +1,4 @@
-
+    
 function newp = integrate_vehicle(p, v_v, deltat)
 
 wRv = rotation(p(4), p(5), p(6));

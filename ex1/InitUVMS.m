@@ -42,16 +42,74 @@ uvms.Jha = [];
 uvms.Jt_a = [];
 uvms.Jt_v = [];
 uvms.Jt = [];
+%DEFINE THE JACOBIAN VARIABLES
+uvms.Jv_l = []; 
+uvms.Jv_a = [];
+%HORIZONTAL TASK JACOBIAN
+uvms.Jha = [];  
+%MINIMUM ALTITUDE TASK
+uvms.Jma = [];
+%ALTITUDE TASK
+uvms.Ja = [];
+%FOR UNDERACTUATION TASK
+uvms.Jund = [] ;
+
+
 
 uvms.xdot.jl = [];
 uvms.xdot.mu = [];
 uvms.xdot.ha = [];
 uvms.xdot.t = [];
+% DEFINE THE VARIABLES
+uvms.xdot.v_l = [];
+uvms.xdot.v_a = [];
+% FOR MAINTAINING THE HORIZONTAL DISTANCE
+uvms.xdot.ha = [];
+%MINIMUM ALTITUDE TASK
+uvms.xdot.ma = [];
+%ALTITUDE TASK
+uvms.xdot.a = [];
+% FOR UNDERACTUATION
+uvms.xdot.und = [];
+
+
+
     
 uvms.A.jl = zeros(7,7);
 uvms.A.mu = 0;
-uvms.A.ha = zeros(1,1);
 uvms.A.t = zeros(6,6);
+%DEFINE THE ACTIVATION FUNCTION
+uvms.A.v_l = zeros(3);
+uvms.A.v_a = zeros(3);
+%HORIZONATAL TASK ACTIVATION
+uvms.A.ha = 0;
+%MINIMUM ALTITUDE TASK
+uvms.A.ma= 0;
+%ALTITUDE TASK
+uvms.A.a= 0;
+%FOR UNDERACTUATION
+uvms.A.und = zeros(6);
+
+
+
+%DEFINE THE ACTIVATION FUNCTION - FOR TASK SWITCHING
+uvms.Ap.v_l = zeros(3);
+uvms.Ap.v_a = zeros(3);
+%HORIZONATAL TASK ACTIVATION - FOR TASK SWITCHING
+uvms.Ap.ha = 0;
+%MINIMUM ALTITUDE TASK - FOR TASK SWITCHING
+uvms.Ap.ma= 0;
+%ALTITUDE TASK - FOR TASK SWITCHING
+uvms.Ap.a= 0;
+
+
+
+
+uvms.v_rho_ha = [];
+uvms.v_n_ha = [];
+uvms.a = [];
+
+
 
 end
 

@@ -6,10 +6,9 @@ close all
 
 % Simulation variables (integration and final time)
 deltat = 0.005;
-end_time = 25;
+end_time = 50;
 loop = 1;
 maxloops = ceil(end_time/deltat);
-
 
 % this struct can be used to evolve what the UVMS has to do
 mission.phase = 1;
@@ -53,23 +52,25 @@ uvms.q = [-0.0031 0 0.0128 -1.2460 0.0137 0.0853-pi/2 0.0137]';
 % R(rot_x, rot_y, rot_z) = Rz (rot_z) * Ry(rot_y) * Rx(rot_x)
 uvms.p = [8.5 38.5 -38   0 -0.06 0.5]'; 
 
+%INTIALISE THE VEHICLE FAR AWAY FROM THE SEAFLOOR
+%uvms.p = [10.5 35.5 -36 0 0 (pi/2)]'; 
+
+% DEFINES THE GOAL POSITION FOR THE VEHICLE POSITION TASK
+uvms.VehicleGoalPosition = [10.5   37.5    -38]';
+%uvms.wRgv = rotation(0, 0, 0);
+uvms.wRgv = rotation(0, 0, 0);
+uvms.wTgv = [uvms.wRgv uvms.VehicleGoalPosition ; 0 0 0 1];
+
+
+
 % defines the goal position for the end-effector/tool position task
 uvms.goalPosition = [12.2025   37.3748  -39.8860]';
 uvms.wRg = rotation(0, pi, pi/2);
 uvms.wTg = [uvms.wRg uvms.goalPosition; 0 0 0 1];
 
-% defines the goal position for the vehicle position task
-uvms.vehicleGoalPosition = [12.2025 37.3748 -39.8860]';
-uvms.wRgv = rotation(0, 0, 0);
-uvms.wTgv = [uvms.wRgv uvms.vehicleGoalPosition; 0 0 0 1];
 
 % defines the tool control point
 uvms.eTt = eye(4);
-
-uvms = ReceiveUdpPackets(uvms, uAltitude);
-w_kw = [0 0 1]';
-v_kw = uvms.vTw(1:3,1:3) * w_kw;
-uvms.altitude = v_kw' * [0 0 uvms.sensorDistance]';
 
 tic
 for t = 0:deltat:end_time
@@ -81,9 +82,6 @@ for t = 0:deltat:end_time
     
     % receive altitude information from unity
     uvms = ReceiveUdpPackets(uvms, uAltitude);
-    w_kw = [0 0 1]';
-    v_kw = uvms.vTw(1:3,1:3) * w_kw;
-    uvms.altitude = v_kw' * [0 0 uvms.sensorDistance]';
     
     % main kinematic algorithm initialization
     % ydotbar order is [qdot_1, qdot_2, ..., qdot_7, xdot, ydot, zdot, omega_x, omega_y, omega_z]
@@ -94,16 +92,36 @@ for t = 0:deltat:end_time
     Qp = eye(13); 
     % add all the other tasks here!
     % the sequence of iCAT_task calls defines the priority
-    %[Qp, ydotbar] = iCAT_task(uvms.A.t,    uvms.Jt,    Qp, ydotbar, uvms.xdot.t,  0.0001,   0.01, 10);
-    
-    [Qp, ydotbar] = iCAT_task(uvms.A.ma,    uvms.Jma,    Qp, ydotbar, uvms.xdot.ma,  0.0001,   0.01, 10);
-    [Qp, ydotbar] = iCAT_task(uvms.A.gv,    uvms.Jgv,    Qp, ydotbar, uvms.xdot.gv,  0.0001,   0.01, 10);
-    
-    [Qp, ydotbar] = iCAT_task(eye(13),     eye(13),    Qp, ydotbar, zeros(13,1),  0.0001,   0.01, 10);    % this task should be the last one
+    [Qp, ydotbar] = iCAT_task(uvms.A.t,    uvms.Jt,    Qp, ydotbar, uvms.xdot.t,  0.0001,   0.01, 10);
+
+    %0.0001,   0.01 => SVD THRESHOLD AND LAMBDA VALUES
+    %Qp => RELATED TO PRIORITIES.
+    %POSITION AND ORIENTATION TASK (CAN SAY FIRST EXERCISE)
+
+    %uvms.xdot.v_l/0.2
+    %uvms.sensorDistance
+    %uvms.xdot.ma
+
+    %TPIK
+
+    %[Qp, ydotbar] = iCAT_task(uvms.A.und,   uvms.Jund,  Qp, ydotbar, uvms.xdot.und,  0.0001,   0.01, 10);  %ALWAYS PUT UNDERACTUATION PART ON THE TOP
+    [Qp, ydotbar] = iCAT_task(uvms.A.ma,   uvms.Jma,  Qp, ydotbar, uvms.xdot.ma,  0.0001,   0.01, 10);  %MINIMUM ALTITUDE TASK
+    [Qp, ydotbar] = iCAT_task(uvms.A.ha,   uvms.Jha,  Qp, ydotbar, uvms.xdot.ha,  0.0001,   0.01, 10); %HORIZONTAL TASK 
+    [Qp, ydotbar] = iCAT_task(uvms.A.a,    uvms.Ja,   Qp, ydotbar, uvms.xdot.a,  0.0001,   0.01, 10); %ALTITUDE TASK
+    [Qp, ydotbar] = iCAT_task(uvms.A.t,    uvms.Jt,   Qp, ydotbar, uvms.xdot.t,  0.0001,   0.01, 10); %TOOL TASK
+    [Qp, ydotbar] = iCAT_task(uvms.A.v_l,  uvms.Jv_l, Qp, ydotbar, uvms.xdot.v_l,  0.0001,   0.01, 10);  
+    [Qp, ydotbar] = iCAT_task(uvms.A.v_a,  uvms.Jv_a, Qp, ydotbar, uvms.xdot.v_a,  0.0001,   0.01, 10);
+    [Qp, ydotbar] = iCAT_task(eye(13),     eye(13),   Qp, ydotbar, zeros(13,1),  0.0001,   0.01, 10);    % this task should be the last one
     
     % get the two variables for integration
     uvms.q_dot = ydotbar(1:7);
     uvms.p_dot = ydotbar(8:13);
+    
+    %SIMULATE UNDERACTUATION , MEANS THIS VELOCITY IS NOT UNDER MY CONTROL
+    %uvms.p_dot(4) = .5 * sin(2*pi*0.5*t);
+    %LETS SAY I HAVE DISTURBANCE, WILL IMPLEMENT PARALLEL SCHEME
+    uvms.p_dot(4) = uvms.p_dot(4) + 0.2 * sin(2*pi*0.5*t);
+
     
     % Integration
 	uvms.q = uvms.q + uvms.q_dot*deltat;
@@ -123,11 +141,13 @@ for t = 0:deltat:end_time
     % add debug prints here
     if (mod(t,0.1) == 0)
         t
-        %uvms.sensorDistance
-        %uvms.xdot.gv'
-        uvms.A.ma
+        uvms.sensorDistance
+        min_alt_ap = uvms.Ap.ma
+        alt_ap = uvms.Ap.a
+        %uvms.a
     end
 
+    mission.phase_time = mission.phase_time + deltat  %CALCULATE THE mission.phase_time
     % enable this to have the simulation approximately evolving like real
     % time. Remove to go as fast as possible
     SlowdownToRealtime(deltat);
@@ -136,6 +156,6 @@ end
 fclose(uVehicle);
 fclose(uArm);
 
-%PrintPlot(plt);
+PrintPlot(plt);
 
 end
