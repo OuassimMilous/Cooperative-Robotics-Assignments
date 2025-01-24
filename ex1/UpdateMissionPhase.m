@@ -12,7 +12,6 @@ function [uvms, mission] = UpdateMissionPhase(uvms, mission)
             %GO-TO FUNCTION(CASE 1) FINISHED. LIKE IT COULD BE COME FROM ANY CASE. 
 
         case 2 % safe landing
-
             % TODO: the condition to go to phase 3
 
     end
