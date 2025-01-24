@@ -10,6 +10,7 @@ end_time = 25;
 loop = 1;
 maxloops = ceil(end_time/deltat);
 
+
 % this struct can be used to evolve what the UVMS has to do
 mission.phase = 1;
 mission.phase_time = 0;
