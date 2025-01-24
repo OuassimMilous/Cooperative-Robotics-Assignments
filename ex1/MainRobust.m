@@ -50,15 +50,12 @@ uvms.q = [-0.0031 0 0.0128 -1.2460 0.0137 0.0853-pi/2 0.0137]';
 % [x y z r(rot_x) p(rot_y) y(rot_z)]
 % RPY angles are applied in the following sequence
 % R(rot_x, rot_y, rot_z) = Rz (rot_z) * Ry(rot_y) * Rx(rot_x)
-uvms.p = [8.5 38.5 -38   0 -0.06 0.5]'; 
+uvms.p = [8.5 38.5 -36     0 -0.06 0.5]'; 
 
-%INTIALISE THE VEHICLE FAR AWAY FROM THE SEAFLOOR
-%uvms.p = [10.5 35.5 -36 0 0 (pi/2)]'; 
 
 % DEFINES THE GOAL POSITION FOR THE VEHICLE POSITION TASK
 uvms.VehicleGoalPosition = [10.5   37.5    -38]';
-%uvms.wRgv = rotation(0, 0, 0);
-uvms.wRgv = rotation(0, 0, 0);
+uvms.wRgv = rotation(0, -0.06, 0.5);
 uvms.wTgv = [uvms.wRgv uvms.VehicleGoalPosition ; 0 0 0 1];
 
 
@@ -102,25 +99,19 @@ for t = 0:deltat:end_time
     %uvms.sensorDistance
     %uvms.xdot.ma
 
-    %TPIK
+   % [Qp, ydotbar] = iCAT_task(uvms.A.und,   uvms.Jund,  Qp, ydotbar, uvms.xdot.und,  0.0001,   0.01, 10);  %ALWAYS PUT UNDERACTUATION PART ON THE TOP
 
-    %[Qp, ydotbar] = iCAT_task(uvms.A.und,   uvms.Jund,  Qp, ydotbar, uvms.xdot.und,  0.0001,   0.01, 10);  %ALWAYS PUT UNDERACTUATION PART ON THE TOP
     [Qp, ydotbar] = iCAT_task(uvms.A.ma,   uvms.Jma,  Qp, ydotbar, uvms.xdot.ma,  0.0001,   0.01, 10);  %MINIMUM ALTITUDE TASK
-    [Qp, ydotbar] = iCAT_task(uvms.A.ha,   uvms.Jha,  Qp, ydotbar, uvms.xdot.ha,  0.0001,   0.01, 10); %HORIZONTAL TASK 
-    [Qp, ydotbar] = iCAT_task(uvms.A.a,    uvms.Ja,   Qp, ydotbar, uvms.xdot.a,  0.0001,   0.01, 10); %ALTITUDE TASK
-    [Qp, ydotbar] = iCAT_task(uvms.A.t,    uvms.Jt,   Qp, ydotbar, uvms.xdot.t,  0.0001,   0.01, 10); %TOOL TASK
-    [Qp, ydotbar] = iCAT_task(uvms.A.v_l,  uvms.Jv_l, Qp, ydotbar, uvms.xdot.v_l,  0.0001,   0.01, 10);  
-    [Qp, ydotbar] = iCAT_task(uvms.A.v_a,  uvms.Jv_a, Qp, ydotbar, uvms.xdot.v_a,  0.0001,   0.01, 10);
+    [Qp, ydotbar] = iCAT_task(uvms.A.ha,   uvms.Jha,  Qp, ydotbar, uvms.xdot.ha,  0.0001,   0.01, 10); %HORIZONTAL TASK
+    [Qp, ydotbar] = iCAT_task(uvms.A.a,    uvms.Ja,   Qp, ydotbar, uvms.xdot.a,  0.0001,   0.01, 10); %ALTITUDE Control TASK
+   % [Qp, ydotbar] = iCAT_task(uvms.A.t,    uvms.Jt,   Qp, ydotbar, uvms.xdot.t,  0.0001,   0.01, 10); %TOOL TASK
+    [Qp, ydotbar] = iCAT_task(uvms.A.v_l,  uvms.Jv_l, Qp, ydotbar, uvms.xdot.v_l,  0.0001,   0.01, 10);  % linear position control TASK
+    [Qp, ydotbar] = iCAT_task(uvms.A.v_a,  uvms.Jv_a, Qp, ydotbar, uvms.xdot.v_a,  0.0001,   0.01, 10);  % angular position control TASK
     [Qp, ydotbar] = iCAT_task(eye(13),     eye(13),   Qp, ydotbar, zeros(13,1),  0.0001,   0.01, 10);    % this task should be the last one
     
     % get the two variables for integration
     uvms.q_dot = ydotbar(1:7);
     uvms.p_dot = ydotbar(8:13);
-    
-    %SIMULATE UNDERACTUATION , MEANS THIS VELOCITY IS NOT UNDER MY CONTROL
-    %uvms.p_dot(4) = .5 * sin(2*pi*0.5*t);
-    %LETS SAY I HAVE DISTURBANCE, WILL IMPLEMENT PARALLEL SCHEME
-    uvms.p_dot(4) = uvms.p_dot(4) + 0.2 * sin(2*pi*0.5*t);
 
     
     % Integration
@@ -137,17 +128,19 @@ for t = 0:deltat:end_time
     % collect data for plots
     plt = UpdateDataPlot(plt,uvms,t,loop);
     loop = loop + 1;
-   
+   error = [uvms.xdot.v_l/0.2 uvms.xdot.v_a/0.2];
     % add debug prints here
     if (mod(t,0.1) == 0)
         t
-        uvms.sensorDistance
-        min_alt_ap = uvms.Ap.ma
-        alt_ap = uvms.Ap.a
+        % uvms.sensorDistance
+        error
+        mission.phase
+        % min_alt_ap = uvms.Ap.ma
+        % alt_ap = uvms.Ap.a
         %uvms.a
     end
 
-    mission.phase_time = mission.phase_time + deltat  %CALCULATE THE mission.phase_time
+    mission.phase_time = mission.phase_time + deltat; %CALCULATE THE mission.phase_time
     % enable this to have the simulation approximately evolving like real
     % time. Remove to go as fast as possible
     SlowdownToRealtime(deltat);
