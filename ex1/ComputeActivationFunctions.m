@@ -1,14 +1,13 @@
 function [uvms] = ComputeActivationFunctions(uvms, mission)
 % compute the activation functions here
-%IN GOING TO SEA FLOOR , WE DON'T NEED MINIMUM ALTITUDE FUNCTION SO VALUE OF uvms.Ap.ma WILL GET ZERO.
     switch mission.phase
         case 1
-            uvms.Ap.v_l = 1;
-            uvms.Ap.v_a = 1;
-            uvms.Ap.ha = 1;
-            uvms.Ap.ma= 1;
-            uvms.Ap.a= 0;
-            uvms.Ap.t = 0; %FOR THE TOOL TASK
+            uvms.Ap.v_l = 1; % linear velocity control
+            uvms.Ap.v_a = 1; % angular velocity control
+            uvms.Ap.ha = 1; % horizental 
+            uvms.Ap.ma= 1; % minimum altitude
+            uvms.Ap.a= 0; % altitude control
+            uvms.Ap.t = 0; % tool control task
     
          case 2
              uvms.Ap.v_l = 0;
@@ -21,9 +20,6 @@ function [uvms] = ComputeActivationFunctions(uvms, mission)
 % arm tool position control
 % always active
 uvms.A.t = eye(6) * uvms.Ap.t;
-
-%MULTIPLIED THIS ANOTHER ACTIVATION FUNCTION BECAUSE TO SWITCH THE CASE. LIKE IN GOING TO
-%SEA FLOOR , WE DON'T NEED MINIMUM ALTITUDE FUNCTION SO VALUE OF uvms.Ap.ma WILL GET ZERO.
 
 
 %ACTIVATION FUNCTION FOR POSITION AND ORIENTATION CONTROL TASK FOR VEHICLE. 
