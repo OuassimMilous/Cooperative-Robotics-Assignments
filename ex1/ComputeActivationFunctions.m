@@ -25,9 +25,16 @@ function [uvms] = ComputeActivationFunctions(uvms, mission)
              uvms.Ap.ha = 0;
              uvms.Ap.ma= 0; %DecreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); 
              uvms.Ap.a= IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); %IT IS A LANDING TASK
-             %uvms.Ap.t = 0; % eye(6) * IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time);
+             uvms.Ap.t = 0; % eye(6) * IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time);
              uvms.Ap.r = 0; %ACTIVATING THE ROCK TASK
-
+        case 4
+            uvms.Ap.v_l = 0;
+            uvms.Ap.v_a = 0;
+            uvms.Ap.ha = 0;
+            uvms.Ap.ma= 0; %DecreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); 
+            uvms.Ap.a= IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); %IT IS A LANDING TASK
+            uvms.Ap.t = eye(6); % eye(6) * IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time);
+            uvms.Ap.r = 0; %ACTIVATING THE ROCK TASK
     end 
 % arm tool position control
 % always active
