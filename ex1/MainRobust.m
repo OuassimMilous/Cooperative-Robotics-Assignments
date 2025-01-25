@@ -100,9 +100,7 @@ for t = 0:deltat:end_time
     % add all the other tasks here!
     % the sequence of iCAT_task calls defines the priority
     % [Qp, ydotbar] = iCAT_task(uvms.A.und,   uvms.Jund,  Qp, ydotbar, uvms.xdot.und,  0.0001,   0.01, 10);  %ALWAYS PUT UNDERACTUATION PART ON THE TOP
-    uvms.Jv_r
     [Qp, ydotbar] = iCAT_task(uvms.A.ma,   uvms.Jma,  Qp, ydotbar, uvms.xdot.ma,  0.0001,   0.01, 10);  %MINIMUM ALTITUDE TASK
-    uvms.Jv_r
     [Qp, ydotbar] = iCAT_task(uvms.A.ha,   uvms.Jha,  Qp, ydotbar, uvms.xdot.ha,  0.0001,   0.01, 10); %HORIZONTAL TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.r,   uvms.Jv_r,  Qp, ydotbar, uvms.xdot.rock_ang,  0.0001,   0.01, 10); %ROCK TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.a,    uvms.Ja,   Qp, ydotbar, uvms.xdot.a,  0.0001,   0.01, 10); %ALTITUDE Control TASK
@@ -132,7 +130,9 @@ for t = 0:deltat:end_time
     loop = loop + 1;
 
     %print vars
-    error = [uvms.xdot.v_l/0.2 uvms.xdot.v_a/0.2];
+    % error = [uvms.xdot.v_l/0.2 uvms.xdot.v_a/0.2];
+
+    error = [uvms.xdot.rock_ang/0.2] ;
     phase = mission.phase;
     % add debug prints here
     if (mod(t,0.1) == 0)
