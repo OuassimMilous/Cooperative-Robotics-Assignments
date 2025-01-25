@@ -149,6 +149,9 @@ for t = 0:deltat:end_time
     % enable this to have the simulation approximately evolving like real
     % time. Remove to go as fast as possible
     SlowdownToRealtime(deltat);
+    if( mission.phase == 5)
+        break;
+    end
 end
 
 fclose(uVehicle);
