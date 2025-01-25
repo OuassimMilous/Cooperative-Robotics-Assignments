@@ -27,6 +27,14 @@ pipe_radius = 0.3;
 % rock position 
 rock_center = [12.2025   37.3748  -39.8860]'; % in world frame coordinates
 
+% DEFINE THE GOAL FOR NODULE TASK
+uvms.rock_goal = [12.2025   37.3748  -39.8860]';
+uvms.wRr = rotation(0, 0, 0);
+uvms.wTr = [uvms.wRr uvms.rock_goal; 0 0 0 1];
+% display(uvms.wTr)
+
+
+
 % UDP Connection with Unity viewer v2
 uArm = udp('127.0.0.1',15000,'OutputDatagramPacketSize',28);
 uVehicle = udp('127.0.0.1',15001,'OutputDatagramPacketSize',24);
@@ -60,6 +68,8 @@ uvms.wTgv = [uvms.wRgv uvms.VehicleGoalPosition ; 0 0 0 1];
 
 
 
+
+
 % defines the goal position for the end-effector/tool position task
 uvms.goalPosition = [12.2025   37.3748  -39.8860]';
 uvms.wRg = rotation(0, pi, pi/2);
@@ -84,14 +94,18 @@ for t = 0:deltat:end_time
     % ydotbar order is [qdot_1, qdot_2, ..., qdot_7, xdot, ydot, zdot, omega_x, omega_y, omega_z]
     % the vector of the vehicle linear and angular velocities are assumed
     % projected on <v>
+
     
     ydotbar = zeros(13,1);
     Qp = eye(13); 
     % add all the other tasks here!
     % the sequence of iCAT_task calls defines the priority
     % [Qp, ydotbar] = iCAT_task(uvms.A.und,   uvms.Jund,  Qp, ydotbar, uvms.xdot.und,  0.0001,   0.01, 10);  %ALWAYS PUT UNDERACTUATION PART ON THE TOP
+    uvms.Jv_r
     [Qp, ydotbar] = iCAT_task(uvms.A.ma,   uvms.Jma,  Qp, ydotbar, uvms.xdot.ma,  0.0001,   0.01, 10);  %MINIMUM ALTITUDE TASK
+    uvms.Jv_r
     [Qp, ydotbar] = iCAT_task(uvms.A.ha,   uvms.Jha,  Qp, ydotbar, uvms.xdot.ha,  0.0001,   0.01, 10); %HORIZONTAL TASK
+    [Qp, ydotbar] = iCAT_task(uvms.A.r,   uvms.Jv_r,  Qp, ydotbar, uvms.xdot.r,  0.0001,   0.01, 10); %ROCK TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.a,    uvms.Ja,   Qp, ydotbar, uvms.xdot.a,  0.0001,   0.01, 10); %ALTITUDE Control TASK
    % [Qp, ydotbar] = iCAT_task(uvms.A.t,    uvms.Jt,   Qp, ydotbar, uvms.xdot.t,  0.0001,   0.01, 10); %TOOL TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.v_l,  uvms.Jv_l, Qp, ydotbar, uvms.xdot.v_l,  0.0001,   0.01, 10);  % linear position control TASK

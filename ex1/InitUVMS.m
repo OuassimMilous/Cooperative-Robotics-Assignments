@@ -23,6 +23,7 @@ uvms.jlmax  = [2.9;1.65;2.9;0.01;2.9;1.25;2.8];
 
 % to be computed at each time step
 uvms.wTv = eye(4,4);
+uvms.wTr = eye(4,4); %ROCK
 uvms.wTt = eye(4,4);
 uvms.vTw = eye(4,4);
 uvms.vTe = eye(4,4);
@@ -35,6 +36,10 @@ uvms.djdq = zeros(6,7,7);
 uvms.mu  = 0;
 uvms.phi = zeros(3,1);
 uvms.sensorDistance = 0;
+uvms.rock_goal = []; %ROCK POSITION
+uvms.wRr = []; %ROCK ROTATION MATRIX
+% uvms.wTr = []; %ROCK TRANSFORMATION MATRIX
+uvms.xdot.rock_ang = []; %ROCK ANGULAR VELOCITY
 
 uvms.Jjl = [];
 uvms.Jmu = [];
@@ -53,6 +58,8 @@ uvms.Jma = [];
 uvms.Ja = [];
 %FOR UNDERACTUATION TASK
 uvms.Jund = [] ;
+%FOR ROCK TASK
+uvms.Jv_r = [];
 
 
 
@@ -89,6 +96,8 @@ uvms.A.ma= 0;
 uvms.A.a= 0;
 %FOR UNDERACTUATION
 uvms.A.und = zeros(6);
+%ROCK TASK
+uvms.Ap.r = eye(3);
 
 
 
@@ -101,6 +110,8 @@ uvms.Ap.ha = 0;
 uvms.Ap.ma= 0;
 %ALTITUDE TASK - FOR TASK SWITCHING
 uvms.Ap.a= 0;
+%ROCK TASK FOR TASK SWITICHING
+uvms.Ap.r = 0;
 
 
 

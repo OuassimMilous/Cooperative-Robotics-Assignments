@@ -8,6 +8,12 @@ uvms.xdot.t = 0.2 * [ang; lin];
 uvms.xdot.t(1:3) = Saturate(uvms.xdot.t(1:3), 0.2);
 uvms.xdot.t(4:6) = Saturate(uvms.xdot.t(4:6), 0.2);
 
+%REFRENCE FOR ROCK GOAL
+[ang_rock, lin_rock] = CartError(uvms.wTr , uvms.wTv);
+uvms.xdot.rock_ang = 0.2 * ang_rock;
+% display(uvms.xdot.rock_ang)
+uvms.xdot.rock_ang = Saturate(uvms.xdot.rock_ang, 0.2);
+
 %REFRENCE FOR VEHICLE POSITION CONTROL TASK
 [ang_v, lin_v] = CartError(uvms.wTgv , uvms.wTv);
 uvms.xdot.v_l = 0.2 * lin_v;

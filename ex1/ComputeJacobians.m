@@ -46,6 +46,12 @@ uvms.Jt = [uvms.Jt_a uvms.Jt_v];
 uvms.Jv_l = [zeros(3,7) uvms. wTv(1:3, 1:3) zeros(3)]; %LINEAR PART
 uvms.Jv_a =  [zeros(3,7)    zeros(3)    uvms. wTv(1:3, 1:3)];   %ANGULAR PART
 
+
+display(uvms. wTr)
+
+%JACOBIAN DEFINE FOR THE VEHICLE POSITION FOR THE ROCK TASK
+uvms.Jv_r =  [zeros(3,7)    zeros(3)    uvms. wTr(1:3, 1:3)];
+
 %IF IT WOULD BE IN VEHICLE FRAME THEN WE NEED TO PUT IDENTITY MATRIX, PG - 23 (IN NOTES)
 
 
