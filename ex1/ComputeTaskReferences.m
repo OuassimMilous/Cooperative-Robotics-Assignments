@@ -1,3 +1,4 @@
+
 function [uvms] = ComputeTaskReferences(uvms, mission)
 % compute the task references here
 
@@ -7,6 +8,12 @@ uvms.xdot.t = 0.2 * [ang; lin];
 % limit the requested velocities...
 uvms.xdot.t(1:3) = Saturate(uvms.xdot.t(1:3), 0.2);
 uvms.xdot.t(4:6) = Saturate(uvms.xdot.t(4:6), 0.2);
+
+%REFRENCE FOR ROCK GOAL
+[ang_rock, lin_rock] = CartError(uvms.wTr , uvms.wTv);
+uvms.xdot.rock_ang = 0.2 * ang_rock;
+% display(uvms.xdot.rock_ang)
+uvms.xdot.rock_ang = Saturate(uvms.xdot.rock_ang, 0.2);
 
 %REFRENCE FOR VEHICLE POSITION CONTROL TASK
 [ang_v, lin_v] = CartError(uvms.wTgv , uvms.wTv);
