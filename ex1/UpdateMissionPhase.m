@@ -4,16 +4,21 @@ function [uvms, mission] = UpdateMissionPhase(uvms, mission)
             [ang_e, lin_e] = CartError(uvms.wTgv , uvms.wTv);
             if ( norm(ang_e)  < 0.05 &&  norm(lin_e) <0.1 ) 
                  mission.phase = 2;
-                mission.phase_time = 0;
-                % disp(' *** change to phase 2');
-            end
-       
-            %THIS IS NAIVE BECAUSE HERE WE ASSUMED THAT CASE 2 WILL ACTIVATE ONCE THE
-            %GO-TO FUNCTION(CASE 1) FINISHED. LIKE IT COULD BE COME FROM ANY CASE. 
+                 mission.phase_time = 0;
+                disp(' *** change to phase 2');
+            end 
 
-        case 2 % safe landing
+        case 2 % ROCK ALIGNMENT
             % TODO: the condition to go to phase 3
-
+            [ang_rock, lin_rock] = CartError(uvms.wTr , uvms.wTv);
+            if ( norm(ang_rock)  < 0.01 )
+                mission.phase = 3;
+                mission.phase_time = 0;
+                disp(' *** change to phase 3');
+            end
+        case 3 % safe landing Task
+            
+            
     end
 end
 
