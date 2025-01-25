@@ -9,15 +9,21 @@ function [uvms, mission] = UpdateMissionPhase(uvms, mission)
             end 
 
         case 2 % ROCK ALIGNMENT
-            % TODO: the condition to go to phase 3
             [ang_rock, lin_rock] = CartError(uvms.wTr , uvms.wTv);
-            if ( norm(ang_rock)  < 0.01 )
+            if ( norm(ang_rock)  < 0.05 )
                 mission.phase = 3;
                 mission.phase_time = 0;
                 disp(' *** change to phase 3');
             end
-        case 3 % safe landing Task
-            
+        case 3 % safe landing 
+           
+            if ( norm((0 - uvms.a))  < 0.05 )
+                mission.phase = 4;
+                mission.phase_time = 0;
+                disp(' *** change to phase 4');
+            end
+        case 4 % tool 
+
             
     end
 end

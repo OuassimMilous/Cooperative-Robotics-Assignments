@@ -60,7 +60,6 @@ uvms.q = [-0.0031 0 0.0128 -1.2460 0.0137 0.0853-pi/2 0.0137]';
 % R(rot_x, rot_y, rot_z) = Rz (rot_z) * Ry(rot_y) * Rx(rot_x)
 uvms.p = [8.5 38.5 -36     0 -0.06 0.5]'; 
 
-
 % DEFINES THE GOAL POSITION FOR THE VEHICLE POSITION TASK
 uvms.VehicleGoalPosition = [10.5   37.5    -38]';
 uvms.wRgv = rotation(0, -0.06, 0.5);
