@@ -97,7 +97,8 @@ uvms.A.a= 0;
 %FOR UNDERACTUATION
 uvms.A.und = zeros(6);
 %ROCK TASK
-uvms.Ap.r = eye(3);
+uvms.A.r = eye(3);
+
 
 
 

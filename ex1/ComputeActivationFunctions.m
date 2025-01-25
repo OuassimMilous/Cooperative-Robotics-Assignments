@@ -44,8 +44,7 @@ uvms.A.ma = DecreasingBellShapedFunction(0.5, 1 , 0, 1, uvms.a) * uvms.Ap.ma;
 %ALTITUDE ACTIVATION FUNCTION
 uvms.A.a = 1 * uvms.Ap.a;
 
-%ACTIVATE ALIGNING TO THE NODULE
-uvm
+
 
 %VECHILCE UNDERACTUATION
 uvms.A.und = diag([0 0 0 1 0 0]); %OMEGA X IS UNDERACUTATED     

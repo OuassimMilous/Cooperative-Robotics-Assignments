@@ -105,7 +105,7 @@ for t = 0:deltat:end_time
     [Qp, ydotbar] = iCAT_task(uvms.A.ma,   uvms.Jma,  Qp, ydotbar, uvms.xdot.ma,  0.0001,   0.01, 10);  %MINIMUM ALTITUDE TASK
     uvms.Jv_r
     [Qp, ydotbar] = iCAT_task(uvms.A.ha,   uvms.Jha,  Qp, ydotbar, uvms.xdot.ha,  0.0001,   0.01, 10); %HORIZONTAL TASK
-    [Qp, ydotbar] = iCAT_task(uvms.A.r,   uvms.Jv_r,  Qp, ydotbar, uvms.xdot.r,  0.0001,   0.01, 10); %ROCK TASK
+    [Qp, ydotbar] = iCAT_task(uvms.A.r,   uvms.Jv_r,  Qp, ydotbar, uvms.xdot.rock_ang,  0.0001,   0.01, 10); %ROCK TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.a,    uvms.Ja,   Qp, ydotbar, uvms.xdot.a,  0.0001,   0.01, 10); %ALTITUDE Control TASK
    % [Qp, ydotbar] = iCAT_task(uvms.A.t,    uvms.Jt,   Qp, ydotbar, uvms.xdot.t,  0.0001,   0.01, 10); %TOOL TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.v_l,  uvms.Jv_l, Qp, ydotbar, uvms.xdot.v_l,  0.0001,   0.01, 10);  % linear position control TASK
