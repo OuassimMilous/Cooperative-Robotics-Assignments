@@ -6,7 +6,7 @@ close all
 
 % Simulation variables (integration and final time)
 deltat = 0.005;
-end_time = 50;
+end_time = 100;
 loop = 1;
 maxloops = ceil(end_time/deltat);
 
@@ -32,7 +32,6 @@ uvms.rock_goal = [12.2025   37.3748  -39.8860]';
 uvms.wRr = rotation(0, 0, 0);
 uvms.wTr = [uvms.wRr uvms.rock_goal; 0 0 0 1];
 % display(uvms.wTr)
-
 
 
 % UDP Connection with Unity viewer v2
@@ -64,6 +63,7 @@ uvms.p = [8.5 38.5 -36     0 -0.06 0.5]';
 uvms.VehicleGoalPosition = [10.5   37.5    -38]';
 uvms.wRgv = rotation(0, -0.06, 0.5);
 uvms.wTgv = [uvms.wRgv uvms.VehicleGoalPosition ; 0 0 0 1];
+
 
 
 
@@ -132,13 +132,13 @@ for t = 0:deltat:end_time
     %print vars
     % error = [uvms.xdot.v_l/0.2 uvms.xdot.v_a/0.2];
 
-    error = [uvms.xdot.rock_ang/0.2] ;
+    error = norm((0 - uvms.a)) ;
     phase = mission.phase;
     % add debug prints here
     if (mod(t,0.1) == 0)
         t
         % uvms.sensorDistance
-        error
+        %error
         phase
         % min_alt_ap = uvms.Ap.ma
         % alt_ap = uvms.Ap.a

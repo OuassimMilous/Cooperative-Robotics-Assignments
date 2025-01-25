@@ -40,6 +40,9 @@ uvms.rock_goal = []; %ROCK POSITION
 uvms.wRr = []; %ROCK ROTATION MATRIX
 % uvms.wTr = []; %ROCK TRANSFORMATION MATRIX
 uvms.xdot.rock_ang = []; %ROCK ANGULAR VELOCITY
+%ROCK WITH RESPECT TO VEHICLE
+uvms.vTr = [];
+
 
 uvms.Jjl = [];
 uvms.Jmu = [];
