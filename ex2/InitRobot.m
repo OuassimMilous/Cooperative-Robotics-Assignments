@@ -33,6 +33,7 @@ pandaArm.Jjl = [];
 
 
 
-
+pandaArms.ArmL.Ste = zeros(6)
+pandaArms.ArmR.Ste = zeros(6)
 end
 
