@@ -4,7 +4,8 @@ function [pandaArm] = ComputeActivationFunctions(pandaArm, mission)
 switch mission.phase
     case 1  % Reach the grasping point
         % Move-To
-         pandaArm.A.tool = ...;
+         pandaArm.A.tool_left = eye(6);
+         pandaArm.A.tool_right = eye(6);
     case 2 % Move the object holding it firmly
         % Rigid Grasp Constraint
         
@@ -15,13 +16,13 @@ switch mission.phase
 end
 % INEQUALITY TASK ACTIVATION
 % Minimum Altitude Task ( > 0.15m, 0.05m delta )
-pandaArm.A.ma = ...;
+% pandaArm.A.ma = ...;
 
 % Joint Limits Task
 % Activation function: two combined sigmoids, which are at their maximum 
 % at the joint limits and approach zero between them    
 % Safety Task (inequality)
 % delta is 10% of max error
-pandaArm.A.jl = ...;
+% pandaArm.A.jl = ...;
 
 end

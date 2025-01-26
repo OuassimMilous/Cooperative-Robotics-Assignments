@@ -1,4 +1,4 @@
-function [pandaArm] = ComputeJacobians(pandaArm,mission)
+function [pandaArms] = ComputeJacobians(pandaArms,mission)
 % compute the relevant Jacobians here
 % joint limits
 % tool-frame position control (to do)
@@ -18,21 +18,30 @@ function [pandaArm] = ComputeJacobians(pandaArm,mission)
 % [angular velocities; linear velocities]
 
 % Left Arm base to ee Jacobian
-pandaArm.ArmL.bJe = geometricJacobian(pandaArm.ArmL.franka, ...
-    [pandaArm.ArmL.q',0,0],'panda_link7');%DO NOT EDIT
+pandaArms.ArmL.bJe = geometricJacobian(pandaArms.ArmL.franka, ...
+    [pandaArms.ArmL.q',0,0],'panda_link7');%DO NOT EDIT
 % Right Arm base to ee Jacobian
-pandaArm.ArmR.bJe = geometricJacobian(pandaArm.ArmR.franka, ...
-    [pandaArm.ArmR.q',0,0],'panda_link7');%DO NOT EDIT
+pandaArms.ArmR.bJe = geometricJacobian(pandaArms.ArmR.franka, ...
+    [pandaArms.ArmR.q',0,0],'panda_link7');%DO NOT EDIT
+
+pandaArms.ArmL.Ste = [eye(3) zeros(3);  -skew(pandaArms.ArmL.eTt(1:3,4)) eye(3)];
+pandaArms.ArmL.bJt  = pandaArms.ArmL.Ste * pandaArms.ArmL.bJe(:,1:7);
+
+pandaArms.ArmR.Ste = [eye(3) zeros(3);  -skew(pandaArms.ArmR.eTt(1:3,4)) eye(3)];
+pandaArms.ArmR.bJt  = pandaArms.ArmR.Ste * pandaArms.ArmR.bJe(:,1:7);
 
 % Top three rows are angular velocities, bottom three linear velocities
-pandaArm.ArmL.wJt  = ...;
-pandaArm.ArmR.wJt  = ...;
+pandaArms.ArmL.wJt  = pandaArms.ArmL.bJt;
+pandaArms.ArmR.wJt  = [pandaArms.ArmR.wTb(1:3,1:3) zeros(3);zeros(3) pandaArms.ArmR.wTb(1:3,1:3)]* pandaArms.ArmR.bJt;
+% display(pandaArms.ArmL.bJe)
+% display(pandaArms.ArmR.wJt)
 
-if (mission.phase == 2)
-    pandaArm.ArmL.wJo = ...; 
-    pandaArm.ArmR.wJo = ...;
+% 
+% if (mission.phase == 2)
+%     pandaArms.ArmL.wJo = ...; 
+%     pandaArms.ArmR.wJo = ...;
 
 % Common Jacobians
-pandaArm.Jjl = ...;
+% pandaArms.Jjl = ...;
 
 end
