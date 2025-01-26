@@ -30,10 +30,26 @@ pandaArm.Jjl = [];
 % Init Task Reference vectors
 
 % Init Activation function for activate or deactivate tasks
+pandaArms.ArmL.Ste = zeros(6);
+pandaArms.ArmR.Ste = zeros(6);
+pandaArm.ArmL.xdot.tool = [];
+pandaArm.ArmR.xdot.tool = [];
+
+pandaArms.ArmL.min_dis = [];
+pandaArms.ArmR.min_dis = [];
+
+pandaArms.ArmL.Jma = [];
+pandaArms.ArmR.Jma = [];
+
+pandaArms.Arm.Jma  = [];
+
+pandaArms.xdot.min_r = [];
+pandaArms.xdot.min_l = [];
+pandaArms.xdot.min = [];
+
+pandaArm.A.min = [];
 
 
 
-pandaArms.ArmL.Ste = zeros(6)
-pandaArms.ArmR.Ste = zeros(6)
 end
 

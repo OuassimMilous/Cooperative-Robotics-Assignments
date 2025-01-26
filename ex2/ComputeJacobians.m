@@ -36,6 +36,14 @@ pandaArms.ArmR.wJt  = [pandaArms.ArmR.wTb(1:3,1:3) zeros(3);zeros(3) pandaArms.A
 % display(pandaArms.ArmL.bJe)
 % display(pandaArms.ArmR.wJt)
 
+pandaArms.ArmL.Jma = [zeros(5,7) ; zeros(1,6),1];
+pandaArms.ArmR.Jma = [zeros(5,7) ; zeros(1,6),1];
+
+pandaArms.Arm.Jma = [pandaArms.ArmL.Jma, pandaArms.ArmR.Jma];
+
+
+
+
 % 
 % if (mission.phase == 2)
 %     pandaArms.ArmL.wJo = ...; 
