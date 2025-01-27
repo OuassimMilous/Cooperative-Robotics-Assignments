@@ -34,21 +34,25 @@ switch mission.phase
 
         % joint limits
         % max
-        pandaArm.ArmL.joints_dis = abs(jlmax) - abs(pandaArm.ArmL.q);
-        pandaArm.ArmL.xdot.joints_max = max(pandaArm.ArmL.joints_dis, 0)';
+        pandaArm.ArmL.joints_dis_max = abs(jlmax) - abs(pandaArm.ArmL.q);
+        pandaArm.ArmL.joints_dis_max = max(pandaArm.ArmL.joints_dis_max, 0)';
+        pandaArm.ArmL.dot.joints_max = zeros(6, 14);
 
-        pandaArm.ArmR.joints_dis = abs(jlmax) - abs(pandaArm.ArmR.q);
-        pandaArm.ArmR.xdot.joints_max = max(pandaArm.ArmR.joints_dis, 0)';
+        pandaArm.ArmR.joints_dis_max = abs(jlmax) - abs(pandaArm.ArmR.q);
+        pandaArm.ArmR.joints_dis_max = max(pandaArm.ArmR.joints_dis_max, 0)';
+        pandaArm.ArmR.dot.joints_max = zeros(6, 14);
 
         % min
-        pandaArm.ArmL.joints_dis = abs(jlmax) - abs(pandaArm.ArmL.q);
-        pandaArm.ArmL.dot.joints_max = min(pandaArm.ArmL.joints_dis, 0)';
+        pandaArm.ArmL.joints_dis_min = abs(jlmax) - abs(pandaArm.ArmL.q);
+        pandaArm.ArmL.joints_dis_min = min(pandaArm.ArmL.joints_dis_max, 0)';
+        pandaArm.ArmL.dot.joints_min = zeros(6, 14);
 
-        pandaArm.ArmR.joints_dis = abs(jlmax) - abs(pandaArm.ArmR.q);
-        pandaArm.ArmR.dot.joints_max = min(pandaArm.ArmR.joints_dis, 0)';
+        pandaArm.ArmR.joints_dis_min = abs(jlmax) - abs(pandaArm.ArmR.q);
+        pandaArm.ArmR.joints_dis_min = min(pandaArm.ArmR.joints_dis_max, 0)';
+        pandaArm.ArmR.dot.joints_min = zeros(6, 14);
 
 
-
+        % pandaArm.ArmR.dot.joints_max = [0 0 pandaArm.ArmL.min_dis 0 0 0 ];
         % RIGHT ARM
         % -----------------------------------------------------------------
         % Tool position and orientation task reference
