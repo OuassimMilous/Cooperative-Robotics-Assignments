@@ -47,7 +47,7 @@ pandaArms.ArmL.wTg = [pandaArms.ArmL.wTt(1:3,1:3)*rotation(0,pi/6,0) [0.4;0;0.59
 pandaArms.ArmR.wTg = [pandaArms.ArmR.wTt(1:3,1:3)*rotation(0,pi/6,0) [0.6;0;0.59]; 0 0 0 1];
 
 
-% pandaArms.ArmL.wTg = [pandaArms.ArmL.wTt(1:3,1:3)*rotation(0,pi/2,0) [0.4;0;1.09]; 0 0 0 1];
+% pandaArms.ArmL.wTg = [pandaArms.ArmL.wTt(1:3,1:3)*rotation(0,-pi/2,0) [0.4;0;1.09]; 0 0 0 1];
 % pandaArms.ArmR.wTg = [pandaArms.ArmR.wTt(1:3,1:3)*rotation(0,pi/2,0) [0.6;0;1.09]; 0 0 0 1];
 
 % Second goal move the object
@@ -130,8 +130,16 @@ for t = 0:dt:Tf
     % ...
 
 
+    % joint limits
+    % min
+    [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.joints_max,pandaArms.ArmR.bJm_max, Qp, ydotbar, pandaArms.ArmR.xdot.joints_max , 0.0001,   0.01, 10);
+    [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.joints_max,pandaArms.ArmL.bJm_max, Qp, ydotbar, pandaArms.ArmL.xdot.joints_max , 0.0001,   0.01, 10);
 
+    % max
+    [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.joints_min,pandaArms.ArmR.bJm_min, Qp, ydotbar, pandaArms.ArmR.xdot.joints_min , 0.0001,   0.01, 10);
+    [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.joints_min,pandaArms.ArmL.bJm_min, Qp, ydotbar, pandaArms.ArmL.xdot.joints_min , 0.0001,   0.01, 10);
 
+    % minimum altitude
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.min,pandaArms.ArmL.Jma, Qp, ydotbar, pandaArms.ArmL.xdot.min , 0.0001,   0.01, 10);
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.min,pandaArms.ArmR.Jma, Qp, ydotbar, pandaArms.ArmR.xdot.min , 0.0001,   0.01, 10);
 
