@@ -129,14 +129,14 @@ for t = 0:dt:Tf
     % Bimanual system TPIK
     % ...
 
-    display([pandaArms.Arm.Jma(:,1:7),zeros(6,7)])
+    display(pandaArms.xdot.min_l)
     
     % Task: Tool Move-To
     [Qp, ydotbar] = iCAT_task(pandaArms.A.tool_left, [tool_jacobian_L, zeros(6,7)], Qp, ydotbar, pandaArms.ArmL.xdot.tool, 0.0001,   0.01, 10);
     [Qp, ydotbar] = iCAT_task(pandaArms.A.tool_right,[zeros(6,7),tool_jacobian_R], Qp, ydotbar, pandaArms.ArmR.xdot.tool, 0.0001,   0.01, 10);
  
-    [Qp, ydotbar] = iCAT_task(pandaArms.A.min_l,[pandaArms.Arm.Jma(:,1:7),zeros(6,7)], Qp, ydotbar, pandaArms.xdot.min_l , 0.0001,   0.01, 10);
-    [Qp, ydotbar] = iCAT_task(pandaArms.A.min_r,[zeros(6,7),pandaArms.Arm.Jma(:,7:14)], Qp, ydotbar, pandaArms.xdot.min_r , 0.0001,   0.01, 10);
+    [Qp, ydotbar] = iCAT_task(pandaArms.A.min_l,pandaArms.ArmL.Jma, Qp, ydotbar, pandaArms.xdot.min_l , 0.0001,   0.01, 10);
+    [Qp, ydotbar] = iCAT_task(pandaArms.A.min_r,pandaArms.ArmR.Jma, Qp, ydotbar, pandaArms.xdot.min_r , 0.0001,   0.01, 10);
  
     [Qp, ydotbar] = iCAT_task(eye(14), eye(14), Qp, ydotbar, zeros(14,1), 0.0001,   0.01, 10);    % this task should be the last one
 

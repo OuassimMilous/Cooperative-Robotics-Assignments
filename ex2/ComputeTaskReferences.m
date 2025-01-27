@@ -28,7 +28,8 @@ switch mission.phase
         kw = [0 0 1]';
         pandaArm.ArmL.min_dis = [0 0 pandaArm.ArmL.bTe(3,4)]';
         pandaArm.xdot.min_l = 0.2 * (0.15 - norm(pandaArm.ArmL.min_dis));
-       
+
+        pandaArm.xdot.min_l = [0 0 0 0 0 pandaArm.xdot.min_l]';
 
         
 
@@ -49,7 +50,7 @@ switch mission.phase
         pandaArm.ArmR.min_dis = [0 0 pandaArm.ArmR.bTe(3,4)]';
         pandaArm.xdot.min_r = 0.2 * (0.15 - norm(pandaArm.ArmR.min_dis));
 
-        pandaArm.xdot.min = [0 0 0 0 0 pandaArm.xdot.min_l 0 0 0 0 0 pandaArm.xdot.min_r]';
+        pandaArm.xdot.min_r = [0 0 0 0 0 pandaArm.xdot.min_r]';
 
     % case 2
     %     % Perform the rigid grasp of the object and move it

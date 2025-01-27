@@ -36,10 +36,9 @@ pandaArms.ArmR.wJt  = [pandaArms.ArmR.wTb(1:3,1:3) zeros(3);zeros(3) pandaArms.A
 % display(pandaArms.ArmL.bJe)
 % display(pandaArms.ArmR.wJt)
 
-pandaArms.ArmL.Jma = [zeros(1,5), 1 ,0 , zeros(1,7)];
-pandaArms.ArmR.Jma = [zeros(1,7) ; zeros(1,5), 1 ,0 ];
+pandaArms.ArmL.Jma = [zeros(5,14);zeros(1,5), 1 ,0 , zeros(1,7)];
+pandaArms.ArmR.Jma = [zeros(5,14);zeros(1,7) zeros(1,5), 1 ,0 ];
 
-pandaArms.Arm.Jma = [pandaArms.ArmL.Jma, pandaArms.ArmR.Jma];
 
 
 
