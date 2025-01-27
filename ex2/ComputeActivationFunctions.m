@@ -20,8 +20,7 @@ switch mission.phase
 
 
         % limits joints
-        % max        pandaArm.ArmL.A.joints_min=ones(6);
-        pandaArm.ArmR.A.joints_min=ones(6);
+        % max   
 
         pandaArm.ArmL.A.joints_max=ones(6);
         pandaArm.ArmR.A.joints_max=ones(6);

@@ -153,6 +153,7 @@ for t = 0:dt:Tf
     pandaArms.ArmL.q_dot = ydotbar(1:7);
     pandaArms.ArmR.q_dot = ydotbar(8:14);
 
+    
     pandaArms.ArmL.x = tool_jacobian_L * pandaArms.ArmL.q_dot;
     pandaArms.ArmR.x = tool_jacobian_R * pandaArms.ArmR.q_dot;
     % Integration
