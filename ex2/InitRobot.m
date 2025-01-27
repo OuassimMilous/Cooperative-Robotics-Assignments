@@ -57,5 +57,36 @@ pandaArm.ArmR.A.min=zeros(6);
 pandaArm.ArmR.bJt = [];
 pandaArm.ArmL.bJt = [];
 
+
+% Fixed joints
+
+% max
+pandaArm.ArmL.xdot.joints_max = zeros(6);
+pandaArm.ArmR.xdot.joints_max = zeros(6);
+
+pandaArm.ArmL.joints_dis = zeros(6);
+pandaArm.ArmR.joints_dis = zeros(6);
+
+pandaArm.ArmL.A.joints_max=zeros(6);
+pandaArm.ArmR.A.joints_max=zeros(6);
+
+pandaArm.ArmR.bJm_min = [];
+pandaArm.ArmL.bJm_min = [];
+
+
+% min
+pandaArm.ArmL.xdot.joints_min = zeros(6);
+pandaArm.ArmR.xdot.joints_min = zeros(6);
+
+pandaArm.ArmL.joints_dis = zeros(6);
+pandaArm.ArmR.joints_dis = zeros(6);
+
+pandaArm.ArmL.A.joints_min=zeros(6);
+pandaArm.ArmR.A.joints_min=zeros(6);
+
+pandaArm.ArmR.bJm_max = [];
+pandaArm.ArmL.bJm_max = [];
+
+
 end
 
