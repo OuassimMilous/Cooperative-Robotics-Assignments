@@ -131,11 +131,11 @@ for t = 0:dt:Tf
 
 
     % joint limits
-    % min
+    % max
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.joints_max,pandaArms.ArmR.bJm_max, Qp, ydotbar, pandaArms.ArmR.xdot.joints_max , 0.0001,   0.01, 10);
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.joints_max,pandaArms.ArmL.bJm_max, Qp, ydotbar, pandaArms.ArmL.xdot.joints_max , 0.0001,   0.01, 10);
 
-    % max
+    % min
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.joints_min,pandaArms.ArmR.bJm_min, Qp, ydotbar, pandaArms.ArmR.xdot.joints_min , 0.0001,   0.01, 10);
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.joints_min,pandaArms.ArmL.bJm_min, Qp, ydotbar, pandaArms.ArmL.xdot.joints_min , 0.0001,   0.01, 10);
 
@@ -186,7 +186,7 @@ for t = 0:dt:Tf
         phase = mission.phase
         if (mission.phase == 1)
             %add debug prints phase 1 here
-            display(error)
+            % display(error)
         elseif (mission.phase == 2)
             %add debug prints phase 2 here
         end
