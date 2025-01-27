@@ -37,20 +37,20 @@ switch mission.phase
         % max
         pandaArm.ArmL.joints_dis_max = abs(jlmax) - abs(pandaArm.ArmL.q);
         pandaArm.ArmL.joints_dis_max = max(pandaArm.ArmL.joints_dis_max, 0)';
-        pandaArm.ArmL.xdot.joints_max = [0 0 0 0 0 pandaArm.ArmL.xdot.min]'
+        pandaArm.ArmL.xdot.joints_max = [0 0 0 0 0 1]';
 
         pandaArm.ArmR.joints_dis_max = abs(jlmax) - abs(pandaArm.ArmR.q);
         pandaArm.ArmR.joints_dis_max = max(pandaArm.ArmR.joints_dis_max, 0)';
-        pandaArm.ArmR.xdot.joints_max = [0 0 0 0 0 pandaArm.ArmL.xdot.min]'
+        pandaArm.ArmR.xdot.joints_max = [0 0 0 0 0 1]';
 
         % min
         pandaArm.ArmL.joints_dis_min = abs(jlmax) - abs(pandaArm.ArmL.q);
         pandaArm.ArmL.joints_dis_min = min(pandaArm.ArmL.joints_dis_max, 0)';
-        pandaArm.ArmL.xdot.joints_min = [0 0 0 0 0 pandaArm.ArmL.xdot.min]'
+        pandaArm.ArmL.xdot.joints_min = [0 0 0 0 0 1]';
         
         pandaArm.ArmR.joints_dis_min = abs(jlmax) - abs(pandaArm.ArmR.q);
         pandaArm.ArmR.joints_dis_min = min(pandaArm.ArmR.joints_dis_max, 0)';
-        pandaArm.ArmR.xdot.joints_min = [0 0 0 0 0 pandaArm.ArmL.xdot.min]'
+        pandaArm.ArmR.xdot.joints_min = [0 0 0 0 0 1]';
 
 
         % pandaArm.ArmR.dot.joints_max = [0 0 pandaArm.ArmL.min_dis 0 0 0 ];
