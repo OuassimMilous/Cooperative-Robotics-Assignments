@@ -6,8 +6,8 @@ switch mission.phase
         % Move-To
          pandaArm.A.tool_left = eye(6);
          pandaArm.A.tool_right = eye(6);
-         pandaArm.A.min_l = eye(6);
-         pandaArm.A.min_r = eye(6);
+         pandaArm.A.min_l = 1;
+         pandaArm.A.min_r = 1;
     case 2 % Move the object holding it firmly
         % Rigid Grasp Constraint
         
