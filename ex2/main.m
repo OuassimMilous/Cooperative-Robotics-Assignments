@@ -15,7 +15,7 @@ mission.phase = 1;
 mission.phase_time = 0;
 model = load("panda.mat");
 
-hudps = initialize_simulation(real_robot)
+hudps = initialize_simulation(real_robot);
 %% ... to HERE.
 % Init robot model
 wTb_left = eye(4); % fixed transformation word -> base1
@@ -45,6 +45,10 @@ pandaArms.ArmR.wTt = pandaArms.ArmR.wTe*pandaArms.ArmR.eTt;
 % First goal reach the grasping points.
 pandaArms.ArmL.wTg = [pandaArms.ArmL.wTt(1:3,1:3)*rotation(0,pi/6,0) [0.4;0;0.59]; 0 0 0 1];
 pandaArms.ArmR.wTg = [pandaArms.ArmR.wTt(1:3,1:3)*rotation(0,pi/6,0) [0.6;0;0.59]; 0 0 0 1];
+
+
+% pandaArms.ArmL.wTg = [pandaArms.ArmL.wTt(1:3,1:3)*rotation(0,pi/2,0) [0.4;0;1.09]; 0 0 0 1];
+% pandaArms.ArmR.wTg = [pandaArms.ArmR.wTt(1:3,1:3)*rotation(0,pi/2,0) [0.6;0;1.09]; 0 0 0 1];
 
 % Second goal move the object
 % pandaArms.wTog = ...;
@@ -124,10 +128,17 @@ for t = 0:dt:Tf
     
     % Bimanual system TPIK
     % ...
-    display(pandaArms.ArmL.xdot.tool)
+
+
+
+
+    [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.min,pandaArms.ArmL.Jma, Qp, ydotbar, pandaArms.ArmL.xdot.min , 0.0001,   0.01, 10);
+    [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.min,pandaArms.ArmR.Jma, Qp, ydotbar, pandaArms.ArmR.xdot.min , 0.0001,   0.01, 10);
+
     % Task: Tool Move-To
-    [Qp, ydotbar] = iCAT_task(pandaArms.A.tool_left, [pandaArms.ArmL.wJt, zeros(6,7)], Qp, ydotbar, pandaArms.ArmL.xdot.tool, 0.0001,   0.01, 10);
-    [Qp, ydotbar] = iCAT_task(pandaArms.A.tool_right,[zeros(6,7),pandaArms.ArmR.wJt], Qp, ydotbar, pandaArms.ArmR.xdot.tool, 0.0001,   0.01, 10);
+    [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.tool, [tool_jacobian_L, zeros(6,7)], Qp, ydotbar, pandaArms.ArmL.xdot.tool, 0.0001,   0.01, 10);
+    [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.tool,[zeros(6,7),tool_jacobian_R], Qp, ydotbar, pandaArms.ArmR.xdot.tool, 0.0001,   0.01, 10);
+
     [Qp, ydotbar] = iCAT_task(eye(14), eye(14), Qp, ydotbar, zeros(14,1), 0.0001,   0.01, 10);    % this task should be the last one
 
     % get the two variables for integration
@@ -159,12 +170,14 @@ for t = 0:dt:Tf
     % Update data plot
     plt = UpdateDataPlot(plt,pandaArms,t,loop, mission);
     loop = loop + 1;
+    error = pandaArms.ArmL.xdot.tool/0.2;
     % add debug prints here
     if (mod(t,0.1) == 0)
         t 
         phase = mission.phase
         if (mission.phase == 1)
             %add debug prints phase 1 here
+            display(error)
         elseif (mission.phase == 2)
             %add debug prints phase 2 here
         end
