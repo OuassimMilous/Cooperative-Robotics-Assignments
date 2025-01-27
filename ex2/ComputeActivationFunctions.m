@@ -4,10 +4,24 @@ function [pandaArm] = ComputeActivationFunctions(pandaArm, mission)
 switch mission.phase
     case 1  % Reach the grasping point
         % Move-To
-         pandaArm.A.tool_left = eye(6);
-         pandaArm.A.tool_right = eye(6);
-         pandaArm.A.min_l = eye(6);
-         pandaArm.A.min_r = eye(6);
+         pandaArm.ArmR.A.tool = eye(6);
+         pandaArm.ArmL.A.tool = eye(6);
+
+
+         pandaArm.ArmL.A.min = zeros(6);
+         if(pandaArm.ArmL.xdot.min(6)<0)
+              pandaArm.ArmL.A.min = eye(6);
+         end
+
+         pandaArm.ArmR.A.min = zeros(6);
+          if(pandaArm.ArmL.xdot.min(6)<0)
+              pandaArm.ArmR.A.min = eye(6);
+          end
+
+           % pandaArm.A.min_l = eye(6);
+           % pandaArm.A.min_r = eye(6);
+
+
     case 2 % Move the object holding it firmly
         % Rigid Grasp Constraint
         
