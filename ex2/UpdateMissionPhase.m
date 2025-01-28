@@ -31,8 +31,10 @@ function [pandaArm, mission] = UpdateMissionPhase(pandaArm, mission)
                 if(mission.phase_time >= 5)
                     mission.phase = 4;
                      mission.phase_time = 0;
+                  disp('Changing to phase 4');
+
                 end
             case 4
-        end
+             end
 end
 
