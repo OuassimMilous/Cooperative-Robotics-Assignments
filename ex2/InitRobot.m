@@ -88,5 +88,19 @@ pandaArm.ArmR.bJm_min = [];
 pandaArm.ArmL.bJm_min = [];
 
 
+%% PHASE 2
+
+% Grasping
+pandaArm.ArmL.xdot.grasp = zeros(6,1);
+pandaArm.ArmR.xdot.grasp = zeros(6,1);
+
+pandaArm.ArmL.A.grasp=zeros(6);
+pandaArm.ArmR.A.grasp=zeros(6);
+
+pandaArm.ArmR.bJt_grasp = zeros(6,14);
+pandaArm.ArmL.bJt_grasp = zeros(6,14);
+
+
+
 end
 

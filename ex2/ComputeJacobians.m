@@ -17,6 +17,15 @@ function [pandaArms] = ComputeJacobians(pandaArms,mission)
 % [omegax_t omegay_t omegaz_t xdot_t ydot_t zdot_t] = Jt ydot
 % [angular velocities; linear velocities]
 
+
+% jlmin = [-2.8973;-1.7628;-2.8973;-3.0718;-2.8973;-0.0175;-2.8973];
+% jlmax = [2.8973;1.7628;2.8973;-0.0698;2.8973;3.7525;2.8973];
+
+jlmin = zeros(7,1);
+jlmax = zeros(7,1);
+
+
+
 % Left Arm base to ee Jacobian
 pandaArms.ArmL.bJe = geometricJacobian(pandaArms.ArmL.franka, ...
     [pandaArms.ArmL.q',0,0],'panda_link7');%DO NOT EDIT
@@ -40,33 +49,57 @@ pandaArms.ArmL.Jma = [zeros(5,14);zeros(1,5), 1 ,0 , zeros(1,7)];
 pandaArms.ArmR.Jma = [zeros(5,14);zeros(1,7) zeros(1,5), 1 ,0 ];
 
 % limits joints
-% min
-pandaArms.ArmL.bJm_min = zeros(6,14);
-for i = 1:length(pandaArms.ArmL.joints_dis_min)
-    pandaArms.ArmL.bJm_min(3,i) = pandaArms.ArmL.joints_dis_min(i);
-end
-
-pandaArms.ArmR.bJm_min = zeros(6,14);
-for i = 1:length(pandaArms.ArmR.joints_dis_min)
-    pandaArms.ArmR.bJm_min(3,i) = pandaArms.ArmR.joints_dis_min(i);
-end
 
 % max
+pandaArms.ArmL.joints_dis_max = abs(jlmax) - abs(pandaArms.ArmL.q)';
 pandaArms.ArmL.bJm_max = zeros(6,14);
 for i = 1:length(pandaArms.ArmL.joints_dis_max)
-    pandaArms.ArmL.bJm_max(3,i) = pandaArms.ArmL.joints_dis_max(i);
+    if(pandaArms.ArmL.joints_dis_max<0)
+     pandaArms.ArmL.bJm_max(3,i) = 1;
+    end
 end
+pandaArms.ArmR.joints_dis_max = abs(jlmax) - abs(pandaArms.ArmR.q)';
 pandaArms.ArmR.bJm_max = zeros(6,14);
 for i = 1:length(pandaArms.ArmR.joints_dis_max)
-    pandaArms.ArmR.bJm_max(3,i) = pandaArms.ArmR.joints_dis_max(i);
+    if(pandaArms.ArmR.joints_dis_max<0)
+     pandaArms.ArmR.bJm_max(3,i) = 1;
+    end
 end
+
+% min
+pandaArms.ArmL.joints_dis_min = abs(jlmin) - abs(pandaArms.ArmL.q)';
+pandaArms.ArmL.bJm_min = zeros(6,14);
+for i = 1:length(pandaArms.ArmL.joints_dis_min)
+    if(pandaArms.ArmL.joints_dis_min<0)
+     pandaArms.ArmL.bJm_min(3,i) = 1;
+    end
+end
+pandaArms.ArmR.joints_dis_min = abs(jlmin) - abs(pandaArms.ArmR.q)';
+pandaArms.ArmR.bJm_min = zeros(6,14);
+for i = 1:length(pandaArms.ArmR.joints_dis_min)
+    if(pandaArms.ArmR.joints_dis_min<0)
+     pandaArms.ArmR.bJm_min(3,i) = 1;
+    end
+end
+
 
 % display(pandaArms.ArmL.bJm_max)
 
-% 
-% if (mission.phase == 2)
-%     pandaArms.ArmL.wJo = ...; 
-%     pandaArms.ArmR.wJo = ...;
+
+
+
+
+if (mission.phase == 2)
+    % pandaArms.ArmL.wJo = ...; 
+    % pandaArms.ArmR.wJo = ...;
+    % Grasping 
+    pandaArms.ArmL.bJt_grasp = zeros(6,14);
+    pandaArms.ArmL.bJt_grasp(:,7) = [0 0 0 0 1 0];
+    
+    
+    pandaArms.ArmR.bJt_grasp = zeros(6,14);
+    pandaArms.ArmR.bJt_grasp(:,14) = [0 0 0 0 1 0];
+
 
 % Common Jacobians
 % pandaArms.Jjl = ...;
