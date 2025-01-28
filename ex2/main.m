@@ -48,11 +48,10 @@ pandaArms.ArmL.wTg = [pandaArms.ArmL.wTt(1:3,1:3)*rotation(0,pi/6,0) [0.4;0;0.59
 pandaArms.ArmR.wTg = [pandaArms.ArmR.wTt(1:3,1:3)*rotation(0,pi/6,0) [0.6;0;0.59]; 0 0 0 1];
 
 
-% pandaArms.ArmL.wTg = [pandaArms.ArmL.wTt(1:3,1:3)*rotation(0,-pi/2,0) [0.4;0;1.09]; 0 0 0 1];
-% pandaArms.ArmR.wTg = [pandaArms.ArmR.wTt(1:3,1:3)*rotation(0,pi/2,0) [0.6;0;1.09]; 0 0 0 1];
-
 % Second goal move the object
-% pandaArms.wTog = ...;
+pandaArms.wTog = [pandaArms.ArmL.wTt(1:3,1:3) [0.65;-0.35;0.28]; 0 0 0 1];
+
+
 
 %% Mission configuration
 
@@ -119,10 +118,8 @@ for t = 0:dt:Tf
         tool_jacobian_R = pandaArms.ArmR.wJt;
     elseif(mission.phase == 2)
         % In this phase the tool frame coincide with the object frame
-        % tool_jacobian_L = pandaArms.ArmL.wJo;
-        % tool_jacobian_R = pandaArms.ArmR.wJo;
-        tool_jacobian_L = pandaArms.ArmL.wJt;
-        tool_jacobian_R = pandaArms.ArmR.wJt;
+        tool_jacobian_L = pandaArms.ArmL.wJo;
+        tool_jacobian_R = pandaArms.ArmR.wJo;
     end
 
     % ADD minimum distance from table
@@ -145,6 +142,9 @@ for t = 0:dt:Tf
     % minimum altitude
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.min,pandaArms.ArmL.Jma, Qp, ydotbar, pandaArms.ArmL.xdot.min , 0.0001,   0.01, 10);
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.min,pandaArms.ArmR.Jma, Qp, ydotbar, pandaArms.ArmR.xdot.min , 0.0001,   0.01, 10);
+   
+    % con
+    [Qp, ydotbar] = iCAT_task(pandaArms.A.con,pandaArms.Jjl, Qp, ydotbar, pandaArms.xdot.con , 0.0001,   0.01, 10);
 
     % Task: Tool Move-To
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.tool, [tool_jacobian_L, zeros(6,7)], Qp, ydotbar, pandaArms.ArmL.xdot.tool, 0.0001,   0.01, 10);

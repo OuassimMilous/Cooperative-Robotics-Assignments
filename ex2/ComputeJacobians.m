@@ -42,11 +42,13 @@ pandaArms.ArmR.bJt  = pandaArms.ArmR.Ste * pandaArms.ArmR.bJe(:,1:7);
 % Top three rows are angular velocities, bottom three linear velocities
 pandaArms.ArmL.wJt  = pandaArms.ArmL.bJt;
 pandaArms.ArmR.wJt  = [pandaArms.ArmR.wTb(1:3,1:3) zeros(3);zeros(3) pandaArms.ArmR.wTb(1:3,1:3)]* pandaArms.ArmR.bJt;
+
 % display(pandaArms.ArmL.bJe)
 % display(pandaArms.ArmR.wJt)
 
 pandaArms.ArmL.Jma = [zeros(5,14);zeros(1,5), 1 ,0 , zeros(1,7)];
 pandaArms.ArmR.Jma = [zeros(5,14);zeros(1,7) zeros(1,5), 1 ,0 ];
+
 
 % limits joints
 
@@ -89,8 +91,9 @@ end
 
 
 if (mission.phase == 2)
-    % pandaArms.ArmL.wJo = ...; 
-    % pandaArms.ArmR.wJo = ...;
+
+    pandaArms.ArmL.wJo = pandaArms.ArmL.Jma;
+    pandaArms.ArmR.wJo = pandaArms.ArmL.Jma;
     % Grasping 
     pandaArms.ArmL.bJt_grasp = zeros(6,14);
     pandaArms.ArmL.bJt_grasp(:,7) = [0 0 0 0 1 0];
@@ -99,8 +102,9 @@ if (mission.phase == 2)
     pandaArms.ArmR.bJt_grasp = zeros(6,14);
     pandaArms.ArmR.bJt_grasp(:,14) = [0 0 0 0 1 0];
 
-
+% con
 % Common Jacobians
-% pandaArms.Jjl = ...;
+pandaArms.Jjl = [pandaArms.ArmL.bJt  -pandaArms.ArmR.bJt ];
+
 
 end

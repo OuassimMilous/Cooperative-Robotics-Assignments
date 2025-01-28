@@ -33,7 +33,7 @@ pandaArm.Jjl = [];
 pandaArm.ArmL.Ste = zeros(6);
 pandaArm.ArmR.Ste = zeros(6);
 
-% tool
+% move to
 pandaArm.ArmL.xdot.tool = zeros(6);
 pandaArm.ArmR.xdot.tool = zeros(6);
 
@@ -89,6 +89,19 @@ pandaArm.ArmL.bJm_min = [];
 
 
 %% PHASE 2
+
+
+% constraint task
+pandaArm.A.con=zeros(6);
+pandaArm.xdot.con = zeros(6,1);
+pandaArm.Jjl = zeros(6,14);
+
+
+% move to 2
+pandaArm.ArmL.wJo= [];
+pandaArm.ArmR.wJo= [];
+
+
 
 % Grasping
 pandaArm.ArmL.xdot.grasp = zeros(6,1);
