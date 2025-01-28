@@ -18,11 +18,11 @@ function [pandaArms] = ComputeJacobians(pandaArms,mission)
 % [angular velocities; linear velocities]
 
 
-% jlmin = [-2.8973;-1.7628;-2.8973;-3.0718;-2.8973;-0.0175;-2.8973];
-% jlmax = [2.8973;1.7628;2.8973;-0.0698;2.8973;3.7525;2.8973];
+jlmin = [-2.8973;-1.7628;-2.8973;-3.0718;-2.8973;-0.0175;-2.8973];
+jlmax = [2.8973;1.7628;2.8973;-0.0698;2.8973;3.7525;2.8973];
 
-jlmin = zeros(7,1);
-jlmax = zeros(7,1);
+% jlmin = zeros(7,1);
+% jlmax = zeros(7,1);
 
 
 
