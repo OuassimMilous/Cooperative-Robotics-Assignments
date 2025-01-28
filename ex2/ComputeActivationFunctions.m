@@ -76,6 +76,38 @@ switch mission.phase
 
         
     case 3 % STOP any motion 
+
+
+         % Move-To
+         pandaArm.ArmR.A.tool = zeros(6);
+         pandaArm.ArmL.A.tool = zeros(6);
+
+
+         % constraint
+         pandaArm.A.con = zeros(6);
+
+        % minimum altitude
+         pandaArm.ArmL.A.min = zeros(6);
+
+         pandaArm.ArmR.A.min = zeros(6);
+
+
+        % limits joints
+        % max   
+
+        pandaArm.ArmL.A.joints_max=zeros(6);
+        pandaArm.ArmR.A.joints_max=zeros(6);
+
+        % min
+        pandaArm.ArmL.A.joints_min=zeros(6);
+        pandaArm.ArmR.A.joints_min=zeros(6);
+
+
+        % Rigid Grasp Constraint
+        pandaArm.ArmL.A.grasp=zeros(6);
+        pandaArm.ArmR.A.grasp=zeros(6);
+        
+
         
 end
 % INEQUALITY TASK ACTIVATION
