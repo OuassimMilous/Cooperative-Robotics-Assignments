@@ -61,7 +61,7 @@ for i = 1:length(pandaArms.ArmR.joints_dis_max)
     pandaArms.ArmR.bJm_max(3,i) = pandaArms.ArmR.joints_dis_max(i);
 end
 
-display(pandaArms.ArmL.bJm_max)
+% display(pandaArms.ArmL.bJm_max)
 
 % 
 % if (mission.phase == 2)
