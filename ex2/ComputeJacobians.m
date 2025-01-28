@@ -55,30 +55,29 @@ pandaArms.ArmL.joints_dis_max = abs(jlmax) - abs(pandaArms.ArmL.q)';
 pandaArms.ArmL.bJm_max = zeros(6,14);
 for i = 1:length(pandaArms.ArmL.joints_dis_max)
     if(pandaArms.ArmL.joints_dis_max<0)
-     pandaArms.ArmL.bJm_max(3,i) = 1;
+     pandaArms.ArmL.bJm_max(1:6) = ones(6,1)
     end
 end
 pandaArms.ArmR.joints_dis_max = abs(jlmax) - abs(pandaArms.ArmR.q)';
 pandaArms.ArmR.bJm_max = zeros(6,14);
 for i = 1:length(pandaArms.ArmR.joints_dis_max)
     if(pandaArms.ArmR.joints_dis_max<0)
-     pandaArms.ArmR.bJm_max(3,i) = 1;
+     pandaArms.ArmR.bJm_max(1:6) = ones(6,1)
     end
 end
-
 % min
 pandaArms.ArmL.joints_dis_min = abs(jlmin) - abs(pandaArms.ArmL.q)';
 pandaArms.ArmL.bJm_min = zeros(6,14);
 for i = 1:length(pandaArms.ArmL.joints_dis_min)
     if(pandaArms.ArmL.joints_dis_min<0)
-     pandaArms.ArmL.bJm_min(3,i) = 1;
+     pandaArms.ArmL.bJm_min(1:6) = ones(6,1)
     end
 end
 pandaArms.ArmR.joints_dis_min = abs(jlmin) - abs(pandaArms.ArmR.q)';
 pandaArms.ArmR.bJm_min = zeros(6,14);
 for i = 1:length(pandaArms.ArmR.joints_dis_min)
     if(pandaArms.ArmR.joints_dis_min<0)
-     pandaArms.ArmR.bJm_min(3,i) = 1;
+     pandaArms.ArmR.bJm_min(1:6) = ones(6,1)
     end
 end
 
