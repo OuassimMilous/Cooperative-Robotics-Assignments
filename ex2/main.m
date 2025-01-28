@@ -209,7 +209,9 @@ for t = 0:dt:Tf
     % time. Remove to go as fast as possible
     % WARNING: MUST BE ENABLED IF CONTROLLING REAL ROBOT !
     SlowdownToRealtime(dt);
-    
+    if(mission.phase == 4)
+        break;
+    end
 end
 
 PrintPlot(plt, pandaArms);

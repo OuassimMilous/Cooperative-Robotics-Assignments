@@ -109,19 +109,19 @@ switch mission.phase
 
 
 
-    % case 3
-    %     % Stop any motions
-    %     % LEFT ARM
-    %     % -----------------------------------------------------------------
-    %     % Tool position and orientation task reference
-    %     pandaArm.ArmL.xdot.tool(1:3) = ...;
-    %     pandaArm.ArmL.xdot.tool(4:6) = ...;
-    % 
-    %     % RIGHT ARM
-    %     % -----------------------------------------------------------------
-    %     % Tool position and orientation task reference
-    %     pandaArm.ArmR.xdot.tool(1:3) = ...;
-    %     pandaArm.ArmR.xdot.tool(4:6) = ...;
+    case 3
+        % Stop any motions
+        % LEFT ARM
+        % -----------------------------------------------------------------
+        % Tool position and orientation task reference
+        pandaArm.ArmL.xdot.tool(1:3) = zeros(3,1);
+        pandaArm.ArmL.xdot.tool(4:6) = zeros(3,1);
+
+        % RIGHT ARM
+        % -----------------------------------------------------------------
+        % Tool position and orientation task reference
+        pandaArm.ArmR.xdot.tool(1:3) = zeros(3,1);
+        pandaArm.ArmR.xdot.tool(4:6) = zeros(3,1);
 end
 
 
