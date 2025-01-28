@@ -9,7 +9,7 @@ real_robot = false;
 %% Initialization - DON'T CHANGE ANYTHING from HERE ... 
 % Simulation variables (integration and final time)
 dt = 0.005;
-Tf = 15; %simulation time
+Tf = 100; %simulation time
 loop = 1;
 maxloops = ceil(Tf/dt);
 mission.phase = 1;

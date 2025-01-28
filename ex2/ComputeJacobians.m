@@ -61,6 +61,10 @@ for i = 1:length(pandaArms.ArmR.joints_dis_max)
     pandaArms.ArmR.bJm_max(3,i) = pandaArms.ArmR.joints_dis_max(i);
 end
 
+
+% Grasping 
+
+
 % display(pandaArms.ArmL.bJm_max)
 
 % 
