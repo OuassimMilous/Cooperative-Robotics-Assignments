@@ -34,12 +34,13 @@ function [Q, rho, W] = iCAT_task(A, J, Qold, rhoold, xdot, lambda, threshold, we
    % compute W to smooth out the use of Qold in lower priority tasks
    W = J*Qold*JQpinv1;
    T = eye(n) - Qold*JQpinv2*W*J;
-%    disp("\n")
-%    disp("T: " + size(T))
-%    disp("Qold: " + size(Qold))  
-%    disp("JQpinv2: " + size(JQpinv2))
-%    disp("W: " + size(W))
-%    disp("xdot: " + size(xdot))
+   % disp("\n")
+   % disp("J: " + size(T))
+   % disp("T: " + size(J))
+   % disp("Qold: " + size(Qold))  
+   % disp("JQpinv2: " + size(JQpinv2))
+   % disp("W: " + size(W))
+   % disp("xdot: " + size(xdot))
    % compute the new rho
    rho = T*rhoold + Qold*JQpinv2*W*xdot;
    %rho2 = T*rhoold + Qold*JQpinv2*W*xdot(7:12);

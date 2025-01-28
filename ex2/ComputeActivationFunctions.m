@@ -22,12 +22,12 @@ switch mission.phase
         % limits joints
         % max   
 
-        pandaArm.ArmL.A.joints_max=ones(6);
-        pandaArm.ArmR.A.joints_max=ones(6);
+        pandaArm.ArmL.A.joints_max=eye(6);
+        pandaArm.ArmR.A.joints_max=eye(6);
 
         % min
-        pandaArm.ArmL.A.joints_min=ones(6);
-        pandaArm.ArmR.A.joints_min=ones(6);
+        pandaArm.ArmL.A.joints_min=eye(6);
+        pandaArm.ArmR.A.joints_min=eye(6);
 
 
         % Rigid Grasp Constraint
@@ -37,9 +37,13 @@ switch mission.phase
     case 2 % Move the object holding it firmly
 
 
-        % Move-To
-         pandaArm.ArmR.A.tool = zeros(6);
-         pandaArm.ArmL.A.tool = zeros(6);
+         % Move-To
+         pandaArm.ArmR.A.tool = eye(6);
+         pandaArm.ArmL.A.tool = eye(6);
+
+
+         % constraint
+         pandaArm.A.con = eye(6);
 
         % minimum altitude
          pandaArm.ArmL.A.min = zeros(6);
@@ -56,17 +60,17 @@ switch mission.phase
         % limits joints
         % max   
 
-        pandaArm.ArmL.A.joints_max=ones(6);
-        pandaArm.ArmR.A.joints_max=ones(6);
+        pandaArm.ArmL.A.joints_max=eye(6);
+        pandaArm.ArmR.A.joints_max=eye(6);
 
         % min
-        pandaArm.ArmL.A.joints_min=ones(6);
-        pandaArm.ArmR.A.joints_min=ones(6);
+        pandaArm.ArmL.A.joints_min=eye(6);
+        pandaArm.ArmR.A.joints_min=eye(6);
 
 
         % Rigid Grasp Constraint
-        pandaArm.ArmL.A.grasp=ones(6);
-        pandaArm.ArmR.A.grasp=ones(6);
+        pandaArm.ArmL.A.grasp=eye(6);
+        pandaArm.ArmR.A.grasp=eye(6);
         
 
 

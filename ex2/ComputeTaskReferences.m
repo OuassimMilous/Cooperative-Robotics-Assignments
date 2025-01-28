@@ -66,6 +66,23 @@ switch mission.phase
         % -----------------------------------------------------------------        
         % Object position and orientation task reference
         % [ang_l, lin_l] = CartError(pandaArm.ArmL.wTg,pandaArm.ArmL.wTt);
+
+
+        % con
+        pandaArm.xdot.con = zeros(6,1);
+
+        % move2
+        [ang_l, lin_l] = CartError(pandaArm.wTog,pandaArm.ArmL.wTt);
+
+        pandaArm.ArmL.xdot.tool = 0.2*[ang_l;lin_l];
+        % limit the requested velocities...
+        pandaArm.ArmL.xdot.tool(1:3) = Saturate(pandaArm.ArmL.xdot.tool(1:3),0.2);
+        pandaArm.ArmL.xdot.tool(4:6) = Saturate(pandaArm.ArmL.xdot.tool(4:6),0.2);
+
+
+
+
+        % grasp
         pandaArm.ArmL.xdot.grasp = [0 0 0 0 (0.2*(0.3 - pandaArm.ArmL.q(7))) 0]';
 
         % limit the requested velocities...
@@ -81,6 +98,16 @@ switch mission.phase
         % limit the requested velocities...
         pandaArm.ArmR.xdot.grasp(1:3) = Saturate(pandaArm.ArmR.xdot.grasp(1:3),0.2);
         pandaArm.ArmR.xdot.grasp(4:6) = Saturate(pandaArm.ArmR.xdot.grasp(4:6),0.2);
+
+        % move2
+        [ang_l, lin_l] = CartError(pandaArm.wTog,pandaArm.ArmR.wTt);
+
+        pandaArm.ArmR.xdot.tool = 0.2*[ang_l;lin_l];
+        % limit the requested velocities...
+        pandaArm.ArmR.xdot.tool(1:3) = Saturate(pandaArm.ArmR.xdot.tool(1:3),0.2);
+        pandaArm.ArmR.xdot.tool(4:6) = Saturate(pandaArm.ArmR.xdot.tool(4:6),0.2);
+
+
 
     % case 3
     %     % Stop any motions
