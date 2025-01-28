@@ -1,3 +1,4 @@
+
 %% Template Exercises Manipulation - Cooperative Robotics a.y. 24-25
 addpath('./simulation_scripts');
 clc;
@@ -47,7 +48,7 @@ pandaArms.ArmL.wTg = [pandaArms.ArmL.wTt(1:3,1:3)*rotation(0,pi/6,0) [0.4;0;0.59
 pandaArms.ArmR.wTg = [pandaArms.ArmR.wTt(1:3,1:3)*rotation(0,pi/6,0) [0.6;0;0.59]; 0 0 0 1];
 
 
-% pandaArms.ArmL.wTg = [pandaArms.ArmL.wTt(1:3,1:3)*rotation(0,pi/2,0) [0.4;0;1.09]; 0 0 0 1];
+% pandaArms.ArmL.wTg = [pandaArms.ArmL.wTt(1:3,1:3)*rotation(0,-pi/2,0) [0.4;0;1.09]; 0 0 0 1];
 % pandaArms.ArmR.wTg = [pandaArms.ArmR.wTt(1:3,1:3)*rotation(0,pi/2,0) [0.6;0;1.09]; 0 0 0 1];
 
 % Second goal move the object
@@ -130,8 +131,16 @@ for t = 0:dt:Tf
     % ...
 
 
+    % % joint limits
+    % % max
+    % [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.joints_max,pandaArms.ArmR.bJm_max, Qp, ydotbar, pandaArms.ArmR.xdot.joints_max , 0.0001,   0.01, 10);
+    % [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.joints_max,pandaArms.ArmL.bJm_max, Qp, ydotbar, pandaArms.ArmL.xdot.joints_max , 0.0001,   0.01, 10);
+    % 
+    % % min
+    % [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.joints_min,pandaArms.ArmR.bJm_min, Qp, ydotbar, pandaArms.ArmR.xdot.joints_min , 0.0001,   0.01, 10);
+    % [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.joints_min,pandaArms.ArmL.bJm_min, Qp, ydotbar, pandaArms.ArmL.xdot.joints_min , 0.0001,   0.01, 10);
 
-
+    % minimum altitude
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.min,pandaArms.ArmL.Jma, Qp, ydotbar, pandaArms.ArmL.xdot.min , 0.0001,   0.01, 10);
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.min,pandaArms.ArmR.Jma, Qp, ydotbar, pandaArms.ArmR.xdot.min , 0.0001,   0.01, 10);
 
@@ -145,6 +154,7 @@ for t = 0:dt:Tf
     pandaArms.ArmL.q_dot = ydotbar(1:7);
     pandaArms.ArmR.q_dot = ydotbar(8:14);
 
+    
     pandaArms.ArmL.x = tool_jacobian_L * pandaArms.ArmL.q_dot;
     pandaArms.ArmR.x = tool_jacobian_R * pandaArms.ArmR.q_dot;
     % Integration
@@ -177,7 +187,7 @@ for t = 0:dt:Tf
         phase = mission.phase
         if (mission.phase == 1)
             %add debug prints phase 1 here
-            display(error)
+            % display(error)
         elseif (mission.phase == 2)
             %add debug prints phase 2 here
         end

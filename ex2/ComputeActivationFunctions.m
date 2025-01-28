@@ -7,7 +7,7 @@ switch mission.phase
          pandaArm.ArmR.A.tool = eye(6);
          pandaArm.ArmL.A.tool = eye(6);
 
-
+        % minimum altitude
          pandaArm.ArmL.A.min = zeros(6);
          if(pandaArm.ArmL.xdot.min(6)<0)
               pandaArm.ArmL.A.min = eye(6);
@@ -18,9 +18,16 @@ switch mission.phase
               pandaArm.ArmR.A.min = eye(6);
           end
 
-           % pandaArm.A.min_l = eye(6);
-           % pandaArm.A.min_r = eye(6);
 
+        % limits joints
+        % max   
+
+        pandaArm.ArmL.A.joints_max=ones(6);
+        pandaArm.ArmR.A.joints_max=ones(6);
+
+        % min
+        pandaArm.ArmL.A.joints_min=ones(6);
+        pandaArm.ArmR.A.joints_min=ones(6);
 
     case 2 % Move the object holding it firmly
         % Rigid Grasp Constraint
