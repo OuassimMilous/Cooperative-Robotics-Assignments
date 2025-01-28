@@ -90,7 +90,7 @@ pandaArm.ArmL.bJm_min = [];
 
 %% PHASE 2
 
-
+% pandaArms.wTog = 
 % constraint task
 pandaArm.A.con=zeros(6);
 pandaArm.xdot.con = zeros(6,1);

@@ -104,7 +104,6 @@ if (mission.phase == 2)
 
 % con
 % Common Jacobians
-pandaArms.Jjl = [pandaArms.ArmL.bJt  -pandaArms.ArmR.bJt ];
-
+pandaArms.Jjl = [pandaArms.ArmL.wJt  -pandaArms.ArmR.wJt ];
 
 end

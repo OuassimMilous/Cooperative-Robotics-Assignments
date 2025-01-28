@@ -72,7 +72,7 @@ switch mission.phase
         pandaArm.xdot.con = zeros(6,1);
 
         % move2
-        [ang_l, lin_l] = CartError(pandaArms.wTog,pandaArm.ArmL.wTt);
+        [ang_l, lin_l] = CartError(pandaArm.wTog,pandaArm.ArmL.wTt);
 
         pandaArm.ArmL.xdot.tool = 0.2*[ang_l;lin_l];
         % limit the requested velocities...
@@ -100,7 +100,7 @@ switch mission.phase
         pandaArm.ArmR.xdot.grasp(4:6) = Saturate(pandaArm.ArmR.xdot.grasp(4:6),0.2);
 
         % move2
-        [ang_l, lin_l] = CartError(pandaArms.wTog,pandaArm.ArmR.wTt);
+        [ang_l, lin_l] = CartError(pandaArm.wTog,pandaArm.ArmR.wTt);
 
         pandaArm.ArmR.xdot.tool = 0.2*[ang_l;lin_l];
         % limit the requested velocities...
