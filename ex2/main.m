@@ -119,8 +119,10 @@ for t = 0:dt:Tf
         tool_jacobian_R = pandaArms.ArmR.wJt;
     elseif(mission.phase == 2)
         % In this phase the tool frame coincide with the object frame
-        tool_jacobian_L = pandaArms.ArmL.wJo;
-        tool_jacobian_R = pandaArms.ArmR.wJo;
+        % tool_jacobian_L = pandaArms.ArmL.wJo;
+        % tool_jacobian_R = pandaArms.ArmR.wJo;
+        tool_jacobian_L = pandaArms.ArmL.wJt;
+        tool_jacobian_R = pandaArms.ArmR.wJt;
     end
 
     % ADD minimum distance from table
@@ -147,6 +149,13 @@ for t = 0:dt:Tf
     % Task: Tool Move-To
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.tool, [tool_jacobian_L, zeros(6,7)], Qp, ydotbar, pandaArms.ArmL.xdot.tool, 0.0001,   0.01, 10);
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.tool,[zeros(6,7),tool_jacobian_R], Qp, ydotbar, pandaArms.ArmR.xdot.tool, 0.0001,   0.01, 10);
+
+
+    % grasp
+    [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.grasp,pandaArms.ArmL.bJt_grasp, Qp, ydotbar, pandaArms.ArmL.xdot.grasp , 0.0001,   0.01, 10);
+    [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.grasp,pandaArms.ArmR.bJt_grasp, Qp, ydotbar, pandaArms.ArmR.xdot.grasp , 0.0001,   0.01, 10);
+
+
 
     [Qp, ydotbar] = iCAT_task(eye(14), eye(14), Qp, ydotbar, zeros(14,1), 0.0001,   0.01, 10);    % this task should be the last one
 

@@ -62,15 +62,21 @@ for i = 1:length(pandaArms.ArmR.joints_dis_max)
 end
 
 
-% Grasping 
-
 
 % display(pandaArms.ArmL.bJm_max)
 
-% 
-% if (mission.phase == 2)
-%     pandaArms.ArmL.wJo = ...; 
-%     pandaArms.ArmR.wJo = ...;
+
+if (mission.phase == 2)
+    % pandaArms.ArmL.wJo = ...; 
+    % pandaArms.ArmR.wJo = ...;
+    % Grasping 
+    pandaArms.ArmL.bJt_grasp = zeros(6,14);
+    pandaArms.ArmL.bJt_grasp(:,7) = [0 0 0 0 1 0];
+    
+    
+    pandaArms.ArmR.bJt_grasp = zeros(6,14);
+    pandaArms.ArmR.bJt_grasp(:,14) = [0 0 0 0 1 0];
+
 
 % Common Jacobians
 % pandaArms.Jjl = ...;
