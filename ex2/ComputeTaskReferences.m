@@ -12,8 +12,6 @@ pandaArm.dist_tools = norm(pandaArm.ArmL.wTt(1:3, 4) - pandaArm.ArmR.wTt(1:3, 4)
 % pandaArm.ArmL.xdot.jl = ...;
 % pandaArm.ArmR.xdot.jl = ...;
 
-jlmin = [-2.8973;-1.7628;-2.8973;-3.0718;-2.8973;-0.0175;-2.8973];
-jlmax = [2.8973;1.7628;2.8973;-0.0698;2.8973;3.7525;2.8973];
 
 switch mission.phase
     case 1
@@ -31,26 +29,10 @@ switch mission.phase
         pandaArm.ArmL.min_dis = [pandaArm.ArmL.bTe(3,4)];
         pandaArm.ArmL.xdot.min = -0.2 * (0.15 - norm(pandaArm.ArmL.min_dis));
         pandaArm.ArmL.xdot.min = [0 0 0 0 0 pandaArm.ArmL.xdot.min]';
+     
         % joint limits
-        % max
-         % joint limits
-        % max
-        pandaArm.ArmL.joints_dis_max = abs(jlmax) - abs(pandaArm.ArmL.q);
-        pandaArm.ArmL.joints_dis_max = max(pandaArm.ArmL.joints_dis_max, 0)';
-        pandaArm.ArmL.xdot.joints_max = [0 0 0 0 0 1]';
-
-        pandaArm.ArmR.joints_dis_max = abs(jlmax) - abs(pandaArm.ArmR.q);
-        pandaArm.ArmR.joints_dis_max = max(pandaArm.ArmR.joints_dis_max, 0)';
-        pandaArm.ArmR.xdot.joints_max = [0 0 0 0 0 1]';
-
-        % min
-        pandaArm.ArmL.joints_dis_min = abs(jlmax) - abs(pandaArm.ArmL.q);
-        pandaArm.ArmL.joints_dis_min = min(pandaArm.ArmL.joints_dis_max, 0)';
-        pandaArm.ArmL.xdot.joints_min = [0 0 0 0 0 1]';
-        
-        pandaArm.ArmR.joints_dis_min = abs(jlmax) - abs(pandaArm.ArmR.q);
-        pandaArm.ArmR.joints_dis_min = min(pandaArm.ArmR.joints_dis_max, 0)';
-        pandaArm.ArmR.xdot.joints_min = [0 0 0 0 0 1]';
+        pandaArm.ArmL.xdot.joints_max = [0 0 0 0 0 0]';
+        pandaArm.ArmL.xdot.joints_min = [0 0 0 0 0 0]';
 
 
         % pandaArm.ArmR.dot.joints_max = [0 0 pandaArm.ArmL.min_dis 0 0 0 ];
@@ -69,8 +51,9 @@ switch mission.phase
         pandaArm.ArmR.xdot.min = -0.2 * (0.15- norm(pandaArm.ArmR.min_dis));
         pandaArm.ArmR.xdot.min= [0 0 0 0 0 pandaArm.ArmR.xdot.min]';
         
-        % display(pandaArm.ArmL.xdot.grasp)
-        
+        % joint limits
+        pandaArm.ArmR.xdot.joints_max = [0 0 0 0 0 0]';
+        pandaArm.ArmR.xdot.joints_min = [0 0 0 0 0 0]';        
     case 2
         % Perform the rigid grasp of the object and move it
 
