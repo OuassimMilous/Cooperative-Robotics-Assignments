@@ -65,19 +65,15 @@ uvms.a = [];
 uvms.xdot.jl = [];
 
 % move
-uvms.Ap.v_l = zeros(3);
-uvms.Ap.v_a = zeros(3);
-uvms.A.v_l = zeros(3);
-uvms.A.v_a = zeros(3);
-uvms.xdot.v_l = [];
-uvms.xdot.v_a = [];
-uvms.Jv_l = []; 
-uvms.Jv_a = [];
+uvms.Ap.v = zeros(6);
+uvms.A.v = zeros(6);
+uvms.xdot.v = zeros(6);
+uvms.Jv = zeros(6,13); 
 
 % rock alignment
 uvms.xdot.rock = []; 
 uvms.Ap.rock = 0;
-uvms.A.rock = eye(3);
+uvms.A.rock = zeros(3);
 uvms.Jrock = [];
 
 % tool

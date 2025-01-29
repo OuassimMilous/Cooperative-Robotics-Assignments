@@ -37,10 +37,12 @@ uvms.Jt_v = [zeros(3) eye(3); eye(3) -skew(uvms.vTt(1:3,4))];
 uvms.Jtool = [uvms.Jt_a uvms.Jt_v];
 
 
-% move
-uvms.Jv_l = [zeros(3,7) uvms. wTv(1:3, 1:3) zeros(3)]; %LINEAR PART
-uvms.Jv_a =  [zeros(3,7)    zeros(3)    uvms. wTv(1:3, 1:3)];   %ANGULAR PART
-
+% % move
+% uvms.Jv_l = [zeros(3,7) uvms. wTv(1:3, 1:3) zeros(3)]; %LINEAR PART
+% uvms.Jv_a =  [zeros(3,7)    zeros(3)    uvms. wTv(1:3, 1:3)];   %ANGULAR PART
+uvms.Jv = [zeros(3,7), uvms.wTv(1:3,1:3), zeros(3);
+           zeros(3,7), zeros(3),         uvms.wTv(1:3,1:3)];
+% disp(uvms.Jv)
 % rock
 uvms.Jrock =  [zeros(3,7)    zeros(3)    uvms. wTr(1:3, 1:3)];
 
