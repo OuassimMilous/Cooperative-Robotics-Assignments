@@ -4,11 +4,9 @@ function [uvms] = ComputeTaskReferences(uvms, mission)
 
 % move
 [ang_v, lin_v] = CartError(uvms.wTgv , uvms.wTv);
-uvms.xdot.v_l = 1 * lin_v;
-uvms.xdot.v_a = 1 * ang_v;
-uvms.xdot.v_l = Saturate(uvms.xdot.v_l, 1);
-uvms.xdot.v_a = Saturate(uvms.xdot.v_a, 1);
-
+uvms.xdot.v = [ 1*lin_v;1*ang_v];
+uvms.xdot.v = Saturate(uvms.xdot.v, 1);
+% display(uvms.xdot.v)
 % tool
 [ang, lin] = CartError(uvms.vTg , uvms.vTt);
 uvms.xdot.tool = 1 * [ang; lin];

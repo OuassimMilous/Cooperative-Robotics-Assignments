@@ -2,8 +2,7 @@ function [uvms] = ComputeActivationFunctions(uvms, mission)
 % compute the activation functions here
     switch mission.phase
         case 1
-            uvms.Ap.v_l = 1; % linear velocity control
-            uvms.Ap.v_a = 1; % angular velocity control
+            uvms.Ap.v = 1; % velocity control
             uvms.Ap.ha = 1; % horizental 
             uvms.Ap.ma= 1; % minimum altitude
             uvms.Ap.landing= 0; % altitude control
@@ -11,8 +10,7 @@ function [uvms] = ComputeActivationFunctions(uvms, mission)
             uvms.Ap.rock = 0; % NOT ACTIVATING THE ROCK TASK
     
          case 2
-             uvms.Ap.v_l = 0;
-             uvms.Ap.v_a = 0;
+             uvms.Ap.v = 0;
              uvms.Ap.ha = 1; 
              uvms.Ap.ma= DecreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); %1; 
              uvms.Ap.landing= 0; %IT IS A LANDING TASK
@@ -20,8 +18,7 @@ function [uvms] = ComputeActivationFunctions(uvms, mission)
              uvms.Ap.rock = 1; %IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); %ACTIVATING THE ROCK TASK
 
         case 3
-             uvms.Ap.v_l = 0;
-             uvms.Ap.v_a = 0;
+             uvms.Ap.v = 0;
              uvms.Ap.ha = 1;
              uvms.Ap.ma= 0; %DecreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); 
              uvms.Ap.landing= IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); %IT IS A LANDING TASK
@@ -29,8 +26,7 @@ function [uvms] = ComputeActivationFunctions(uvms, mission)
              uvms.Ap.rock = 0; %ACTIVATING THE ROCK TASK
          
         case 4
-             uvms.Ap.v_l = 0;
-             uvms.Ap.v_a = 0;
+             uvms.Ap.v = 0;
              uvms.Ap.ha = 0;
              uvms.Ap.ma= 0; %DecreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); 
              uvms.Ap.landing= 0; %IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); %IT IS A LANDING TASK
@@ -40,16 +36,15 @@ function [uvms] = ComputeActivationFunctions(uvms, mission)
 
 
     end 
+    
 % arm tool position control
-% always active
 uvms.A.tool = eye(6) * uvms.Ap.tool;
 
 %ACTIVATION FUNCTION FOR ROCK
 uvms.A.rock = eye(3) * uvms.Ap.rock;
 
 %ACTIVATION FUNCTION FOR POSITION AND ORIENTATION CONTROL TASK FOR VEHICLE. 
-uvms.A.v_l = eye(3) * uvms.Ap.v_l;
-uvms.A.v_a = eye(3) * uvms.Ap.v_a;
+uvms.A.v = eye(6) * uvms.Ap.v;
 
 
 %HORIZONTAL ACTIVATION FUNCTION DEFINATION
