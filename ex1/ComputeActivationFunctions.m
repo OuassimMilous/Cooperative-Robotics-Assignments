@@ -31,11 +31,12 @@ function [uvms] = ComputeActivationFunctions(uvms, mission)
         case 4
              uvms.Ap.v_l = 0;
              uvms.Ap.v_a = 0;
-             uvms.Ap.ha = 1;
+             uvms.Ap.ha = 0;
              uvms.Ap.ma= 0; %DecreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); 
-             uvms.Ap.a= 1; %IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); %IT IS A LANDING TASK
+             uvms.Ap.a= 0; %IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); %IT IS A LANDING TASK
              uvms.Ap.t = IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time);
-             uvms.Ap.r = 1; %ACTIVATING THE ROCK TASK
+             uvms.Ap.r = 0; %ACTIVATING THE ROCK TASK
+             uvms.A.stop = eye(6);
 
 
     end 
