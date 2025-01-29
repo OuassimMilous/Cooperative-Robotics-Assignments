@@ -29,18 +29,21 @@ switch mission.phase
         % limit the requested velocities...
         pandaArm.xdot.tool(1:3) = Saturate(pandaArm.xdot.tool(1:3),1);
         pandaArm.xdot.tool(4:6) = Saturate(pandaArm.xdot.tool(4:6),1);
-    % 
-    % case 2
-    %     % Rigid Grasp Constraint
-    % 
-    %     % Object position and orientation task reference
-    %     [ang, lin] = CartError();
-    % 
-    %     pandaArm.xdot.tool = ;
-    %     % Limits request velocities
-    %     pandaArm.xdot.tool(1:3) = Saturate();
-    %     pandaArm.xdot.tool(4:6) = Saturate();
-    % 
+
+    case 2
+        % Rigid Grasp Constraint
+        pandaArm.xdot.grasp = [0 0 0 0 (0.2*(0.3 - pandaArm.q(7))) 0]';
+        % limit the requested velocities...
+        pandaArm.xdot.grasp(1:3) = Saturate(pandaArm.xdot.grasp(1:3),0.2);
+        pandaArm.xdot.grasp(4:6) = Saturate(pandaArm.xdot.grasp(4:6),0.2);
+
+        % Object position and orientation task reference
+        [ang, lin] = CartError(pandaArm.wTog,pandaArm.wTt);
+        pandaArm.xdot.tool = [ang;lin];
+        % limit the requested velocities...
+        pandaArm.xdot.tool(1:3) = Saturate(pandaArm.xdot.tool(1:3),0.2);
+        pandaArm.xdot.tool(4:6) = Saturate(pandaArm.xdot.tool(4:6),0.2);
+
     % case 3
     %     % Stop any motions
     %     % -----------------------------------------------------------------

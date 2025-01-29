@@ -81,8 +81,8 @@ pandaArms.ArmR.bJm = [zeros(6,7) pandaArms.ArmR.bJt(1:6,1:7) * pandaArms.ArmR.jo
 
 if (mission.phase == 2)
 
-    pandaArms.ArmL.wJo = pandaArms.ArmL.Jma;
-    pandaArms.ArmR.wJo = pandaArms.ArmL.Jma;
+    pandaArms.ArmL.wJo = pandaArms.ArmL.wJt;
+    pandaArms.ArmR.wJo = pandaArms.ArmL.wJt;
     % Grasping 
     pandaArms.ArmL.bJt_grasp = zeros(6,14);
     pandaArms.ArmL.bJt_grasp(:,7) = [0 0 0 0 1 0];

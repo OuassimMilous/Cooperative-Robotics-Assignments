@@ -59,7 +59,7 @@ pandaArm.ArmL.wJo= [];
 % Grasping
 pandaArm.xdot.grasp = zeros(6,1);
 pandaArm.A.grasp=zeros(6);
-pandaArm.bJt_grasp = zeros(6,14);
+pandaArm.bJt_grasp = zeros(6,7);
 
 
 end

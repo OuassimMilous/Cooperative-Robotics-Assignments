@@ -69,6 +69,9 @@ pandaArm2.wTg = [pandaArm2.wTt(1:3,1:3)*rotation(0,0.3491,0) [0.53;0;0.59]; 0 0 
 pandaArm1.wTog = [pandaArm1.wTt(1:3,1:3) *rotation(0,0.3491,0) [0.6;0.4;0.48]; 0 0 0 1];
 pandaArm2.wTog = [pandaArm1.wTt(1:3,1:3) *rotation(0,0.3491,0) [0.6;0.4;0.48]; 0 0 0 1];
 
+% pandaArm1.wTog = [pandaArm1.wTt(1:3,1:3) *rotation(0,pi/6,0) [1.6;-0.35;0.28]; 0 0 0 1];
+% pandaArm2.wTog = [pandaArm1.wTt(1:3,1:3) *rotation(0,pi/6,0) [1.6;-0.35;0.28]; 0 0 0 1];
+
 %% Mission configuration
 
 mission.prev_action = "go_to";
@@ -158,6 +161,9 @@ for t = 0:deltat:end_time
 
     % Task: Tool Move-To
     [Qp, ydotbar] = iCAT_task(pandaArm1.A.tool, tool_jacobian_L, Qp, ydotbar, pandaArm1.xdot.tool, 0.0001,   0.01, 10);
+   
+    % grasp
+    [Qp, ydotbar] = iCAT_task(pandaArm1.A.grasp, pandaArm1.bJt_grasp, Qp, ydotbar, pandaArm1.xdot.grasp, 0.0001,   0.01, 10);
 
     % Second manipulator TPIK (right)
 
@@ -167,9 +173,11 @@ for t = 0:deltat:end_time
     % minimum altitude
     [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.min, pandaArm2.Jma, Qp2, ydotbar2, pandaArm2.xdot.min, 0.0001,   0.01, 10);
 
-
     % Task: Tool Move-To
     [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.tool, tool_jacobian_R, Qp2, ydotbar2, pandaArm2.xdot.tool, 0.0001,   0.01, 10);
+
+    % grasp
+    [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.grasp, pandaArm2.bJt_grasp, Qp2, ydotbar2, pandaArm2.xdot.grasp, 0.0001,   0.01, 10);
 
     % COOPERATION hierarchy
     % SAVE THE NON COOPERATIVE VELOCITIES COMPUTED
