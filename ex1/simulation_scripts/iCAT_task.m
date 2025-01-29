@@ -20,7 +20,10 @@
 % - rho, the updated rho value
 function [Q, rho, W] = iCAT_task(A, J, Qold, rhoold, xdot, lambda, threshold, weight)
    n = size(J, 2);
-   
+% disp("A")
+% disp(A)
+% disp("J")
+% disp(J)
    if (size(A, 2) ~= size(J, 1))
        error('A and J have different size');
    end

@@ -124,7 +124,9 @@ uvms.v_rho_ha = [];
 uvms.v_n_ha = [];
 uvms.a = [];
 
-
+uvms.A.stop = zeros(6);
+uvms.xdot.stop=[];
+uvms.Jstop = zeros(6);
 
 end
 

@@ -80,5 +80,5 @@ uvms.Ja = [zeros(1,7) v_kw' zeros(1,3)];
 %VECHILCE UNDERACTUATION
 uvms.Jund = [zeros(6,7) eye(6)];
 
-
+uvms.Jstop = [zeros(6,7),eye(6)];
 end
