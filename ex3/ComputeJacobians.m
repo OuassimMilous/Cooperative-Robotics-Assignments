@@ -37,8 +37,8 @@ pandaArm.bJt  = pandaArm.Ste * pandaArm.bJe(:,1:7);
 
 % minimum altitude
  pandaArm.Jma = [zeros(5,7);0,0,0,0,0, 1 ,0];
- % disp(pandaArm.Jma )
-% limits joints
+
+ % limits joints
 for i = 1:7
     if (pandaArm.q(i)<jlmax(i)||pandaArm.q(i)>jlmin(i))
         pandaArm.joints_switch(i,i) = 0;
@@ -48,9 +48,13 @@ for i = 1:7
 end
 
 pandaArm.bJm = [pandaArm.bJt(1:6,1:7) * pandaArm.joints_switch];
-% if mission.phase == 2
-%     pandaArm.wJo = ...;
-% end
+if mission.phase == 2
+    pandaArm.wJo = pandaArm.wJt;
+
+    % Grasping 
+    pandaArm.bJt_grasp = zeros(6,7);
+    pandaArm.bJt_grasp(:,7) = [0 0 0 0 1 0];
+end
 % 
 % pandaArm.Jjl = ;
 end

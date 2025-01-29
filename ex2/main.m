@@ -49,7 +49,7 @@ pandaArms.ArmR.wTg = [pandaArms.ArmR.wTt(1:3,1:3)*rotation(0,pi/6,0) [0.6;0;0.59
 
 
 % Second goal move the object
-pandaArms.wTog = [pandaArms.ArmL.wTt(1:3,1:3) *rotation(0,pi/6,0) [1.6;-0.35;0.28]; 0 0 0 1];
+pandaArms.wTog = [pandaArms.ArmL.wTt(1:3,1:3) *rotation(0,pi/6,0) [0.65;-0.35;0.28]; 0 0 0 1];
 % pandaArms.wTog = [pandaArms.ArmL.wTt(1:3,1:3) [0.65;-0.35;0.28]; 0 0 0 1];
 % pandaArms.wTog = [pandaArms.ArmL.wTt(1:3,1:3)*rotation(0,pi/6,0) [0.5 0 0.4]'; 0 0 0 1];
 % pandaArms.wTog = [pandaArms.ArmL.wTt(1:3,1:3) 0.5 0 -0.59; 0 0 0 1];
@@ -114,16 +114,16 @@ for t = 0:dt:Tf
     % Used by the Move-To task
     tool_jacobian_L = zeros(6, 7);
     tool_jacobian_R = zeros(6, 7);
-    % if (mission.phase == 1)
+    if (mission.phase == 1)
         % In this phase the tool frame coincide with the center of the
         % gripper
         tool_jacobian_L = pandaArms.ArmL.wJt;
         tool_jacobian_R = pandaArms.ArmR.wJt;
-    % elseif(mission.phase == 2)
-    %     % In this phase the tool frame coincide with the object frame
-    %     tool_jacobian_L = pandaArms.ArmL.wJo;
-    %     tool_jacobian_R = pandaArms.ArmR.wJo;
-    % end
+    elseif(mission.phase == 2)
+        % In this phase the tool frame coincide with the object frame
+        tool_jacobian_L = pandaArms.ArmL.wJo;
+        tool_jacobian_R = pandaArms.ArmR.wJo;
+    end
 
     % ADD minimum distance from table
     % add all the other tasks here!

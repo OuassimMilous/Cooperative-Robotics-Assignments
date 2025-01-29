@@ -8,9 +8,10 @@ switch mission.phase
         
     case 2 % Move the object holding it firmly
         % Rigid Grasp Constraint
-        
+        pandaArm.A.grasp=eye(6);
         % Move-To
-        
+         pandaArm.A.tool = eye(6);
+
     case 3 % STOP any motion 
         
 end
