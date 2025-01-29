@@ -60,32 +60,18 @@ pandaArm.ArmL.bJt = [];
 
 % Fixed joints
 
-% max
-pandaArm.ArmL.xdot.joints_max = zeros(6);
-pandaArm.ArmR.xdot.joints_max = zeros(6);
+pandaArm.ArmL.xdot.joints = zeros(6);
+pandaArm.ArmR.xdot.joints = zeros(6);
 
-pandaArm.ArmL.joints_dis_max = zeros(6);
-pandaArm.ArmR.joints_dis_max = zeros(6);
+pandaArm.ArmL.joints_switch = zeros(7);
+pandaArm.ArmR.joints_switch = zeros(7);
 
-pandaArm.ArmL.A.joints_max=zeros(6);
-pandaArm.ArmR.A.joints_max=zeros(6);
+pandaArm.ArmL.A.joints=zeros(6);
+pandaArm.ArmR.A.joints=zeros(6);
 
 
-pandaArm.ArmR.bJm_max = [];
-pandaArm.ArmL.bJm_max = [];
-
-% min
-pandaArm.ArmL.xdot.joints_min = zeros(6);
-pandaArm.ArmR.xdot.joints_min = zeros(6);
-
-pandaArm.ArmL.joints_dis_min = zeros(6);
-pandaArm.ArmR.joints_dis_min = zeros(6);
-
-pandaArm.ArmL.A.joints_min=zeros(6);
-pandaArm.ArmR.A.joints_min=zeros(6);
-
-pandaArm.ArmR.bJm_min = [];
-pandaArm.ArmL.bJm_min = [];
+pandaArm.ArmR.bJm = [];
+pandaArm.ArmL.bJm = [];
 
 
 %% PHASE 2

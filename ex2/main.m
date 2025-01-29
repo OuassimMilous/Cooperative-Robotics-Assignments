@@ -134,13 +134,8 @@ for t = 0:dt:Tf
 
 
     % % joint limits
-    % % max
-    % [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.joints_max,pandaArms.ArmR.bJm_max, Qp, ydotbar, pandaArms.ArmR.xdot.joints_max , 0.0001,   0.01, 10);
-    % [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.joints_max,pandaArms.ArmL.bJm_max, Qp, ydotbar, pandaArms.ArmL.xdot.joints_max , 0.0001,   0.01, 10);
-    % 
-    % % min
-    % [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.joints_min,pandaArms.ArmR.bJm_min, Qp, ydotbar, pandaArms.ArmR.xdot.joints_min , 0.0001,   0.01, 10);
-    % [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.joints_min,pandaArms.ArmL.bJm_min, Qp, ydotbar, pandaArms.ArmL.xdot.joints_min , 0.0001,   0.01, 10);
+    [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.joints,pandaArms.ArmR.bJm, Qp, ydotbar, pandaArms.ArmR.xdot.joints , 0.0001,   0.01, 10);
+    [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.joints,pandaArms.ArmL.bJm, Qp, ydotbar, pandaArms.ArmL.xdot.joints , 0.0001,   0.01, 10);
 
     % minimum altitude
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.min,pandaArms.ArmL.Jma, Qp, ydotbar, pandaArms.ArmL.xdot.min , 0.0001,   0.01, 10);
