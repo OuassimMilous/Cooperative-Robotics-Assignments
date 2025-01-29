@@ -93,11 +93,12 @@ for t = 0:deltat:end_time
     % [Qp, ydotbar] = iCAT_task(uvms.A.und,   uvms.Jund,  Qp, ydotbar, uvms.xdot.und,  0.0001,   0.01, 10);  %ALWAYS PUT UNDERACTUATION PART ON THE TOP
     [Qp, ydotbar] = iCAT_task(uvms.A.ma,   uvms.Jma,  Qp, ydotbar, uvms.xdot.ma,  0.0001,   0.01, 10);  %MINIMUM ALTITUDE TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.ha,   uvms.Jha,  Qp, ydotbar, uvms.xdot.ha,  0.0001,   0.01, 10); %HORIZONTAL TASK
-    [Qp, ydotbar] = iCAT_task(uvms.A.rock,   uvms.Jrock,  Qp, ydotbar, uvms.xdot.rock,  0.0001,   0.01, 10); %ROCK TASK
-    [Qp, ydotbar] = iCAT_task(uvms.A.landing,    uvms.Jlanding,   Qp, ydotbar, uvms.xdot.landing,  0.0001,   0.01, 10); %ALTITUDE Control TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.stop,   uvms.Jstop,  Qp, ydotbar, uvms.xdot.stop,  0.0001,   0.01, 10);  %stop TASK
+    [Qp, ydotbar] = iCAT_task(uvms.A.rock,   uvms.Jrock,  Qp, ydotbar, uvms.xdot.rock,  0.0001,   0.01, 10); %ROCK TASK
+    [Qp, ydotbar] = iCAT_task(uvms.A.landing,    uvms.Jlanding,   Qp, ydotbar, uvms.xdot.landing,  0.0001,   0.01, 10); %landing TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.tool,    uvms.Jtool,   Qp, ydotbar, uvms.xdot.tool,  0.0001,   0.01, 10); %TOOL TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.v,  uvms.Jv, Qp, ydotbar, uvms.xdot.v,  0.0001,   0.01, 10);  % position control TASK
+  
     [Qp, ydotbar] = iCAT_task(eye(13),     eye(13),   Qp, ydotbar, zeros(13,1),  0.0001,   0.01, 10);    % this task should be the last one
     
     % get the two variables for integration
