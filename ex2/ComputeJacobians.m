@@ -43,16 +43,13 @@ pandaArms.ArmR.bJt  = pandaArms.ArmR.Ste * pandaArms.ArmR.bJe(:,1:7);
 pandaArms.ArmL.wJt  = pandaArms.ArmL.bJt;
 pandaArms.ArmR.wJt  = [pandaArms.ArmR.wTb(1:3,1:3) zeros(3);zeros(3) pandaArms.ArmR.wTb(1:3,1:3)]* pandaArms.ArmR.bJt;
 
-% display(pandaArms.ArmL.bJe)
-% display(pandaArms.ArmR.wJt)
 
+% minimum altitude
 pandaArms.ArmL.Jma = [zeros(5,14);zeros(1,5), 1 ,0 , zeros(1,7)];
 pandaArms.ArmR.Jma = [zeros(5,14);zeros(1,7) zeros(1,5), 1 ,0 ];
 
 
 % limits joints
-
-
 for i = 1:7
     if (pandaArms.ArmL.q(i)<jlmax(i)||pandaArms.ArmL.q(i)>jlmin(i))
         pandaArms.ArmL.joints_switch(i,i) = 0;
@@ -61,7 +58,7 @@ for i = 1:7
     end
 end
 
-pandaArms.ArmL.bJm = [pandaArms.ArmL.bJe(1:6,1:7) * pandaArms.ArmL.joints_switch zeros(6,7)];
+pandaArms.ArmL.bJm = [pandaArms.ArmL.bJt(1:6,1:7) * pandaArms.ArmL.joints_switch zeros(6,7)];
 
 % display([jlmax, jlmin])
 % display([pandaArms.ArmL.q])
@@ -74,7 +71,7 @@ for i = 1:7
     end
 end
 
-pandaArms.ArmR.bJm = [zeros(6,7) pandaArms.ArmR.bJe(1:6,1:7) * pandaArms.ArmR.joints_switch];
+pandaArms.ArmR.bJm = [zeros(6,7) pandaArms.ArmR.bJt(1:6,1:7) * pandaArms.ArmR.joints_switch];
 
 % display(pandaArms.ArmL.bJm)
 

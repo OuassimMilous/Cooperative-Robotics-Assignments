@@ -150,10 +150,24 @@ for t = 0:deltat:end_time
     % the sequence of iCAT_task calls defines the priority
 
     % First Manipulator TPIK (left)
+    % joint limitaions
+    [Qp, ydotbar] = iCAT_task(pandaArm1.A.joints, pandaArm1.bJm, Qp, ydotbar, pandaArm1.xdot.joints, 0.0001,   0.01, 10);
+
+    % minimum altitude
+    [Qp, ydotbar] = iCAT_task(pandaArm1.A.min, pandaArm1.Jma, Qp, ydotbar, pandaArm1.xdot.min, 0.0001,   0.01, 10);
+
     % Task: Tool Move-To
     [Qp, ydotbar] = iCAT_task(pandaArm1.A.tool, tool_jacobian_L, Qp, ydotbar, pandaArm1.xdot.tool, 0.0001,   0.01, 10);
 
     % Second manipulator TPIK (right)
+
+    % joint limitaions
+    [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.joints, pandaArm2.bJm, Qp2, ydotbar2, pandaArm1.xdot.joints, 0.0001,   0.01, 10);
+
+    % minimum altitude
+    [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.min, pandaArm2.Jma, Qp2, ydotbar2, pandaArm2.xdot.min, 0.0001,   0.01, 10);
+
+
     % Task: Tool Move-To
     [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.tool, tool_jacobian_R, Qp2, ydotbar2, pandaArm2.xdot.tool, 0.0001,   0.01, 10);
 
