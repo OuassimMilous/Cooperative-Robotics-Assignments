@@ -25,7 +25,7 @@ wTb_right = [rotation(0,0,pi) [1.06;-0.01;0];0 0 0 1]; % fixed transformation wo
 plt = InitDataPlot(maxloops);
 pandaArms = InitRobot(model,wTb_left,wTb_right);
 % Init object and tools frames
-obj_length = 0.1;
+obj_length = 0.06;
 w_obj_pos = [0.5 0 0.59]';
 w_obj_ori = rotation(0,0,0);
 pandaArms.ArmL.wTo = [w_obj_ori w_obj_pos;0 0 0 1];
@@ -44,12 +44,12 @@ pandaArms.ArmR.wTt = pandaArms.ArmR.wTe*pandaArms.ArmR.eTt;
 
 %% Defines the goal position for the end-effector/tool position task
 % First goal reach the grasping points.
-pandaArms.ArmL.wTg = [pandaArms.ArmL.wTt(1:3,1:3)*rotation(0,pi/6,0) [0.4;0;0.59]; 0 0 0 1];
+pandaArms.ArmL.wTg = [pandaArms.ArmL.wTt(1:3,1:3)*rotation(0,6,0) [0.4;0;0.59]; 0 0 0 1];
 pandaArms.ArmR.wTg = [pandaArms.ArmR.wTt(1:3,1:3)*rotation(0,pi/6,0) [0.6;0;0.59]; 0 0 0 1];
 
 
 % Second goal move the object
-pandaArms.wTog = [pandaArms.ArmL.wTt(1:3,1:3) *rotation(0,pi/6,0) [0.65;-0.35;0.28]; 0 0 0 1];
+pandaArms.wTog = [pandaArms.ArmL.wTt(1:3,1:3) *rotation(0,pi/6,0) [1.6;-0.35;0.28]; 0 0 0 1];
 % pandaArms.wTog = [pandaArms.ArmL.wTt(1:3,1:3) [0.65;-0.35;0.28]; 0 0 0 1];
 % pandaArms.wTog = [pandaArms.ArmL.wTt(1:3,1:3)*rotation(0,pi/6,0) [0.5 0 0.4]'; 0 0 0 1];
 % pandaArms.wTog = [pandaArms.ArmL.wTt(1:3,1:3) 0.5 0 -0.59; 0 0 0 1];

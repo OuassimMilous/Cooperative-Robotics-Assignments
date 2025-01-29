@@ -28,38 +28,46 @@ end
 %% TO HERE
 
 % Init robot model
-wTb_left = ...; %fixed transformation word -> base left
-wTb_right = ...; %fixed transformation word -> base right
-pandaArm1 = InitRobot(model,wTb_left);
-pandaArm2 = InitRobot(model,wTb_right);
+% Init robot model
+pandaArm1.wTb = eye(4); %fixed transformation word -> base left
+pandaArm2.wTb = [rotation(0,0,pi) [1.06;-0.01;0];0 0 0 1]; %fixed transformation word -> base right
+
+pandaArm1 = InitRobot(model,pandaArm1.wTb);
+pandaArm2 = InitRobot(model,pandaArm2.wTb);
 
 % Preallocation
 plt = InitDataPlot(maxloops);
 
 % Init object frame
-obj_length = ...;
-w_obj_pos = ...;
-w_obj_ori = ...;
-pandaArm1.wTo = ...;
-pandaArm2.wTo = ...;
+obj_length = 0.1;
+w_obj_pos = [0.5 0 0.59]';
+w_obj_ori = rotation(0,0,0);
+pandaArm1.wTo =[w_obj_ori w_obj_pos;0 0 0 1];
+pandaArm2.wTo =[w_obj_ori w_obj_pos;0 0 0 1];
 
 theta = -44.9949;% FIXED ANGLE BETWEEN EE AND TOOL 
 tool_length = 0.2124;% FIXED DISTANCE BETWEEN EE AND TOOL
 % Define trasnformation matrix from ee to tool.
-pandaArm1.eTt = ...;
-pandaArm2.eTt = ...;
+pandaArm1.eTt = [rotation(0,0,theta) [0; 0; tool_length]; 0 0 0 1];
+pandaArm2.eTt = [rotation(0,0,theta) [0; 0; tool_length]; 0 0 0 1];
 
 % Transformation matrix from <t> to <w>
-pandaArm1.wTt = ...;
-pandaArm2.wTt = ...;
+pandaArm1.wTt = pandaArm1.wTe*pandaArm1.eTt;
+pandaArm2.wTt = pandaArm2.wTe*pandaArm2.eTt;
+
 
 %% Defines the goal position for the end-effector/tool position task
 % First goal reach the grasping points.
-pandaArm1.wTg = ...;
-pandaArm2.wTg = ...;
+pandaArm1.wTg = [pandaArm1.wTt(1:3,1:3)*rotation(0,0.3491,0) [0.4;0;0.59]; 0 0 0 1];
+pandaArm2.wTg = [pandaArm2.wTt(1:3,1:3)*rotation(0,0.3491,0) [0.53;0;0.59]; 0 0 0 1];
+
+
+% pandaArm1.bTg = pandaArm1.wTg ;
+% pandaArm2.bTg = (wTb_right*-1)*pandaArm1.wTg ;
+
 % Second goal move the object
-pandaArm1.wTog = ...;
-pandaArm2.wTog = ...;
+pandaArm1.wTog = [pandaArm1.wTt(1:3,1:3) *rotation(0,0.3491,0) [0.6;0.4;0.48]; 0 0 0 1];
+pandaArm2.wTog = [pandaArm1.wTt(1:3,1:3) *rotation(0,0.3491,0) [0.6;0.4;0.48]; 0 0 0 1];
 
 %% Mission configuration
 
@@ -73,9 +81,9 @@ mission.phase_time = 0;
 % JL = joint limits task
 % MA = minimum altitude task
 % RC = rigid constraint task
-mission.actions.go_to.tasks = [...];
-mission.actions.coop_manip.tasks = [...];
-mission.actions.end_motion.tasks = [...];
+% mission.actions.go_to.tasks = [...];
+% mission.actions.coop_manip.tasks = [...];
+% mission.actions.end_motion.tasks = [...];
 
 %% CONTROL LOOP
 for t = 0:deltat:end_time
@@ -143,20 +151,12 @@ for t = 0:deltat:end_time
 
     % First Manipulator TPIK (left)
     % Task: Tool Move-To
-    [Qp, ydotbar] = iCAT_task(eye(7),...
-        eye(7),...
-        Qp2,...
-        ydotbar, zeros(7,1),...
-        0.0001,   0.01, 10);    % this task should be the last one
+    [Qp, ydotbar] = iCAT_task(pandaArm1.A.tool, tool_jacobian_L, Qp, ydotbar, pandaArm1.xdot.tool, 0.0001,   0.01, 10);
 
     % Second manipulator TPIK (right)
     % Task: Tool Move-To
-    [Qp2, ydotbar2] = iCAT_task(eye(7),...
-        eye(7),...
-        Qp2,...
-        ydotbar2, zeros(7,1),...
-        0.0001,   0.01, 10);    % this task should be the last one
-    
+    [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.tool, tool_jacobian_R, Qp2, ydotbar2, pandaArm2.xdot.tool, 0.0001,   0.01, 10);
+
     % COOPERATION hierarchy
     % SAVE THE NON COOPERATIVE VELOCITIES COMPUTED
 
@@ -164,21 +164,15 @@ for t = 0:deltat:end_time
     % ...
 
     
-    % this task should be the last one
-    [Qp, ydotbar] = iCAT_task(eye(7),...
-        eye(7),...
-        Qp, ydotbar,...
-        zeros(7,1),...
-        0.0001,   0.01, 10);    
+    % this task should be the last one 
+    [Qp, ydotbar] = iCAT_task(eye(7), eye(7), Qp, ydotbar, zeros(7,1), 0.0001,   0.01, 10);    % this task should be the last one
+
     % Task: Right Arm Cooperation
     % ...
 
     % this task should be the last one
-    [Qp2, ydotbar2] = iCAT_task(eye(7),...
-        eye(7),....
-        Qp2, ydotbar2,...
-        zeros(7,1),...
-        0.0001,   0.01, 10);    
+   [Qp2, ydotbar2] = iCAT_task(eye(7), eye(7), Qp2, ydotbar2, zeros(7,1), 0.0001,   0.01, 10);    % this task should be the last one
+
     % get the two variables for integration
     pandaArm1.q_dot = ydotbar(1:7);
     pandaArm2.q_dot = ydotbar2(1:7);
@@ -228,4 +222,3 @@ for t = 0:deltat:end_time
 end
 PrintPlot(plt);
 
-end

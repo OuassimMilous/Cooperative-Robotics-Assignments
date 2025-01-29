@@ -27,9 +27,7 @@ pandaArm.ArmR.bJe = eye(6,7);
 pandaArm.Jjl = [];
 
 %% ... TO HERE
-% Init Task Reference vectors
 
-% Init Activation function for activate or deactivate tasks
 pandaArm.ArmL.Ste = zeros(6);
 pandaArm.ArmR.Ste = zeros(6);
 
