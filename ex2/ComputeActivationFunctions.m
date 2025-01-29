@@ -20,8 +20,6 @@ switch mission.phase
 
 
         % limits joints
-        % max   
-
         pandaArm.ArmL.A.joints=eye(6);
         pandaArm.ArmR.A.joints=eye(6);
 

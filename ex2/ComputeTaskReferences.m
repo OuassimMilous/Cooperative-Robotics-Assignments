@@ -26,7 +26,7 @@ switch mission.phase
         pandaArm.ArmL.xdot.tool(4:6) = Saturate(pandaArm.ArmL.xdot.tool(4:6),1);
 
         % End effector minimum altitude for left
-        pandaArm.ArmL.min_dis = [pandaArm.ArmL.bTe(3,4)];
+        pandaArm.ArmL.min_dis = [pandaArm.ArmL.wTt(3,4)];
         pandaArm.ArmL.xdot.min = -1 * (0.15 - norm(pandaArm.ArmL.min_dis));
         pandaArm.ArmL.xdot.min = [0 0 0 0 0 pandaArm.ArmL.xdot.min]';
      
@@ -46,7 +46,7 @@ switch mission.phase
         pandaArm.ArmR.xdot.tool(4:6) = Saturate(pandaArm.ArmR.xdot.tool(4:6),1);
 
         % End effector minimum altitude for right
-        pandaArm.ArmR.min_dis = [pandaArm.ArmR.bTe(3,4)];
+        pandaArm.ArmR.min_dis = [pandaArm.ArmR.wTt(3,4)];
         pandaArm.ArmR.xdot.min = -1* (0.15- norm(pandaArm.ArmR.min_dis));
         pandaArm.ArmR.xdot.min= [0 0 0 0 0 pandaArm.ArmR.xdot.min]';
         

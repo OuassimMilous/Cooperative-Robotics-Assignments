@@ -4,18 +4,28 @@ function [pandaArm] = ComputeTaskReferences(pandaArm,mission)
 % pandaArm.xdot.alt = ...;
 % % take the smallest value, that is what matters most
 % % pandaArm.min_alt = min(alt_L, alt_R);
-% 
+
+
+
+% End effector minimum altitude for right
+pandaArm.min_dis = [pandaArm.wTt(3,4)];
+pandaArm.xdot.min = -1* (0.15- norm(pandaArm.min_dis));
+pandaArm.xdot.min= [0 0 0 0 0 pandaArm.xdot.min]';
+
 % % Compute joint limits task reference ALWAYS
 % % Create a velocity away from the limits => move to the middle between jlmax and jlmin
 % pandaArm.xdot.jl = ...;
+    
+% joint limits
+pandaArm.xdot.joints = [0 0 0 0 0 0]';   
 
 switch mission.phase
     case 1
         % Tool position and orientation task reference
-        % [ang_l, lin_l] = CartError(inv(pandaArm.wTb)*pandaArm.wTg,inv(pandaArm.wTb)*pandaArm.wTt);
-        [ang_l, lin_l] = CartError(pandaArm.wTg,pandaArm.wTt);
+        % [ang, lin] = CartError(inv(pandaArm.wTb)*pandaArm.wTg,inv(pandaArm.wTb)*pandaArm.wTt);
+        [ang, lin] = CartError(pandaArm.wTg,pandaArm.wTt);
 
-        pandaArm.xdot.tool = [ang_l;lin_l];
+        pandaArm.xdot.tool = [ang;lin];
         % limit the requested velocities...
         pandaArm.xdot.tool(1:3) = Saturate(pandaArm.xdot.tool(1:3),1);
         pandaArm.xdot.tool(4:6) = Saturate(pandaArm.xdot.tool(4:6),1);

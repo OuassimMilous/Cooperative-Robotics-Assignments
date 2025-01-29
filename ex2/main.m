@@ -44,7 +44,7 @@ pandaArms.ArmR.wTt = pandaArms.ArmR.wTe*pandaArms.ArmR.eTt;
 
 %% Defines the goal position for the end-effector/tool position task
 % First goal reach the grasping points.
-pandaArms.ArmL.wTg = [pandaArms.ArmL.wTt(1:3,1:3)*rotation(0,6,0) [0.4;0;0.59]; 0 0 0 1];
+pandaArms.ArmL.wTg = [pandaArms.ArmL.wTt(1:3,1:3)*rotation(0,pi/6,0) [0.4;0;0.59]; 0 0 0 1];
 pandaArms.ArmR.wTg = [pandaArms.ArmR.wTt(1:3,1:3)*rotation(0,pi/6,0) [0.6;0;0.59]; 0 0 0 1];
 
 
