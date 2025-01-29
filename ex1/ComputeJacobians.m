@@ -34,51 +34,40 @@ uvms.Jt_a  = uvms.Ste * [uvms.vTb(1:3,1:3) zeros(3,3); zeros(3,3) uvms.vTb(1:3,1
 % variables
 uvms.Jt_v = [zeros(3) eye(3); eye(3) -skew(uvms.vTt(1:3,4))];
 % juxtapose the two Jacobians to obtain the global one
-uvms.Jt = [uvms.Jt_a uvms.Jt_v];
+uvms.Jtool = [uvms.Jt_a uvms.Jt_v];
 
-% NEW LINE
-%HERE WE CAN TWO POSSIBILITY, DRIVE THE DISTANCE TO ZERO OR CONSIDER THE POINT (ATTACH TO THE VEHICLE FRAME) GOES TO THAT POINT
-%JACOBIAN SIGN AND REFRENCE RATE WOULD BE CHANGE
-%WE ARE HERE SECOND ONE (IT ALSO MEAN VELOCITY CONTROL), JACOBIAN SIZE -
-%(m,n) m => NUMBER OF TASK AND n => SIZE OF CONTROL VECTOR (WHICH IS Y DOT, MENTIONED ABOVE)
 
-%VECHILCE POSITION AND ORIENTATION JACOBIAN MATRIX PROJECTED ON WORLD FRAME. 
+% move
 uvms.Jv_l = [zeros(3,7) uvms. wTv(1:3, 1:3) zeros(3)]; %LINEAR PART
 uvms.Jv_a =  [zeros(3,7)    zeros(3)    uvms. wTv(1:3, 1:3)];   %ANGULAR PART
 
-
-% display(uvms. wTr)
-
-%JACOBIAN DEFINE FOR THE VEHICLE POSITION FOR THE ROCK TASK
-uvms.Jv_r =  [zeros(3,7)    zeros(3)    uvms. wTr(1:3, 1:3)];
+% rock
+uvms.Jrock =  [zeros(3,7)    zeros(3)    uvms. wTr(1:3, 1:3)];
 
 %IF IT WOULD BE IN VEHICLE FRAME THEN WE NEED TO PUT IDENTITY MATRIX, PG - 23 (IN NOTES)
 
-
-%COMPUTE TASK REFRENCES - HORIZONTAL ALTITUDE
-%HORIZONTAL ALTITUDE AXIS OF VEHICLE FRAME AND WORLD FRAME
+% horizental
 v_kv = [0 0 1]';
 w_kw = [0 0 1]';
 
 v_kw = (uvms.vTw(1:3,1:3) * w_kw); %Z AXIS OF <w> PROJECTED ON <v>
-
 %INVERSE ANGLE-AXIS IMPLEMENTATION (GIVES YOU AXIS OF ROTATION SCALED BY AN ANGLE)
 uvms.v_rho_ha = ReducedVersorLemma(v_kw, v_kv);
 uvms.v_n_ha = uvms.v_rho_ha ./ norm(uvms.v_rho_ha); %ONLY AXIS OF ROTATION
 
-%VEHICLE HORIZONTAL 
 uvms.Jha = [zeros(1,7) zeros(1,3) uvms.v_n_ha'];
 
-%VECHILE MINIMUM ALTITUDE
+% minimum altitude
 v_d = [0; 0; uvms.sensorDistance];
 uvms.a = v_kw' * v_d; %THIS IS SCALAR DISTANCE, SENSOR DISTANCE COMPONENT
 uvms.Jma = [zeros(1,7) v_kw' zeros(1,3)];
 
-%VEHICLE ALTITUDE
-uvms.Ja = [zeros(1,7) v_kw' zeros(1,3)];
+% landing
+uvms.Jlanding = [zeros(1,7) v_kw' zeros(1,3)];
 
-%VECHILCE UNDERACTUATION
+%underactuation
 uvms.Jund = [zeros(6,7) eye(6)];
 
+% stop
 uvms.Jstop = [zeros(6,7),eye(6)];
 end

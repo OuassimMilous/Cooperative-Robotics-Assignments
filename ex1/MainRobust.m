@@ -24,15 +24,12 @@ u_pipe_center = [-10.66 31.47 -1.94]'; % in unity coordinates
 pipe_center = wuRw'*u_pipe_center;     % in world frame coordinates
 pipe_radius = 0.3;
 
-% rock position 
-rock_center = [12.2025   37.3748  -39.8860]'; % in world frame coordinates
 
 % DEFINE THE GOAL FOR NODULE TASK
 uvms.rock_goal = [12.2025   37.3748  -39.8860]';
 uvms.wRr = rotation(0, 0, 0);
 uvms.wTr = [uvms.wRr uvms.rock_goal; 0 0 0 1];
 % display(uvms.wTr)
-
 
 % UDP Connection with Unity viewer v2
 uArm = udp('127.0.0.1',15000,'OutputDatagramPacketSize',28);
@@ -65,15 +62,10 @@ uvms.wRgv = rotation(0, -0.06, 0.5);
 uvms.wTgv = [uvms.wRgv uvms.VehicleGoalPosition ; 0 0 0 1];
 
 
-
-
-
-
 % defines the goal position for the end-effector/tool position task
 uvms.goalPosition = [12.2025   37.3748  -39.8860]';
 uvms.wRg = rotation(0, pi, pi/2);
 uvms.wTg = [uvms.wRg uvms.goalPosition; 0 0 0 1];
-
 
 % defines the tool control point
 uvms.eTt = eye(4);
@@ -93,7 +85,6 @@ for t = 0:deltat:end_time
     % ydotbar order is [qdot_1, qdot_2, ..., qdot_7, xdot, ydot, zdot, omega_x, omega_y, omega_z]
     % the vector of the vehicle linear and angular velocities are assumed
     % projected on <v>
-
     
     ydotbar = zeros(13,1);
     Qp = eye(13); 
@@ -102,10 +93,10 @@ for t = 0:deltat:end_time
     % [Qp, ydotbar] = iCAT_task(uvms.A.und,   uvms.Jund,  Qp, ydotbar, uvms.xdot.und,  0.0001,   0.01, 10);  %ALWAYS PUT UNDERACTUATION PART ON THE TOP
     [Qp, ydotbar] = iCAT_task(uvms.A.ma,   uvms.Jma,  Qp, ydotbar, uvms.xdot.ma,  0.0001,   0.01, 10);  %MINIMUM ALTITUDE TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.ha,   uvms.Jha,  Qp, ydotbar, uvms.xdot.ha,  0.0001,   0.01, 10); %HORIZONTAL TASK
-    [Qp, ydotbar] = iCAT_task(uvms.A.r,   uvms.Jv_r,  Qp, ydotbar, uvms.xdot.rock_ang,  0.0001,   0.01, 10); %ROCK TASK
-    [Qp, ydotbar] = iCAT_task(uvms.A.a,    uvms.Ja,   Qp, ydotbar, uvms.xdot.a,  0.0001,   0.01, 10); %ALTITUDE Control TASK
+    [Qp, ydotbar] = iCAT_task(uvms.A.rock,   uvms.Jrock,  Qp, ydotbar, uvms.xdot.rock,  0.0001,   0.01, 10); %ROCK TASK
+    [Qp, ydotbar] = iCAT_task(uvms.A.landing,    uvms.Jlanding,   Qp, ydotbar, uvms.xdot.landing,  0.0001,   0.01, 10); %ALTITUDE Control TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.stop,   uvms.Jstop,  Qp, ydotbar, uvms.xdot.stop,  0.0001,   0.01, 10);  %stop TASK
-    [Qp, ydotbar] = iCAT_task(uvms.A.t,    uvms.Jt,   Qp, ydotbar, uvms.xdot.t,  0.0001,   0.01, 10); %TOOL TASK
+    [Qp, ydotbar] = iCAT_task(uvms.A.tool,    uvms.Jtool,   Qp, ydotbar, uvms.xdot.tool,  0.0001,   0.01, 10); %TOOL TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.v_l,  uvms.Jv_l, Qp, ydotbar, uvms.xdot.v_l,  0.0001,   0.01, 10);  % linear position control TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.v_a,  uvms.Jv_a, Qp, ydotbar, uvms.xdot.v_a,  0.0001,   0.01, 10);  % angular position control TASK
     [Qp, ydotbar] = iCAT_task(eye(13),     eye(13),   Qp, ydotbar, zeros(13,1),  0.0001,   0.01, 10);    % this task should be the last one

@@ -6,46 +6,46 @@ function [uvms] = ComputeActivationFunctions(uvms, mission)
             uvms.Ap.v_a = 1; % angular velocity control
             uvms.Ap.ha = 1; % horizental 
             uvms.Ap.ma= 1; % minimum altitude
-            uvms.Ap.a= 0; % altitude control
-            uvms.Ap.t = 0; % tool control task
-            uvms.Ap.r = 0; % NOT ACTIVATING THE ROCK TASK
+            uvms.Ap.landing= 0; % altitude control
+            uvms.Ap.tool = 0; % tool control task
+            uvms.Ap.rock = 0; % NOT ACTIVATING THE ROCK TASK
     
          case 2
              uvms.Ap.v_l = 0;
              uvms.Ap.v_a = 0;
              uvms.Ap.ha = 1; 
              uvms.Ap.ma= DecreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); %1; 
-             uvms.Ap.a= 0; %IT IS A LANDING TASK
-             uvms.Ap.t = 0; % eye(6) * IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time);
-             uvms.Ap.r = 1; %IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); %ACTIVATING THE ROCK TASK
+             uvms.Ap.landing= 0; %IT IS A LANDING TASK
+             uvms.Ap.tool = 0; % eye(6) * IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time);
+             uvms.Ap.rock = 1; %IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); %ACTIVATING THE ROCK TASK
 
         case 3
              uvms.Ap.v_l = 0;
              uvms.Ap.v_a = 0;
              uvms.Ap.ha = 1;
              uvms.Ap.ma= 0; %DecreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); 
-             uvms.Ap.a= IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); %IT IS A LANDING TASK
-             uvms.Ap.t = 0; %eye(6) * IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time);
-             uvms.Ap.r = 0; %ACTIVATING THE ROCK TASK
+             uvms.Ap.landing= IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); %IT IS A LANDING TASK
+             uvms.Ap.tool = 0; %eye(6) * IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time);
+             uvms.Ap.rock = 0; %ACTIVATING THE ROCK TASK
          
         case 4
              uvms.Ap.v_l = 0;
              uvms.Ap.v_a = 0;
              uvms.Ap.ha = 0;
              uvms.Ap.ma= 0; %DecreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); 
-             uvms.Ap.a= 0; %IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); %IT IS A LANDING TASK
-             uvms.Ap.t = IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time);
-             uvms.Ap.r = 0; %ACTIVATING THE ROCK TASK
+             uvms.Ap.landing= 0; %IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); %IT IS A LANDING TASK
+             uvms.Ap.tool = IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time);
+             uvms.Ap.rock = 0; %ACTIVATING THE ROCK TASK
              uvms.A.stop = eye(6);
 
 
     end 
 % arm tool position control
 % always active
-uvms.A.t = eye(6) * uvms.Ap.t;
+uvms.A.tool = eye(6) * uvms.Ap.tool;
 
 %ACTIVATION FUNCTION FOR ROCK
-uvms.A.r = eye(3) * uvms.Ap.r;
+uvms.A.rock = eye(3) * uvms.Ap.rock;
 
 %ACTIVATION FUNCTION FOR POSITION AND ORIENTATION CONTROL TASK FOR VEHICLE. 
 uvms.A.v_l = eye(3) * uvms.Ap.v_l;
@@ -63,7 +63,7 @@ uvms.A.ma = DecreasingBellShapedFunction(0.5, 1 , 0, 1, uvms.a) * uvms.Ap.ma;
 %about when it goes above 3
 
 %ALTITUDE ACTIVATION FUNCTION
-uvms.A.a = 1 * uvms.Ap.a;
+uvms.A.landing = 1 * uvms.Ap.landing;
 
 
 %VECHILCE UNDERACTUATION
