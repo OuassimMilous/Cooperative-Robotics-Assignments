@@ -22,12 +22,8 @@ switch mission.phase
         % limits joints
         % max   
 
-        pandaArm.ArmL.A.joints_max=eye(6);
-        pandaArm.ArmR.A.joints_max=eye(6);
-
-        % min
-        pandaArm.ArmL.A.joints_min=eye(6);
-        pandaArm.ArmR.A.joints_min=eye(6);
+        pandaArm.ArmL.A.joints=eye(6);
+        pandaArm.ArmR.A.joints=eye(6);
 
 
         % Rigid Grasp Constraint
@@ -57,15 +53,12 @@ switch mission.phase
           end
 
 
+
         % limits joints
         % max   
 
-        pandaArm.ArmL.A.joints_max=eye(6);
-        pandaArm.ArmR.A.joints_max=eye(6);
-
-        % min
-        pandaArm.ArmL.A.joints_min=eye(6);
-        pandaArm.ArmR.A.joints_min=eye(6);
+        pandaArm.ArmL.A.joints=eye(6);
+        pandaArm.ArmR.A.joints=eye(6);
 
 
         % Rigid Grasp Constraint
