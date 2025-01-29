@@ -22,9 +22,45 @@ pandaArm.bJe = eye(6,7);
 pandaArm.Jjl = [];
 
 %% ... TO HERE
-% Init Task Reference vectors
+pandaArm.Ste = zeros(6);
+pandaArm.wTb; %fixed transformation word -> base left
 
-% Init Activation function for activate or deactivate tasks
+% move to
+pandaArm.xdot.tool = zeros(6);
+pandaArm.A.tool=zeros(6);
+pandaArm.Jma = [];
+
+
+% minimalt
+pandaArm.xdot.min = zeros(6);
+pandaArm.min_dis = 0;
+pandaArm.A.min=zeros(6);
+pandaArm.bJt = [];
+
+
+% Fixed joints
+pandaArm.xdot.joints = zeros(6);
+pandaArm.joints_switch = zeros(7);
+pandaArm.A.joints=zeros(6);
+pandaArm.bJm = [];
+
+
+%% PHASE 2
+
+% pandaArms.wTog = 
+% constraint task
+pandaArm.A.con=zeros(6);
+pandaArm.xdot.con = zeros(6,1);
+pandaArm.Jjl = zeros(6,14);
+
+
+% move to 2
+pandaArm.ArmL.wJo= [];
+% Grasping
+pandaArm.xdot.grasp = zeros(6,1);
+pandaArm.A.grasp=zeros(6);
+pandaArm.bJt_grasp = zeros(6,14);
+
 
 end
 
