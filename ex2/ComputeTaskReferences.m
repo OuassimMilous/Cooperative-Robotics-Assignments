@@ -20,14 +20,14 @@ switch mission.phase
         % Tool position and orientation task reference
         [ang_l, lin_l] = CartError(pandaArm.ArmL.wTg,pandaArm.ArmL.wTt);
 
-        pandaArm.ArmL.xdot.tool = 0.2*[ang_l;lin_l];
+        pandaArm.ArmL.xdot.tool = [ang_l;lin_l];
         % limit the requested velocities...
-        pandaArm.ArmL.xdot.tool(1:3) = Saturate(pandaArm.ArmL.xdot.tool(1:3),0.2);
-        pandaArm.ArmL.xdot.tool(4:6) = Saturate(pandaArm.ArmL.xdot.tool(4:6),0.2);
+        pandaArm.ArmL.xdot.tool(1:3) = Saturate(pandaArm.ArmL.xdot.tool(1:3),1);
+        pandaArm.ArmL.xdot.tool(4:6) = Saturate(pandaArm.ArmL.xdot.tool(4:6),1);
 
         % End effector minimum altitude for left
         pandaArm.ArmL.min_dis = [pandaArm.ArmL.bTe(3,4)];
-        pandaArm.ArmL.xdot.min = -0.2 * (0.15 - norm(pandaArm.ArmL.min_dis));
+        pandaArm.ArmL.xdot.min = -1 * (0.15 - norm(pandaArm.ArmL.min_dis));
         pandaArm.ArmL.xdot.min = [0 0 0 0 0 pandaArm.ArmL.xdot.min]';
      
         % joint limits
@@ -40,14 +40,14 @@ switch mission.phase
         % Tool position and orientation task reference
         [ang_r, lin_r] = CartError(pandaArm.ArmR.wTg,pandaArm.ArmR.wTt);
        
-        pandaArm.ArmR.xdot.tool = 0.2*[ang_r;lin_r];
+        pandaArm.ArmR.xdot.tool = [ang_r;lin_r];
         % limit the requested velocities...
-        pandaArm.ArmR.xdot.tool(1:3) = Saturate(pandaArm.ArmR.xdot.tool(1:3),0.2);
-        pandaArm.ArmR.xdot.tool(4:6) = Saturate(pandaArm.ArmR.xdot.tool(4:6),0.2);
+        pandaArm.ArmR.xdot.tool(1:3) = Saturate(pandaArm.ArmR.xdot.tool(1:3),1);
+        pandaArm.ArmR.xdot.tool(4:6) = Saturate(pandaArm.ArmR.xdot.tool(4:6),1);
 
         % End effector minimum altitude for right
         pandaArm.ArmR.min_dis = [pandaArm.ArmR.bTe(3,4)];
-        pandaArm.ArmR.xdot.min = -0.2 * (0.15- norm(pandaArm.ArmR.min_dis));
+        pandaArm.ArmR.xdot.min = -1* (0.15- norm(pandaArm.ArmR.min_dis));
         pandaArm.ArmR.xdot.min= [0 0 0 0 0 pandaArm.ArmR.xdot.min]';
         
         % joint limits
