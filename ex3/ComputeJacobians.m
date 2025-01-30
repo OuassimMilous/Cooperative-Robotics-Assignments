@@ -28,12 +28,16 @@ jlmax = [2.8973;1.7628;2.8973;-0.0698;2.8973;3.7525;2.8973];
 % jlmin = 9*ones(7,1);
 % jlmax = -9*ones(7,1);
 
-pandaArm.Ste = [eye(3) zeros(3);  -skew(pandaArm.eTt(1:3,4)) eye(3)];
-pandaArm.bJt  = pandaArm.Ste * pandaArm.bJe(:,1:7);
+pandaArm.wJt  = [pandaArm.wTb(1:3,1:3) zeros(3);zeros(3) pandaArm.wTb(1:3,1:3)]* pandaArm.bJe(:,1:7);
 
+pandaArm.Ste = [eye(3) zeros(3);  -skew(pandaArm.wTe(1:3,1:3)*pandaArm.eTt(1:3,4)) eye(3)];
+% pandaArm.bJt  = pandaArm.Ste * pandaArm.bJe(:,1:7);
+pandaArm.wJt  = pandaArm.Ste * pandaArm.wJt;
 
+% display(pandaArm.bJt)
+% display(pandaArm.wJt)
 % Top three rows are angular velocities, bottom three linear velocities
- pandaArm.wJt  = [pandaArm.wTb(1:3,1:3) zeros(3);zeros(3) pandaArm.wTb(1:3,1:3)]* pandaArm.bJt;
+% pandaArm.wJt  = [pandaArm.wTb(1:3,1:3) zeros(3);zeros(3) pandaArm.wTb(1:3,1:3)]* pandaArm.bJt;
 
 % minimum altitude
  pandaArm.Jma = [zeros(5,7);0,0,0,0,0, 1 ,0];
@@ -47,9 +51,14 @@ for i = 1:7
     end
 end
 
-pandaArm.bJm = [pandaArm.bJt(1:6,1:7) * pandaArm.joints_switch];
+pandaArm.bJm = [pandaArm.wJt(1:6,1:7) * pandaArm.joints_switch];
 if mission.phase == 2
-    pandaArm.wJo = pandaArm.wJt;
+    pandaArm.Ste = [eye(3) zeros(3);  -skew(pandaArm.wTog(1:3,4)) eye(3)];
+
+    % display(pandaArm.wJt)
+    pandaArm.wJo = pandaArm.Ste *pandaArm.wJt;
+    % pandaArm.wJo = pandaArm.wJt*pandaArm.tTo;
+    % pandaArm.wJo = pandaArm.wJt;
 
     % Grasping 
     pandaArm.bJt_grasp = zeros(6,7);
