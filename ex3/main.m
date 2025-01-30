@@ -6,7 +6,7 @@ real_robot = false;
 %% Initialization - DON'T CHANGE ANYTHING from HERE ... 
 % Simulation variables (integration and final time)
 deltat = 0.005;
-end_time = 15;
+end_time = 100;
 loop = 1;
 maxloops = ceil(end_time/deltat);
 mission.phase = 1;
@@ -58,16 +58,16 @@ pandaArm2.wTt = pandaArm2.wTe*pandaArm2.eTt;
 
 %% Defines the goal position for the end-effector/tool position task
 % First goal reach the grasping points.
-pandaArm1.wTg = [pandaArm1.wTt(1:3,1:3)*rotation(0,0.3491,0) [0.4;0;0.59]; 0 0 0 1];
+pandaArm1.wTg = [pandaArm1.wTt(1:3,1:3)*rotation(0,0.3491,0) [0.47;0;0.59]; 0 0 0 1];
 pandaArm2.wTg = [pandaArm2.wTt(1:3,1:3)*rotation(0,0.3491,0) [0.53;0;0.59]; 0 0 0 1];
-
 
 % pandaArm1.bTg = pandaArm1.wTg ;
 % pandaArm2.bTg = (wTb_right*-1)*pandaArm1.wTg ;
 
 % Second goal move the object
-pandaArm1.wTog = [pandaArm1.wTt(1:3,1:3) *rotation(0,0.3491,0) [0.6;0.4;0.48]; 0 0 0 1];
-pandaArm2.wTog = [pandaArm2.wTt(1:3,1:3) *rotation(0,0.3491,0) [0.6;0.4;0.48]; 0 0 0 1];
+pandaArm1.wTog = [rotation(0,0,0) [0.6;0.4;0.48]; 0 0 0 1];
+pandaArm2.wTog = [rotation(0,0,0) [0.6;0.4;0.48]; 0 0 0 1];
+
 
 % pandaArm1.wTog = [pandaArm1.wTt(1:3,1:3) *rotation(0,pi/6,0) [1.6;-0.35;0.28]; 0 0 0 1];
 % pandaArm2.wTog = [pandaArm1.wTt(1:3,1:3) *rotation(0,pi/6,0) [1.6;-0.35;0.28]; 0 0 0 1];
@@ -184,9 +184,9 @@ for t = 0:deltat:end_time
     % SAVE THE NON COOPERATIVE VELOCITIES COMPUTED
 
     % DATA EXCHNAGE
-    x1 = pandaArm1.bJt * ydotbar;
-    x2 = pandaArm2.bJt *ydotbar2;
-
+    x1 = pandaArm1.wJt * ydotbar;
+    x2 = pandaArm2.wJt *ydotbar2;
+    
     desiredx1 = pandaArm1.xdot.tool;
     desiredx2 = pandaArm2.xdot.tool;
     
@@ -260,17 +260,21 @@ for t = 0:deltat:end_time
     plt = UpdateDataPlot(plt,pandaArm1,pandaArm2,t,loop, mission);
 
     loop = loop + 1;
+    phase = mission.phase;
     % add debug prints here
     if (mod(t,0.1) == 0)
         t 
-        mission.phase
-    end
+        phase
+        % disp(pandaArm1.wTg);
+   end
     
     % enable this to have the simulation approximately evolving like real
     % time. Remove to go as fast as possible
     % WARNING: MUST BE ENABLED IF CONTROLLING REAL ROBOT !
     SlowdownToRealtime(deltat);
-    
+    if(mission.phase == 4)
+        break;
+    end
 end
 PrintPlot(plt);
 

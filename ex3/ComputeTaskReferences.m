@@ -18,7 +18,6 @@ pandaArm.xdot.min= [0 0 0 0 0 pandaArm.xdot.min]';
     
 % joint limits
 pandaArm.xdot.joints = [0 0 0 0 0 0]';   
-
 switch mission.phase
     case 1
         % Tool position and orientation task reference
@@ -36,10 +35,11 @@ switch mission.phase
         % limit the requested velocities...
         pandaArm.xdot.grasp(1:3) = Saturate(pandaArm.xdot.grasp(1:3),0.2);
         pandaArm.xdot.grasp(4:6) = Saturate(pandaArm.xdot.grasp(4:6),0.2);
-
         % Object position and orientation task reference
-        [ang, lin] = CartError(pandaArm.wTog,pandaArm.wTt);
+
+        [ang, lin] = CartError(pandaArm.wTog,pandaArm.wTto);
         pandaArm.xdot.tool = [ang;lin];
+        % display( [ang, lin])
         % limit the requested velocities...
         pandaArm.xdot.tool(1:3) = Saturate(pandaArm.xdot.tool(1:3),0.2);
         pandaArm.xdot.tool(4:6) = Saturate(pandaArm.xdot.tool(4:6),0.2);

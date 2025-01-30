@@ -48,6 +48,7 @@ pandaArm.bJm = [];
 %% PHASE 2
 
 % pandaArms.wTog = 
+pandaArm.tTo = zeros(4);
 % constraint task
 pandaArm.A.con=zeros(6);
 pandaArm.xdot.con = zeros(6,1);
@@ -61,6 +62,6 @@ pandaArm.xdot.grasp = zeros(6,1);
 pandaArm.A.grasp=zeros(6);
 pandaArm.bJt_grasp = zeros(6,7);
 
-
+pandaArm.wTto = zeros(4);
 end
 

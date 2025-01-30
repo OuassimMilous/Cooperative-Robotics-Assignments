@@ -1,5 +1,5 @@
 function [H] = ComputeH(pandaArm)
-[U,D,V] = svd(pandaArm.bJt);
+[U,D,V] = svd(pandaArm.wJt);
 J_pinv = V * pinv(D)*U';
-H = pandaArm.bJt * J_pinv;
+H = pandaArm.wJt * J_pinv;
 end

@@ -9,6 +9,8 @@ function [combinedx] = ComputeCooperativeXdot(desiredx1,desiredx2,x1,x2,h1,h2)
     [U,D,V] = svd(C);
     C_pinv = V * pinv(D)*U';
     
+
+   
     combinedx = [h1, zeros(6); zeros(6), h2] * [xw;xw] +  [h1, zeros(6); zeros(6), h2] * C_pinv * C* [desiredx1  ; desiredx2];
 
 end
