@@ -182,26 +182,31 @@ for t = 0:deltat:end_time
 
     % COOPERATION hierarchy
     % SAVE THE NON COOPERATIVE VELOCITIES COMPUTED
+
+    % DATA EXCHNAGE
     x1 = pandaArm1.bJt * ydotbar;
     x2 = pandaArm2.bJt *ydotbar2;
 
+    desiredx1 = pandaArm1.xdot.tool;
+    desiredx2 = pandaArm2.xdot.tool;
+    
     h1 = ComputeH(pandaArm1);
     h2 = ComputeH(pandaArm2);
-    m1_0=1;
-    m2_0=1;
-    m1 = m1_0 + norm([pandaArm1.xdot.tool - x1]);
-    m2 = m2_0 + norm([pandaArm2.xdot.tool - x2]);
-    xw =  (1/(m1 + m2))*(m1*x1 + m2*x2);
-    C = [h1 h2];
 
-    [U,D,V] = svd(C);
-    C_pinv = V * pinv(D)*U';
+
+    % NEW XDOT LEFT ARM
+   
+    combinedx1 = ComputeCooperativeXdot(desiredx1,desiredx2,x1,x2,h1,h2);
+    newx1 =combinedx1(1:6);
+
+    % NEW XDOT RIGHT ARM ARM
+
+    combinedx2 = ComputeCooperativeXdot(desiredx1,desiredx2,x1,x2,h1,h2);
+    newx2 = combinedx2(7:12);
+
+
+
     
-    combinedx = [h1, zeros(6); zeros(6), h2] * [xw;xw] +  [h1, zeros(6); zeros(6), h2] * C_pinv * C* [pandaArm1.xdot.tool  ; pandaArm2.xdot.tool ];
-    newx1 =combinedx(1:6);
-    newx2 = combinedx(7:12);
-    
-    display(combinedx)
 
     if(mission.phase == 2)
     % Task: Left Arm Cooperation
