@@ -108,8 +108,8 @@ for t = 0:deltat:end_time
          end
         qL = typecast(dataLeft, 'double');
         qR = typecast(dataRight, 'double');
-        pandaArms.ArmL.q = qL;
-        pandaArms.ArmR.q = qR;
+        pandaArm1.q = qL;
+        pandaArm2.q = qR;
     end
 
     % update all the involved variables
@@ -160,7 +160,7 @@ for t = 0:deltat:end_time
     [Qp, ydotbar] = iCAT_task(pandaArm1.A.min, pandaArm1.Jma, Qp, ydotbar, pandaArm1.xdot.min, 0.0001,   0.01, 10);
 
     % Task: Tool Move-To
-    [Qp, ydotbar] = iCAT_task(pandaArm1.A.tool, tool_jacobian_L, Qp, ydotbar, pandaArm1.xdot.tool, 0.0001,   0.01, 10);
+    % [Qp, ydotbar] = iCAT_task(pxandaArm1.A.tool, tool_jacobian_L, Qp, ydotbar, pandaArm1.xdot.tool, 0.0001,   0.01, 10);
    
     % grasp
     [Qp, ydotbar] = iCAT_task(pandaArm1.A.grasp, pandaArm1.bJt_grasp, Qp, ydotbar, pandaArm1.xdot.grasp, 0.0001,   0.01, 10);
@@ -174,23 +174,43 @@ for t = 0:deltat:end_time
     [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.min, pandaArm2.Jma, Qp2, ydotbar2, pandaArm2.xdot.min, 0.0001,   0.01, 10);
 
     % Task: Tool Move-To
-    [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.tool, tool_jacobian_R, Qp2, ydotbar2, pandaArm2.xdot.tool, 0.0001,   0.01, 10);
+    % [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.tool, tool_jacobian_R, Qp2, ydotbar2, pandaArm2.xdot.tool, 0.0001,   0.01, 10);
 
     % grasp
     [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.grasp, pandaArm2.bJt_grasp, Qp2, ydotbar2, pandaArm2.xdot.grasp, 0.0001,   0.01, 10);
 
     % COOPERATION hierarchy
     % SAVE THE NON COOPERATIVE VELOCITIES COMPUTED
+    x1 = pandaArm1.bJt * ydotbar;
+    x2 = pandaArm2.bJt *ydotbar2;
+
+    h1 = ComputeH(pandaArm1);
+    h2 = ComputeH(pandaArm2);
+    C = [h1 h2];
+
+    [U,D,V] = svd(C);
+    C_pinv = V * pinv(D)*U';
+    
+    combinedx = [h1, zeros(6); zeros(6), h2] * [eye(12) - C_pinv*C]*[x1;x2];
+    newx1 =combinedx(1:6);
+    newx2 = combinedx(7:12);
+
+    % display("newx1:")
+    % display(newx1)
+    % display("newx1:")
+    % display(newx1)
 
     % Task: Left Arm Cooperation
     % ...
 
-    
+    [Qp, ydotbar] = iCAT_task(pandaArm2.A.tool, tool_jacobian_R, Qp, ydotbar, newx1, 0.0001,   0.01, 10);
+
     % this task should be the last one 
     [Qp, ydotbar] = iCAT_task(eye(7), eye(7), Qp, ydotbar, zeros(7,1), 0.0001,   0.01, 10);    % this task should be the last one
 
     % Task: Right Arm Cooperation
     % ...
+    [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.tool, tool_jacobian_R, Qp2, ydotbar2, newx2, 0.0001,   0.01, 10);
 
     % this task should be the last one
    [Qp2, ydotbar2] = iCAT_task(eye(7), eye(7), Qp2, ydotbar2, zeros(7,1), 0.0001,   0.01, 10);    % this task should be the last one
