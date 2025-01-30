@@ -42,9 +42,14 @@ uvms.Jtool = [uvms.Jt_a uvms.Jt_v];
 % uvms.Jv_a =  [zeros(3,7)    zeros(3)    uvms. wTv(1:3, 1:3)];   %ANGULAR PART
 uvms.Jv = [zeros(3,7), uvms.wTv(1:3,1:3), zeros(3);
            zeros(3,7), zeros(3),         uvms.wTv(1:3,1:3)];
+
+% closer
+% uvms.Jcloser = [zeros(3,7), uvms.wTr(1:3,1:3), zeros(3,3); zeros(3,13)];
+uvms.Jcloser =  [zeros(3,7)  diag(ones(3,1))  zeros(3) ];
+% display(uvms.Jcloser)
 % disp(uvms.Jv)
 % rock
-uvms.Jrock =  [zeros(3,7)    zeros(3)    uvms. wTr(1:3, 1:3)];
+uvms.Jrock =  [zeros(3,7)    zeros(3)    eye(3)];
 
 %IF IT WOULD BE IN VEHICLE FRAME THEN WE NEED TO PUT IDENTITY MATRIX, PG - 23 (IN NOTES)
 
@@ -69,6 +74,7 @@ uvms.Jlanding = [zeros(1,7) v_kw' zeros(1,3)];
 
 %underactuation
 uvms.Jund = [zeros(6,7) eye(6)];
+
 
 % stop
 uvms.Jstop = [zeros(6,7),eye(6)];

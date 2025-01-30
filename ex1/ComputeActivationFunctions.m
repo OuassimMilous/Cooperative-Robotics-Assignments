@@ -7,7 +7,8 @@ function [uvms] = ComputeActivationFunctions(uvms, mission)
             uvms.Ap.ma= 1; % minimum altitude
             uvms.Ap.landing= 0; % altitude control
             uvms.Ap.tool = 0; % tool control task
-            uvms.Ap.rock = 0; % NOT ACTIVATING THE ROCK TASK
+            uvms.Ap.rock = 0; %  THE ROCK TASK
+            uvms.Ap.closer = 0; % closer
     
          case 2
              uvms.Ap.v = 0;
@@ -16,15 +17,18 @@ function [uvms] = ComputeActivationFunctions(uvms, mission)
              uvms.Ap.landing= 0; %IT IS A LANDING TASK
              uvms.Ap.tool = 0; % eye(6) * IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time);
              uvms.Ap.rock = 1; %IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); %ACTIVATING THE ROCK TASK
+             uvms.Ap.closer = 0; 
 
         case 3
              uvms.Ap.v = 0;
-             uvms.Ap.ha = 1;
+             uvms.Ap.ha = 0;
              uvms.Ap.ma= 0; %DecreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); 
-             uvms.Ap.landing= IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); %IT IS A LANDING TASK
+             uvms.Ap.landing= 1; %IT IS A LANDING TASK
              uvms.Ap.tool = 0; %eye(6) * IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time);
              uvms.Ap.rock = 0; %ACTIVATING THE ROCK TASK
-         
+             [ang_closer, lin_closer] = CartError(uvms.wTg , uvms.wTb);
+             uvms.Ap.closer = 1 * IncreasingBellShapedFunction(0,1.2,0,1,norm(lin_closer(1:2))); %closer
+
         case 4
              uvms.Ap.v = 0;
              uvms.Ap.ha = 0;
@@ -33,9 +37,8 @@ function [uvms] = ComputeActivationFunctions(uvms, mission)
              uvms.Ap.tool = IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time);
              uvms.Ap.rock = 0; %ACTIVATING THE ROCK TASK
              uvms.A.stop = eye(6);
-
-
-    end 
+             uvms.Ap.closer = 0; 
+   end 
     
 % arm tool position control
 uvms.A.tool = eye(6) * uvms.Ap.tool;
@@ -59,6 +62,11 @@ uvms.A.ma = DecreasingBellShapedFunction(0.5, 1 , 0, 1, uvms.a) * uvms.Ap.ma;
 
 %ALTITUDE ACTIVATION FUNCTION
 uvms.A.landing = 1 * uvms.Ap.landing;
+
+
+%closer
+% uvms.A.closer = IncreasingBellShapedFunction(0, 1, 0, 1, norm(uvms.) * uvms.Ap.closer;
+uvms.A.closer = eye(3)*uvms.Ap.closer;
 
 
 %VECHILCE UNDERACTUATION

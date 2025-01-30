@@ -9,8 +9,8 @@ function [uvms, mission] = UpdateMissionPhase(uvms, mission)
             end 
 
         case 2 % ROCK ALIGNMENT
-            [ang_rock, lin_rock] = CartError(uvms.wTr , uvms.wTv);
-            if ( norm(ang_rock)  < 0.05 )
+            [ang_rock, lin_rock] = CartError(uvms.wTg , uvms.wTb);
+            if (abs(ang_rock(3) ) < 0.005 )
                 mission.phase = 3;
                 mission.phase_time = 0;
                 disp(' *** change to phase 3');
