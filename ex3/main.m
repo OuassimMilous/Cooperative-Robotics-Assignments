@@ -68,6 +68,7 @@ pandaArm2.wTg = [pandaArm2.wTt(1:3,1:3)*rotation(0,0.3491,0) [0.53;0;0.59]; 0 0 
 pandaArm1.wTog = [rotation(0,0,0) [0.6;0.4;0.48]; 0 0 0 1];
 pandaArm2.wTog = [rotation(0,0,0) [0.6;0.4;0.48]; 0 0 0 1];
 
+
 % pandaArm1.wTog = [pandaArm1.wTt(1:3,1:3) *rotation(0,pi/6,0) [1.6;-0.35;0.28]; 0 0 0 1];
 % pandaArm2.wTog = [pandaArm1.wTt(1:3,1:3) *rotation(0,pi/6,0) [1.6;-0.35;0.28]; 0 0 0 1];
 
@@ -264,6 +265,7 @@ for t = 0:deltat:end_time
     if (mod(t,0.1) == 0)
         t 
         phase
+        % disp(pandaArm1.wTg);
    end
     
     % enable this to have the simulation approximately evolving like real

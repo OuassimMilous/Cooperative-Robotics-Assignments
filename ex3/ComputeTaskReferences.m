@@ -36,7 +36,6 @@ switch mission.phase
         pandaArm.xdot.grasp(1:3) = Saturate(pandaArm.xdot.grasp(1:3),0.2);
         pandaArm.xdot.grasp(4:6) = Saturate(pandaArm.xdot.grasp(4:6),0.2);
         % Object position and orientation task reference
-        pandaArm.wTto = pandaArm.wTt* pandaArm.tTo;
 
         [ang, lin] = CartError(pandaArm.wTog,pandaArm.wTto);
         pandaArm.xdot.tool = [ang;lin];
