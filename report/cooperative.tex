@@ -128,6 +128,42 @@ Once landed, implement a ``fixed-based manipulation action'' to reach the target
 \subsection{Q6: Implement a solution that guarantees that, once landed, the nodule is certainly within the manipulator's workspace.}
 
 \clearpage
+\subsection{Question-1}
+This table show us the hierarchy of tasks used and their priorites in each action.
+\\1. I need to explain what each task do?
+\\2. Why we need to activate and deactivate in each action?
+
+\begin{table}[htb]
+	\caption{Example of actions/hierarchy table: a number in a given cell represents the priority of the control task (row) in the hierarchy of the control action (column). The type column indicates whether the objective is an equality (E) or inequa4lity (I) one.}
+	\label{tbl:actions_tables}
+	\begin{center}
+		\footnotesize
+		\begin{tabular}{cccccc}
+			\toprule		
+			Task & Type & $\mathcal{A}_{1}$ & $\mathcal{A}_{2}$ & $\mathcal{A}_{3} $ & $\mathcal{A}_{4} $ \\
+			\midrule
+			Task A                    & E & 1 & 1 & 1 & 1  \\
+			\hdashline
+			Task B                & I & 2 &  & &  \\
+			\hdashline
+			Task C                       & E &   &  & 2 & 2   \\
+			\hdashline
+			Task D 						& E & & 2 & & 3 \\
+			\hdashline
+			Task E     					& E & 3 & & & \\
+			\hdashline
+			Task F 						& E & 4 & & & \\
+			\hdashline 
+			Task G 						& E & & & & 4 \\ 
+			
+			\bottomrule
+		\end{tabular}
+	\end{center}
+\end{table}% %
+
+\subsection{Question-2}
+I need to explain the behavior the robots, what is the movement of the robots, describe the plots and the behaviror of the plots.
+\pagebreak
 
 \section{Exercise 2: Bimanual manipulation}
 
