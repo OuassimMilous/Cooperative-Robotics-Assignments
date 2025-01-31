@@ -26,9 +26,10 @@ pipe_radius = 0.3;
 
 
 % DEFINE THE GOAL FOR NODULE TASK
-uvms.rock_goal = [12.2025   37.3748  -39.8860]';
-uvms.wRr = rotation(0, 0, 0);
-uvms.wTr = [uvms.wRr uvms.rock_goal; 0 0 0 1];
+% uvms.rock_goal = [12.2025   37.3748  -39.8860]';
+% uvms.wRr = rotation(0, 0, 0);
+% uvms.wTr = [uvms.wRr uvms.rock_goal; 0 0 0 1];
+
 % display(uvms.wTr)
 
 % UDP Connection with Unity viewer v2
@@ -58,12 +59,16 @@ uvms.p = [8.5 38.5 -36     0 -0.06 0.5]';
 
 % DEFINES THE GOAL POSITION FOR THE VEHICLE POSITION TASK
 uvms.VehicleGoalPosition = [10.5   37.5    -38]';
+% uvms.VehicleGoalPosition = [10.5   38.5    -38]';
+% uvms.VehicleGoalPosition = [8.5   33.5    -38]';
+
 uvms.wRgv = rotation(0, -0.06, 0.5);
 uvms.wTgv = [uvms.wRgv uvms.VehicleGoalPosition ; 0 0 0 1];
 
 
 % defines the goal position for the end-effector/tool position task
 uvms.goalPosition = [12.2025   37.3748  -39.8860]';
+% uvms.wRg = rotation(0, pi, pi/2);
 uvms.wRg = rotation(0, pi, pi/2);
 uvms.wTg = [uvms.wRg uvms.goalPosition; 0 0 0 1];
 
@@ -96,6 +101,7 @@ for t = 0:deltat:end_time
     [Qp, ydotbar] = iCAT_task(uvms.A.stop,   uvms.Jstop,  Qp, ydotbar, uvms.xdot.stop,  0.0001,   0.01, 10);  %stop TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.rock,   uvms.Jrock,  Qp, ydotbar, uvms.xdot.rock,  0.0001,   0.01, 10); %ROCK TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.landing,    uvms.Jlanding,   Qp, ydotbar, uvms.xdot.landing,  0.0001,   0.01, 10); %landing TASK
+    [Qp, ydotbar] = iCAT_task(uvms.A.closer,    uvms.Jcloser,   Qp, ydotbar, uvms.xdot.closer,  0.0001,   0.01, 10); %closer TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.tool,    uvms.Jtool,   Qp, ydotbar, uvms.xdot.tool,  0.0001,   0.01, 10); %TOOL TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.v,  uvms.Jv, Qp, ydotbar, uvms.xdot.v,  0.0001,   0.01, 10);  % position control TASK
   
