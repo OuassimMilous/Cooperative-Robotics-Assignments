@@ -28,7 +28,6 @@ end
 %% TO HERE
 
 % Init robot model
-% Init robot model
 pandaArm1.wTb = eye(4); %fixed transformation word -> base left
 pandaArm2.wTb = [rotation(0,0,pi) [1.06;-0.01;0];0 0 0 1]; %fixed transformation word -> base right
 
@@ -60,9 +59,6 @@ pandaArm2.wTt = pandaArm2.wTe*pandaArm2.eTt;
 % First goal reach the grasping points.
 pandaArm1.wTg = [pandaArm1.wTt(1:3,1:3)*rotation(0,0.3491,0) [0.47;0;0.59]; 0 0 0 1];
 pandaArm2.wTg = [pandaArm2.wTt(1:3,1:3)*rotation(0,0.3491,0) [0.53;0;0.59]; 0 0 0 1];
-
-% pandaArm1.bTg = pandaArm1.wTg ;
-% pandaArm2.bTg = (wTb_right*-1)*pandaArm1.wTg ;
 
 % Second goal move the object
 pandaArm1.wTog = [rotation(0,0,0) [0.6;0.4;0.48]; 0 0 0 1];

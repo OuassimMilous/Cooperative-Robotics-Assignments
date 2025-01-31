@@ -17,13 +17,15 @@ pandaArm.wTe = pandaArm.wTb*pandaArm.bTe;
 pandaArm.jlmin = [-2.8973;-1.7628;-2.8973;-3.0718;-2.8973;-0.0175;-2.8973];
 pandaArm.jlmax = [2.8973;1.7628;2.8973;-0.0698;2.8973;3.7525;2.8973];
 
+% pandaArm.jlmin = 9*ones(7,1);
+% pandaArm.jlmax = -9*ones(7,1);
+
 % Init relevance Jacobians
 pandaArm.bJe = eye(6,7);
 pandaArm.Jjl = [];
 
 %% ... TO HERE
 pandaArm.Ste = zeros(6);
-pandaArm.wTb; %fixed transformation word -> base left
 
 % move to
 pandaArm.xdot.tool = zeros(6);
@@ -61,7 +63,6 @@ pandaArm.ArmL.wJo= [];
 pandaArm.xdot.grasp = zeros(6,1);
 pandaArm.A.grasp=zeros(6);
 pandaArm.bJt_grasp = zeros(6,7);
-
-pandaArm.wTto = zeros(4);
+pandaArm.wTo = zeros(4);
 end
 
