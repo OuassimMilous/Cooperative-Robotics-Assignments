@@ -26,8 +26,8 @@ function [uvms] = ComputeActivationFunctions(uvms, mission)
              uvms.Ap.landing= 1; %IT IS A LANDING TASK
              uvms.Ap.tool = 0; %eye(6) * IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time);
              uvms.Ap.rock = 0; %ACTIVATING THE ROCK TASK
-             [ang_closer, lin_closer] = CartError(uvms.wTg , uvms.wTb);
-             uvms.Ap.closer = 1 * IncreasingBellShapedFunction(0,1.2,0,1,norm(lin_closer(1:2))); %closer
+             
+             uvms.Ap.closer = 1 * IncreasingBellShapedFunction(0,1.5,0,1,norm(uvms.err.lin_closer(1:2))); %closer
 
         case 4
              uvms.Ap.v = 0;
