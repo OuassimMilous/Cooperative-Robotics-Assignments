@@ -45,7 +45,7 @@ uvms.Jv = [zeros(3,7), uvms.wTv(1:3,1:3), zeros(3);
 
 % closer
 % uvms.Jcloser = [zeros(3,7), uvms.wTr(1:3,1:3), zeros(3,3); zeros(3,13)];
-uvms.Jcloser =  [zeros(3,7)  diag(ones(3,1))  zeros(3) ];
+uvms.Jcloser =  [zeros(3,7)  [eye(2,3); 0 0 0]  zeros(3) ];
 % display(uvms.Jcloser)
 % disp(uvms.Jv)
 % rock

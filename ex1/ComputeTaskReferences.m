@@ -55,7 +55,7 @@ uvms.xdot.ha = 1 * (0 - norm(uvms.v_rho_ha)); % norm(v_rho) IS THETA
 uvms.xdot.ma = 1* (1 - uvms.a);
 
 % landing
-uvms.xdot.landing = 0.5* (0 - uvms.a);
+uvms.xdot.landing = 0.8* (0 - uvms.a);
 
 % underactuation
 uvms.xdot.und = uvms.p_dot;

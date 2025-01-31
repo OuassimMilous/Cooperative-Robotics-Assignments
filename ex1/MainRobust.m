@@ -59,6 +59,7 @@ uvms.p = [8.5 38.5 -36     0 -0.06 0.5]';
 
 % DEFINES THE GOAL POSITION FOR THE VEHICLE POSITION TASK
 uvms.VehicleGoalPosition = [10.5   37.5    -38]';
+% uvms.VehicleGoalPosition = [10.5   38.5    -38]';
 % uvms.VehicleGoalPosition = [8.5   33.5    -38]';
 
 uvms.wRgv = rotation(0, -0.06, 0.5);

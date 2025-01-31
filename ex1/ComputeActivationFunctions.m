@@ -27,7 +27,7 @@ function [uvms] = ComputeActivationFunctions(uvms, mission)
              uvms.Ap.tool = 0; %eye(6) * IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time);
              uvms.Ap.rock = 0; %ACTIVATING THE ROCK TASK
              
-             uvms.Ap.closer = 1 * IncreasingBellShapedFunction(0,1.5,0,1,norm(uvms.err.lin_closer(1:2))); %closer
+             uvms.Ap.closer = 1 * IncreasingBellShapedFunction(0,0.6,0,1,norm(uvms.err.lin_closer(1:2))); %closer
 
         case 4
              uvms.Ap.v = 0;
