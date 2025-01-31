@@ -18,13 +18,6 @@ function [pandaArms] = ComputeJacobians(pandaArms,mission)
 % [angular velocities; linear velocities]
 
 
-jlmin = [-2.8973;-1.7628;-2.8973;-3.0718;-2.8973;-0.0175;-2.8973];
-jlmax = [2.8973;1.7628;2.8973;-0.0698;2.8973;3.7525;2.8973];
-
-% jlmin = 9*ones(7,1);
-% jlmax = -9*ones(7,1);
-
-
 
 % Left Arm base to ee Jacobian
 pandaArms.ArmL.bJe = geometricJacobian(pandaArms.ArmL.franka, ...
@@ -48,34 +41,8 @@ pandaArms.ArmR.wJt  = [pandaArms.ArmR.wTb(1:3,1:3) zeros(3);zeros(3) pandaArms.A
 pandaArms.ArmL.Jma = [zeros(5,14);zeros(1,5), 1 ,0 , zeros(1,7)];
 pandaArms.ArmR.Jma = [zeros(5,14);zeros(1,7) zeros(1,5), 1 ,0 ];
 
-
-% limits joints
-for i = 1:7
-    if (pandaArms.ArmL.q(i)<jlmax(i)||pandaArms.ArmL.q(i)>jlmin(i))
-        pandaArms.ArmL.joints_switch(i,i) = 0;
-    else
-        pandaArms.ArmL.joints_switch(i,i) = 1;
-    end
-end
-
-pandaArms.ArmL.bJm = [pandaArms.ArmL.bJt(1:6,1:7) * pandaArms.ArmL.joints_switch zeros(6,7)];
-
-% display([jlmax, jlmin])
-% display([pandaArms.ArmL.q])
-
-for i = 1:7
-    if (pandaArms.ArmR.q(i)<jlmax(i)||pandaArms.ArmR.q(i)>jlmin(i))
-        pandaArms.ArmR.joints_switch(i,i) = 0;
-    else
-        pandaArms.ArmR.joints_switch(i,i) = 1;
-    end
-end
-
-pandaArms.ArmR.bJm = [zeros(6,7) pandaArms.ArmR.bJt(1:6,1:7) * pandaArms.ArmR.joints_switch];
-
-% display(pandaArms.ArmL.bJm)
-
-
+pandaArms.ArmL.bJm = [eye(14)];
+pandaArms.ArmR.bJm = [eye(14)];
 
 
 

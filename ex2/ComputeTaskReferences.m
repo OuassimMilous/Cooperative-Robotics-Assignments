@@ -13,6 +13,20 @@ pandaArm.dist_tools = norm(pandaArm.ArmL.wTt(1:3, 4) - pandaArm.ArmR.wTt(1:3, 4)
 % pandaArm.ArmR.xdot.jl = ...;
 
 
+% End effector minimum altitude for left
+pandaArm.ArmL.min_dis = [pandaArm.ArmL.wTt(3,4)];
+pandaArm.ArmL.xdot.min = -1 * (0.15 - norm(pandaArm.ArmL.min_dis));
+pandaArm.ArmL.xdot.min = [0 0 0 0 0 pandaArm.ArmL.xdot.min]';
+
+% End effector minimum altitude for right
+pandaArm.ArmR.min_dis = [pandaArm.ArmR.wTt(3,4)];
+pandaArm.ArmR.xdot.min = -1* (0.15- norm(pandaArm.ArmR.min_dis));
+pandaArm.ArmR.xdot.min= [0 0 0 0 0 pandaArm.ArmR.xdot.min]';
+
+% joint limits
+pandaArm.ArmR.xdot.joints = zeros(14,1);       
+pandaArm.ArmL.xdot.joints = zeros(14,1);
+
 switch mission.phase
     case 1
         % LEFT ARM
@@ -25,16 +39,6 @@ switch mission.phase
         pandaArm.ArmL.xdot.tool(1:3) = Saturate(pandaArm.ArmL.xdot.tool(1:3),1);
         pandaArm.ArmL.xdot.tool(4:6) = Saturate(pandaArm.ArmL.xdot.tool(4:6),1);
 
-        % End effector minimum altitude for left
-        pandaArm.ArmL.min_dis = [pandaArm.ArmL.wTt(3,4)];
-        pandaArm.ArmL.xdot.min = -1 * (0.15 - norm(pandaArm.ArmL.min_dis));
-        pandaArm.ArmL.xdot.min = [0 0 0 0 0 pandaArm.ArmL.xdot.min]';
-     
-        % joint limits
-        pandaArm.ArmL.xdot.joints = [0 0 0 0 0 0]';
-
-
-        % pandaArm.ArmR.dot.joints_max = [0 0 pandaArm.ArmL.min_dis 0 0 0 ];
         % RIGHT ARM
         % -----------------------------------------------------------------
         % Tool position and orientation task reference
@@ -45,13 +49,6 @@ switch mission.phase
         pandaArm.ArmR.xdot.tool(1:3) = Saturate(pandaArm.ArmR.xdot.tool(1:3),1);
         pandaArm.ArmR.xdot.tool(4:6) = Saturate(pandaArm.ArmR.xdot.tool(4:6),1);
 
-        % End effector minimum altitude for right
-        pandaArm.ArmR.min_dis = [pandaArm.ArmR.wTt(3,4)];
-        pandaArm.ArmR.xdot.min = -1* (0.15- norm(pandaArm.ArmR.min_dis));
-        pandaArm.ArmR.xdot.min= [0 0 0 0 0 pandaArm.ArmR.xdot.min]';
-        
-        % joint limits
-        pandaArm.ArmR.xdot.joints = [0 0 0 0 0 0]';        
     case 2
         % Perform the rigid grasp of the object and move it
 
