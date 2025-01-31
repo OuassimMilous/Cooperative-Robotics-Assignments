@@ -1,4 +1,3 @@
-
 %% Template Exercises Manipulation - Cooperative Robotics a.y. 24-25
 addpath('./simulation_scripts');
 clc;
