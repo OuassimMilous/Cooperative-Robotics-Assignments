@@ -26,40 +26,37 @@ pandaArms.ArmL.bJe = geometricJacobian(pandaArms.ArmL.franka, ...
 pandaArms.ArmR.bJe = geometricJacobian(pandaArms.ArmR.franka, ...
     [pandaArms.ArmR.q',0,0],'panda_link7');%DO NOT EDIT
 
-pandaArms.ArmL.Ste = [eye(3) zeros(3);  -skew(pandaArms.ArmL.eTt(1:3,4)) eye(3)];
-pandaArms.ArmL.bJt  = pandaArms.ArmL.Ste * pandaArms.ArmL.bJe(:,1:7);
+pandaArms.ArmL.Ste = [eye(3) zeros(3);  -skew(pandaArms.ArmL.wTe(1:3,1:3)*pandaArms.ArmL.eTt(1:3,4)) eye(3)];
+pandaArms.ArmL.wJt  = [pandaArms.ArmL.wTb(1:3,1:3) zeros(3);zeros(3) pandaArms.ArmL.wTb(1:3,1:3)]* pandaArms.ArmL.bJe(:,1:7);
+pandaArms.ArmL.wJt  = pandaArms.ArmL.Ste * pandaArms.ArmL.wJt;
 
-pandaArms.ArmR.Ste = [eye(3) zeros(3);  -skew(pandaArms.ArmR.eTt(1:3,4)) eye(3)];
-pandaArms.ArmR.bJt  = pandaArms.ArmR.Ste * pandaArms.ArmR.bJe(:,1:7);
-
-% Top three rows are angular velocities, bottom three linear velocities
-pandaArms.ArmL.wJt  = pandaArms.ArmL.bJt;
-pandaArms.ArmR.wJt  = [pandaArms.ArmR.wTb(1:3,1:3) zeros(3);zeros(3) pandaArms.ArmR.wTb(1:3,1:3)]* pandaArms.ArmR.bJt;
+pandaArms.ArmR.Ste = [eye(3) zeros(3);  -skew(pandaArms.ArmR.wTe(1:3,1:3)*pandaArms.ArmR.eTt(1:3,4)) eye(3)];
+pandaArms.ArmR.wJt  = [pandaArms.ArmR.wTb(1:3,1:3) zeros(3);zeros(3) pandaArms.ArmR.wTb(1:3,1:3)]* pandaArms.ArmR.bJe(:,1:7);
+pandaArms.ArmR.wJt  = pandaArms.ArmR.Ste * pandaArms.ArmR.wJt;
 
 
 % minimum altitude
 pandaArms.ArmL.Jma = [zeros(5,14);zeros(1,5), 1 ,0 , zeros(1,7)];
 pandaArms.ArmR.Jma = [zeros(5,14);zeros(1,7) zeros(1,5), 1 ,0 ];
 
-pandaArms.ArmL.bJm = [eye(14)];
-pandaArms.ArmR.bJm = [eye(14)];
+% joint limits
+pandaArms.ArmL.bJm = eye(14);
+pandaArms.ArmR.bJm = eye(14);
 
 
 
 if (mission.phase == 2)
+    pandaArms.ArmL.Ste = [eye(3) zeros(3);  -skew(pandaArms.ArmL.wTog(1:3,4)) eye(3)];
+    pandaArms.ArmR.Ste = [eye(3) zeros(3);  -skew(pandaArms.ArmR.wTog(1:3,4)) eye(3)];
 
     pandaArms.ArmL.wJo = pandaArms.ArmL.wJt;
-    pandaArms.ArmR.wJo = pandaArms.ArmL.wJt;
-    % Grasping 
-    pandaArms.ArmL.bJt_grasp = zeros(6,14);
-    pandaArms.ArmL.bJt_grasp(:,7) = [0 0 0 0 1 0];
-    
-    
-    pandaArms.ArmR.bJt_grasp = zeros(6,14);
-    pandaArms.ArmR.bJt_grasp(:,14) = [0 0 0 0 1 0];
+    pandaArms.ArmR.wJo = pandaArms.ArmR.wJt;
 
+    % Grasping 
+    pandaArms.ArmL.bJt_grasp(:,7) = [0 0 0 0 1 0];
+    pandaArms.ArmR.bJt_grasp(:,14) = [0 0 0 0 1 0];
+end
 % con
 % Common Jacobians
 pandaArms.Jjl = [pandaArms.ArmL.wJt  -pandaArms.ArmR.wJt ];
-
 end

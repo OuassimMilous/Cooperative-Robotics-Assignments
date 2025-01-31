@@ -15,7 +15,19 @@ mission.phase = 1;
 mission.phase_time = 0;
 model = load("panda.mat");
 
-hudps = initialize_simulation(real_robot);
+% UDP Connection with Franka Interface
+if real_robot == true
+    hudprLeft = dsp.UDPReceiver('LocalIPPort',1501,'MaximumMessageLength',255);
+    hudprRight = dsp.UDPReceiver('LocalIPPort',1503,'MaximumMessageLength',255);
+    hudpsLeft = dsp.UDPSender('RemoteIPPort',1500);
+    hudpsLeft.RemoteIPAddress = '127.0.0.1';
+    hudpsRight = dsp.UDPSender('RemoteIPPort',1502);
+    hudpsRight.RemoteIPAddress = '127.0.0.1';
+else
+    hudps = dsp.UDPSender('RemoteIPPort',1505);
+    hudps.RemoteIPAddress = '127.0.0.1';
+end
+
 %% ... to HERE.
 % Init robot model
 wTb_left = eye(4); % fixed transformation word -> base1
@@ -48,12 +60,7 @@ pandaArms.ArmR.wTg = [pandaArms.ArmR.wTt(1:3,1:3)*rotation(0,pi/6,0) [0.6;0;0.59
 
 
 % Second goal move the object
-pandaArms.wTog = [pandaArms.ArmL.wTt(1:3,1:3) *rotation(0,pi/6,0) [0.65;-0.35;0.28]; 0 0 0 1];
-% pandaArms.wTog = [pandaArms.ArmL.wTt(1:3,1:3) [0.65;-0.35;0.28]; 0 0 0 1];
-% pandaArms.wTog = [pandaArms.ArmL.wTt(1:3,1:3)*rotation(0,pi/6,0) [0.5 0 0.4]'; 0 0 0 1];
-% pandaArms.wTog = [pandaArms.ArmL.wTt(1:3,1:3) 0.5 0 -0.59; 0 0 0 1];
-
-
+pandaArms.wTog = [rotation(0,0,0) [0.65;-0.35;0.28]; 0 0 0 1];
 
 %% Mission configuration
 

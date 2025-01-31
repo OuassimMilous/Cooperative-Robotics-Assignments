@@ -18,8 +18,11 @@ pandaArm.ArmL.wTe = pandaArm.ArmL.wTb*pandaArm.ArmL.bTe;
 pandaArm.ArmR.wTe = pandaArm.ArmR.wTb*pandaArm.ArmR.bTe;
 
 % joint limits corresponding to the actual Panda by Franka arm configuration
-jlmin = [-2.8973;-1.7628;-2.8973;-3.0718;-2.8973;-0.0175;-2.8973];
-jlmax = [2.8973;1.7628;2.8973;-0.0698;2.8973;3.7525;2.8973];
+pandaArm.jlmin = [-2.8973;-1.7628;-2.8973;-3.0718;-2.8973;-0.0175;-2.8973];
+pandaArm.jlmax = [2.8973;1.7628;2.8973;-0.0698;2.8973;3.7525;2.8973];
+
+% pandaArm.jlmin = 9*ones(7,1);
+% pandaArm.jlmax = -9*ones(7,1);
 
 % Init relevance Jacobians
 pandaArm.ArmL.bJe = eye(6,7);
@@ -97,7 +100,7 @@ pandaArm.ArmR.A.grasp=zeros(6);
 pandaArm.ArmR.bJt_grasp = zeros(6,14);
 pandaArm.ArmL.bJt_grasp = zeros(6,14);
 
-
+pandaArm.wTo = zeros(4);
 
 end
 

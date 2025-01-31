@@ -9,6 +9,8 @@ function [pandaArm, mission] = UpdateMissionPhase(pandaArm, mission)
                      mission.phase = 2;
                      mission.phase_time = 0;
                      disp('Changing to phase 2');
+                     pandaArm.ArmL.tTo = inv(pandaArm.ArmL.wTt)*pandaArm.ArmL.wTo;
+                     pandaArm.ArmR.tTo = inv(pandaArm.ArmR.wTt)*pandaArm.ArmR.wTo;
                  end
                  
                 % max error: 1/10 cm and 1deg
