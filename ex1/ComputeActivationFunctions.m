@@ -23,7 +23,7 @@ function [uvms] = ComputeActivationFunctions(uvms, mission)
              uvms.Ap.tool = 0;
              
         case 4
-             uvms.Ap.ha = 0;
+             uvms.Ap.ha = 1;
              uvms.Ap.ma= 0; 
              uvms.Ap.v = 1;
              uvms.Ap.landing= 0; 
@@ -31,12 +31,12 @@ function [uvms] = ComputeActivationFunctions(uvms, mission)
    end 
     
 %HORIZONTAL ACTIVATION FUNCTION DEFINATION
-uvms.A.ha = IncreasingBellShapedFunction(0.1, 0.2, 0, 1, norm(uvms.v_rho_ha)) * uvms.Ap.ha;
+uvms.A.ha =  IncreasingBellShapedFunction(0.1, 0.2, 0, 1, norm(uvms.v_rho_ha)) * uvms.Ap.ha;
 
 %MINIMUM ALTITUDE
 uvms.A.ma = DecreasingBellShapedFunction(1, 2 , 0, 1, uvms.a) * uvms.Ap.ma;
 
-% vehicule control. 
+% vehicule control
 uvms.A.v = eye(6) * uvms.Ap.v;
 
 %ALTITUDE ACTIVATION FUNCTION

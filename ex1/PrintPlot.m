@@ -25,10 +25,10 @@ set(hplot, 'LineWidth', 1);
 legend('xdot', 'ydot','zdot','omega_x','omega_y','omega_z');
 
 
-figure(3);
-hplot = plot(plt.t, plt.a(1:7,:));
-set(hplot, 'LineWidth', 2);
-legend('Ajl_11','Ajl_22','Ajl_33','Ajl_44','Ajl_55','Ajl_66','Ajl_77');
+% figure(3);
+% hplot = plot(plt.t, plt.a(1:7,:));
+% set(hplot, 'LineWidth', 2);
+% legend('Ajl_11','Ajl_22','Ajl_33','Ajl_44','Ajl_55','Ajl_66','Ajl_77');
 
 figure(4);
 hplot = plot(plt.t, plt.a(8:9,:));

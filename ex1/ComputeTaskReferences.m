@@ -6,7 +6,7 @@ function [uvms] = ComputeTaskReferences(uvms, mission)
 uvms.xdot.ha = 1 * (0 - norm(uvms.v_rho_ha)); % norm(v_rho) IS THETA
 
 % minimum altitude
-uvms.xdot.ma = 1* (1 - uvms.a);
+uvms.xdot.ma = 1* (2 - uvms.a);
 
 if mission.phase == 1
     % move
@@ -28,7 +28,8 @@ elseif mission.phase ==2
     uvms.err.rock =  yaw_target-yaw_current; % Compute yaw error
     uvms.err.rock  = mod(uvms.err.rock + pi, 2*pi) - pi; % Normalize yaw error to [-pi, pi]
 
-    uvms.xdot.v = [0;0;0; 0;0;1 * uvms.err.rock];  % Compute velocity control for yaw
+    uvms.xdot.v = [0;0;0; 0;0;1  * uvms.err.rock];  % Compute velocity control for yaw gain is 1/uvms.wTv(3,3) because of the jacobian
+
     uvms.xdot.v = Saturate(uvms.xdot.v, 1);
 
 elseif mission.phase == 3

@@ -36,64 +36,39 @@ uvms.djdq = zeros(6,7,7);
 uvms.mu  = 0;
 uvms.phi = zeros(3,1);
 uvms.sensorDistance = 0;
-uvms.rock_goal = [];
-uvms.wRr = []; 
 
-uvms.vTr = [];
-
-uvms.Jjl = [];
-uvms.Jmu = [];
-uvms.Jha = [];
-uvms.Jt_a = [];
-uvms.Jt_v = [];
-uvms.Jt = [];
-
-
-
-
-  
-uvms.A.jl = zeros(7,7);
-
-uvms.A.mu = 0;
-uvms.xdot.mu = [];
-
-
-uvms.v_rho_ha = [];
-uvms.v_n_ha = [];
 uvms.a = [];
 
-uvms.xdot.jl = [];
 
 % horizental
 uvms.Ap.ha = 0;
 uvms.A.ha = 0;
-uvms.xdot.ha = [];
-uvms.Jha = [];  
+uvms.xdot.ha = 0;
+uvms.Jha = zeros(1,13);  
 
 % minimum altitude
 uvms.Ap.ma= 0;
 uvms.A.ma= 0;
-uvms.xdot.ma = [];
-uvms.Jma = [];
+uvms.xdot.ma = 0;
+uvms.Jma = zeros(1,13);
 
-
-% move
-uvms.Ap.v = zeros(6);
+% vehicule control
+uvms.Ap.v = 0;
 uvms.A.v = zeros(6);
-uvms.xdot.v = zeros(6);
+uvms.xdot.v = zeros(6,1);
 uvms.Jv = zeros(6,13); 
 
 % landing 
 uvms.Ap.landing= 0;
 uvms.A.landing= 0;
-uvms.xdot.landing = [];
-uvms.Jlanding = [];
+uvms.xdot.landing = 0;
+uvms.Jlanding = zeros(1,13);
 
 % tool
-uvms.A.tool = zeros(6);
 uvms.Ap.tool = 0;
-uvms.xdot.tool = [];
-uvms.Jtool = zeros(6);
+uvms.A.tool = zeros(6);
+uvms.xdot.tool = zeros(6,1);
+uvms.Jtool = zeros(6,13);
 
 end
 
