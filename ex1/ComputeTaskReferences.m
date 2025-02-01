@@ -8,6 +8,22 @@ if mission.phase == 1
     [uvms.err.ang_v, uvms.err.lin_v] = CartError(uvms.wTgv , uvms.wTv);
     uvms.xdot.v = [ 1*uvms.err.lin_v;1*uvms.err.ang_v];
     uvms.xdot.v = Saturate(uvms.xdot.v, 1);
+elseif mission.phase ==2
+
+    target_vector = uvms.goalPosition(1:2) - uvms.p(1:2); % Compute target vector in the XY plane
+
+    % Normalize the target vector
+    if norm(target_vector) == 0
+        error('Target vector is zero, cannot compute yaw angle.');
+    end
+    unit_vector = target_vector / norm(target_vector);
+    yaw_target = atan2(unit_vector(2), unit_vector(1)); % Compute desired yaw angle
+    yaw_current = atan2(uvms.wTv(2, 1), uvms.wTv(1, 1)); % Compute current yaw angle from the rotation matrix
+    uvms.err.rock =  yaw_target-yaw_current; % Compute yaw error
+    uvms.err.rock  = mod(uvms.err.rock + pi, 2*pi) - pi; % Normalize yaw error to [-pi, pi]
+
+    uvms.xdot.v = [0;0;0; 0;0;1 * uvms.err.rock];  % Compute velocity control for yaw
+    uvms.xdot.v = Saturate(uvms.xdot.v, 1);
 elseif mission.phase == 3
     [ang_v,uvms.err.lin_closer] = CartError(uvms.wTg , uvms.wTt);
     uvms.err.lin_closer = uvms.err.lin_closer(1:2);
@@ -28,18 +44,13 @@ uvms.xdot.tool(1:3) = Saturate(uvms.xdot.tool(1:3), 1);
 uvms.xdot.tool(4:6) = Saturate(uvms.xdot.tool(4:6), 1);
 
 
-%rock
-% [ang_rock, lin_rock] = CartError(uvms.wTg , uvms.wTv);
 
-uvms.err.rock = norm(uvms.r_rho_ra);
-uvms.xdot.rock = [1 * uvms.err.rock]; 
-uvms.xdot.rock = Saturate(uvms.xdot.rock, 1);
 
 % horizental
 uvms.xdot.ha = 1 * (0 - norm(uvms.v_rho_ha)); % norm(v_rho) IS THETA
 
 % minimum altitude
-uvms.xdot.ma = 10* (1 - uvms.a);
+uvms.xdot.ma = 1* (1 - uvms.a);
 
 % landing
 uvms.xdot.landing = 0.8* (0 - uvms.a);

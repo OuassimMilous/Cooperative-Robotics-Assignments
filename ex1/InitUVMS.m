@@ -70,12 +70,6 @@ uvms.A.v = zeros(6);
 uvms.xdot.v = zeros(6);
 uvms.Jv = zeros(6,13); 
 
-% rock alignment
-uvms.xdot.rock = []; 
-uvms.Ap.rock = 0;
-uvms.A.rock = zeros(3);
-uvms.Jrock = [];
-
 % tool
 uvms.A.tool = zeros(6,6);
 uvms.Ap.tool = zeros(6,6);

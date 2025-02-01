@@ -93,7 +93,6 @@ for t = 0:deltat:end_time
     % the sequence of iCAT_task calls defines the priority
     [Qp, ydotbar] = iCAT_task(uvms.A.ma,   uvms.Jma,  Qp, ydotbar, uvms.xdot.ma,  0.0001,   0.01, 10);  %MINIMUM ALTITUDE TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.ha,   uvms.Jha,  Qp, ydotbar, uvms.xdot.ha,  0.0001,   0.01, 10); %HORIZONTAL TASK
-    [Qp, ydotbar] = iCAT_task(uvms.A.rock,   uvms.Jrock,  Qp, ydotbar, uvms.xdot.rock,  0.0001,   0.01, 10); %ROCK TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.landing,    uvms.Jlanding,   Qp, ydotbar, uvms.xdot.landing,  0.0001,   0.01, 10); %landing TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.tool,    uvms.Jtool,   Qp, ydotbar, uvms.xdot.tool,  0.0001,   0.01, 10); %TOOL TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.v,  uvms.Jv, Qp, ydotbar, uvms.xdot.v,  0.0001,   0.01, 10);  % position control TASK
