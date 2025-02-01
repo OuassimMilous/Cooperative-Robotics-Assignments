@@ -46,8 +46,8 @@ pandaArms.ArmR.bJm = eye(14);
 
 
 if (mission.phase == 2)
-    pandaArms.ArmL.Ste = [eye(3) zeros(3);  -skew(pandaArms.ArmL.wTog(1:3,4)) eye(3)];
-    pandaArms.ArmR.Ste = [eye(3) zeros(3);  -skew(pandaArms.ArmR.wTog(1:3,4)) eye(3)];
+    pandaArms.ArmL.Ste = [eye(3) zeros(3);  -skew(pandaArms.wTog(1:3,4)) eye(3)];
+    pandaArms.ArmR.Ste = [eye(3) zeros(3);  -skew(pandaArms.wTog(1:3,4)) eye(3)];
 
     pandaArms.ArmL.wJo = pandaArms.ArmL.wJt;
     pandaArms.ArmR.wJo = pandaArms.ArmR.wJt;

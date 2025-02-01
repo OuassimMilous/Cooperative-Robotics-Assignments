@@ -19,6 +19,6 @@ pandaArms.ArmR.wTt = pandaArms.ArmR.wTe*pandaArms.ArmR.eTt;
 
 % <o> to <w> : ASSUME <t> = <g> during entire cooperation phase
 if (mission.phase == 2)
-    pandaArms.ArmL.wTto = pandaArms.ArmL.wTt* pandaArms.ArmL.tTo;
-    pandaArms.ArmR.wTto = pandaArms.ArmR.wTt* pandaArms.ArmR.tTo;
+    pandaArms.ArmL.wTo = pandaArms.ArmL.wTt* pandaArms.ArmL.tTo;
+    pandaArms.ArmR.wTo = pandaArms.ArmR.wTt* pandaArms.ArmR.tTo;
 end
