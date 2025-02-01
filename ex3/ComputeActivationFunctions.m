@@ -19,7 +19,7 @@ end
 % INEQUALITY TASK ACTIVATION
 % Minimum Altitude Task ( > 0.15m, 0.05m delta )
 % pandaArm.A.ma = ...;
-pandaArm.A.ma = DecreasingBellShapedFunction(0.15, 0.20 , 0, 1, pandaArm.min_dis);
+pandaArm.A.min = eye(6)*DecreasingBellShapedFunction(0.15, 0.20 , 0, 1, pandaArm.min_dis);
 
 
 % Joint Limits Task
@@ -33,9 +33,4 @@ for i = 1:7
     pandaArm.A.joints(i,i) = DecreasingBellShapedFunction(pandaArm.jlmin(i), pandaArm.jlmin(i) * 1.1, 0, 1, pandaArm.q(i)) ...
         + IncreasingBellShapedFunction(pandaArm.jlmax(i) * 0.9, pandaArm.jlmax(i), 0, 1, pandaArm.q(i));
 end
-display("activation function Left:");
-display(pandaArm.A.joints);
-display("activation function right:");
-display(pandaArm.A.joints);
-
 end

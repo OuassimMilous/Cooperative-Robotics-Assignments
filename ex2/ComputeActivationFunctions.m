@@ -47,14 +47,14 @@ end
 % if(pandaArm.ArmL.xdot.min(6)<0)
 %         pandaArm.ArmL.A.min = eye(6);
 % end
-pandaArm.ArmL.A.ma = DecreasingBellShapedFunction(0.15, 0.20 , 0, 1, pandaArm.ArmL.min_dis);
+pandaArm.ArmL.A.min = eye(6) * DecreasingBellShapedFunction(0.15, 0.20 , 0, 1, pandaArm.ArmL.min_dis);
 
 
 % pandaArm.ArmR.A.min = zeros(6);
 %     if(pandaArm.ArmL.xdot.min(6)<0)
 %         pandaArm.ArmR.A.min = eye(6);
 %     end    
-pandaArm.ArmL.A.ma = DecreasingBellShapedFunction(0.15, 0.20 , 0, 1, pandaArm.ArmR.min_dis);
+pandaArm.ArmR.A.min = eye(6) * DecreasingBellShapedFunction(0.15, 0.20 , 0, 1, pandaArm.ArmR.min_dis);
 % limits joints
 % Joint Limits Task
 % Activation function: two combined sigmoids, which are at their maximum 
