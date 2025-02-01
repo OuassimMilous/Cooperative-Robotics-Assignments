@@ -17,6 +17,14 @@
 % m x 13
 % where m is the row dimension of the task, and of its reference rate
 
+
+v_kv = [0 0 1]';
+w_kw = [0 0 1]';
+v_kw = (uvms.vTw(1:3,1:3) * w_kw); 
+
+
+% Tool
+
 % computation for tool-frame Jacobian
 % [omegax_t omegay_t omegaz_t xdot_t ydot_t zdot_t] = Jt ydot
 % [angular velocities; linear velocities]
@@ -36,32 +44,14 @@ uvms.Jt_v = [zeros(3) eye(3); eye(3) -skew(uvms.vTt(1:3,4))];
 % juxtapose the two Jacobians to obtain the global one
 uvms.Jtool = [uvms.Jt_a uvms.Jt_v];
 
-
-% % move
-% uvms.Jv_l = [zeros(3,7) uvms. wTv(1:3, 1:3) zeros(3)]; %LINEAR PART
-% uvms.Jv_a =  [zeros(3,7)    zeros(3)    uvms. wTv(1:3, 1:3)];   %ANGULAR PART
+%  move
 uvms.Jv = [zeros(3,7), uvms.wTv(1:3,1:3), zeros(3);
            zeros(3,7), zeros(3),         uvms.wTv(1:3,1:3)];
 
-% closer
-% uvms.Jcloser = [zeros(3,7), uvms.wTr(1:3,1:3), zeros(3,3); zeros(3,13)];
-uvms.Jcloser =  [zeros(3,7)  [eye(2,3); 0 0 0]  zeros(3) ];
-% display(uvms.Jcloser)
-% disp(uvms.Jv)
-% rock
-uvms.Jrock =  [zeros(3,7)    zeros(3)    eye(3)];
 
-%IF IT WOULD BE IN VEHICLE FRAME THEN WE NEED TO PUT IDENTITY MATRIX, PG - 23 (IN NOTES)
-
-% horizental
-v_kv = [0 0 1]';
-w_kw = [0 0 1]';
-
-v_kw = (uvms.vTw(1:3,1:3) * w_kw); %Z AXIS OF <w> PROJECTED ON <v>
-%INVERSE ANGLE-AXIS IMPLEMENTATION (GIVES YOU AXIS OF ROTATION SCALED BY AN ANGLE)
+% horizental alignment
 uvms.v_rho_ha = ReducedVersorLemma(v_kw, v_kv);
-uvms.v_n_ha = uvms.v_rho_ha ./ norm(uvms.v_rho_ha); %ONLY AXIS OF ROTATION
-
+uvms.v_n_ha = uvms.v_rho_ha ./ norm(uvms.v_rho_ha); 
 uvms.Jha = [zeros(1,7) zeros(1,3) uvms.v_n_ha'];
 
 % minimum altitude
@@ -72,10 +62,4 @@ uvms.Jma = [zeros(1,7) v_kw' zeros(1,3)];
 % landing
 uvms.Jlanding = [zeros(1,7) v_kw' zeros(1,3)];
 
-%underactuation
-uvms.Jund = [zeros(6,7) eye(6)];
-
-
-% stop
-uvms.Jstop = [zeros(6,7),eye(6)];
 end

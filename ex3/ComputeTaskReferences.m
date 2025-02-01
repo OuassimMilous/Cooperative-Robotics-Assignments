@@ -9,7 +9,7 @@ function [pandaArm] = ComputeTaskReferences(pandaArm,mission)
 
 % End effector minimum altitude for right
 pandaArm.min_dis = [pandaArm.wTt(3,4)];
-pandaArm.xdot.min = -1* (0.15- norm(pandaArm.min_dis));
+pandaArm.xdot.min = -1* (0.15- pandaArm.min_dis);
 pandaArm.xdot.min= [0 0 0 0 0 pandaArm.xdot.min]';
 
 % % Compute joint limits task reference ALWAYS
@@ -17,7 +17,7 @@ pandaArm.xdot.min= [0 0 0 0 0 pandaArm.xdot.min]';
 % pandaArm.xdot.jl = ...;
     
 % joint limits
-pandaArm.xdot.joints = [0 0 0 0 0 0]';   
+pandaArm.xdot.joints = zeros(7,1);   
 switch mission.phase
     case 1
         % Tool position and orientation task reference
@@ -44,12 +44,12 @@ switch mission.phase
         pandaArm.xdot.tool(1:3) = Saturate(pandaArm.xdot.tool(1:3),0.2);
         pandaArm.xdot.tool(4:6) = Saturate(pandaArm.xdot.tool(4:6),0.2);
 
-    % case 3
-    %     % Stop any motions
-    %     % -----------------------------------------------------------------
-    %     % Tool position and orientation task reference
-    %     pandaArm.xdot.tool(1:3) = ...;
-    %     pandaArm.xdot.tool(4:6) = ...;
+    case 3
+        % Stop any motions
+        % -----------------------------------------------------------------
+        % Tool position and orientation task reference
+        pandaArm.xdot.tool(1:3) = zeros(3,1);
+        pandaArm.xdot.tool(4:6) = zeros(3,1);
 end
 
 
