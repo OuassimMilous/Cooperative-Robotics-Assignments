@@ -65,42 +65,6 @@ Email: ``email'' \\
 Date: ``date'' \\
 \end{center}
 \clearpage
-\mainmatter
-\section*{General notes}
-
-\begin{itemize}
-	\item Exercise 1 is done with the ROBUST matlab main and unity visualization tools. Exercises 2-3 are done with the Franka simulation tools.
-	\item Comment and discuss the simulations, in a concise scientific manner. Further comments, other than the questions, can be added, although there is no need to write 10 pages for each exercise.
-	\item Aid the discussion with screenshots of the simulated environment (compress them to maintain a small overall file size), and graphs of the relevant variables (i.e. activation functions of inequality tasks, task variables, and so on). Graphs should always report the units of measure in both axes, and legends whenever relevant.
-	\item Report the thresholds whenever relevant.
-	\item Report the mathematical formula employed to derive the task jacobians and the control laws when asked, including where they are projected.
-	\item If needed, part of the code can be inserted as a discussion reference.
-\end{itemize} 
-
-
-Use the following template when you need to discuss the hierarchy of tasks of a given action or set of actions:
-\begin{table}[htb]
-	\caption{Example of actions/hierarchy table: a number in a given cell represents the priority of the control task (row) in the hierarchy of the control action (column). The type column indicates whether the objective is an equality (E) or inequality (I) one.}
-	\label{tbl:actions_table}
-	\begin{center}
-		\footnotesize
-		\begin{tabular}{ccccc}
-			\toprule		
-			Task & Type & $\mathcal{A}_{1}$ & $\mathcal{A}_{2}$ & $\mathcal{A}_{3} $	 \\
-			\midrule
-			Task A                    & I & 1 &   & 1  \\
-			\hdashline
-			Task B                & I & 2 & 1 &   \\
-			\hdashline
-			Task C                       & E &   & 2 & 2   \\
-		
-			\bottomrule
-		\end{tabular}
-	\end{center}
-\end{table}% %
-
-\clearpage
-
 \section{Exercise 1: Implement a Complete Mission}
 Implement several actions to reach a point, land, and then perform the manipulation of a target object.
 
@@ -117,21 +81,8 @@ Once landed, implement a ``fixed-based manipulation action'' to reach the target
 
 \subsection{Q1: Report the unified hierarchy of tasks used and their priorities in each action.}
 
-\subsection{Q2: Comment the behaviour of the robots, supported by relevant plots.}
-
-\subsection{Q3: What is the Jacobian relationship for the Alignment to Target control task? How was the task reference computed?}
-
-\subsection{Q4: Try changing the gain of the alignment task. Try three different values: 0.001, 0.1, 1.0. What is the observed behaviour? Implement a solution that is gain-independent guaranteeing that the landing is accomplished aligned to the target.}
-
-\subsection{Q5: After the landing is accomplished, what happens if you try to move the end-effector? Is the distance to the nodule sufficient to reach it with the end-effector? Comment the observed behaviour.}
-
-\subsection{Q6: Implement a solution that guarantees that, once landed, the nodule is certainly within the manipulator's workspace.}
-
-\clearpage
-\subsection{Question-1}
 This table show us the hierarchy of tasks used and their priorites in each action.
-\\1. I need to explain what each task do?
-\\2. Why we need to activate and deactivate in each action?
+Why we need to activate and deactivate in each action?
 
 \begin{table}[htb]
 	\caption{Example of actions/hierarchy table: a number in a given cell represents the priority of the control task (row) in the hierarchy of the control action (column). The type column indicates whether the objective is an equality (E) or inequa4lity (I) one.}
@@ -142,11 +93,11 @@ This table show us the hierarchy of tasks used and their priorites in each actio
 			\toprule		
 			Task & Type & $\mathcal{A}_{1}$ & $\mathcal{A}_{2}$ & $\mathcal{A}_{3} $ & $\mathcal{A}_{4} $ \\
 			\midrule
-			Task A                    & E & 1 & 1 & 1 & 1  \\
+			Minimum Altitude Task                    & E & 1 & 1 & 1 & 1  \\
 			\hdashline
-			Task B                & I & 2 &  & &  \\
+			Horizontal Task                & I & 2 &  & &  \\
 			\hdashline
-			Task C                       & E &   &  & 2 & 2   \\
+			                       & E &   &  & 2 & 2   \\
 			\hdashline
 			Task D 						& E & & 2 & & 3 \\
 			\hdashline
@@ -160,11 +111,17 @@ This table show us the hierarchy of tasks used and their priorites in each actio
 		\end{tabular}
 	\end{center}
 \end{table}% %
+\subsection{Q2: Comment the behaviour of the robots, supported by relevant plots.}
 
-\subsection{Question-2}
-I need to explain the behavior the robots, what is the movement of the robots, describe the plots and the behaviror of the plots.
-\pagebreak
+\subsection{Q3: What is the Jacobian relationship for the Alignment to Target control task? How was the task reference computed?}
 
+\subsection{Q4: Try changing the gain of the alignment task. Try three different values: 0.001, 0.1, 1.0. What is the observed behaviour? Implement a solution that is gain-independent guaranteeing that the landing is accomplished aligned to the target.}
+
+\subsection{Q5: After the landing is accomplished, what happens if you try to move the end-effector? Is the distance to the nodule sufficient to reach it with the end-effector? Comment the observed behaviour.}
+
+\subsection{Q6: Implement a solution that guarantees that, once landed, the nodule is certainly within the manipulator's workspace.}
+
+\clearpage
 \section{Exercise 2: Bimanual manipulation}
 
 \begin{figure}
@@ -301,6 +258,11 @@ Note that the transition for the \textit{Cooperative Rigid Constraint} should be
 %			\caption{Sequence of snapshots taken from the onboard camera during the TRIDENT final experiments.}
 %			\label{fig_tri_trial_maiorca_img}
 %		\end{figure}
+\clearpage
+
+
+\subsection{Question-2}
+I need to explain the behavior the robots, what is the movement of the robots, describe the plots and the behaviror of the plots.
 
 
 \end{document}
