@@ -4,12 +4,12 @@ pandaArm.dist_tools = norm(pandaArm.ArmL.wTt(1:3, 4) - pandaArm.ArmR.wTt(1:3, 4)
 % Compute minimum altitude reference ALWAYS
 
 % End effector minimum altitude for left
-pandaArm.ArmL.min_dis = -pandaArm.ArmL.wTt(3,4);
+pandaArm.ArmL.min_dis = pandaArm.ArmL.wTt(3,4);
 pandaArm.ArmL.xdot.min = 1 * (0.20 - pandaArm.ArmL.min_dis);
 pandaArm.ArmL.xdot.min = [0 0 0 0 0 pandaArm.ArmL.xdot.min]';
 
 % End effector minimum altitude for right
-pandaArm.ArmR.min_dis = -pandaArm.ArmR.wTt(3,4);
+pandaArm.ArmR.min_dis = pandaArm.ArmR.wTt(3,4);
 pandaArm.ArmR.xdot.min = 1* (0.20- pandaArm.ArmR.min_dis);
 pandaArm.ArmR.xdot.min= [0 0 0 0 0 pandaArm.ArmR.xdot.min]';
 

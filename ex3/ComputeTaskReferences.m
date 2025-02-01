@@ -2,7 +2,7 @@ function [pandaArm] = ComputeTaskReferences(pandaArm,mission)
 
     % Compute minimum altitude reference ALWAYS
     % End effector minimum altitude for right
-    pandaArm.min_dis = -pandaArm.wTt(3,4);
+    pandaArm.min_dis = pandaArm.wTt(3,4);
     pandaArm.xdot.min = 1* (0.20 - pandaArm.min_dis);
     pandaArm.xdot.min= [0 0 0 0 0 pandaArm.xdot.min]';
 
