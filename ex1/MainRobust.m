@@ -54,13 +54,9 @@ uvms.p = [8.5 38.5 -36     0 -0.06 0.5]';
 
 % DEFINES THE GOAL POSITION FOR THE VEHICLE POSITION TASK
 uvms.VehicleGoalPosition = [10.5   37.5    -38]';
-% uvms.VehicleGoalPosition = [10.5   38.5    -38]';
-% uvms.VehicleGoalPosition = [8.5   33.5    -38]';
-% uvms.VehicleGoalPosition = [10.5   37.5    -39]';
 
 uvms.wRgv = rotation(0, -0.06, 0.5);
 uvms.wTgv = [uvms.wRgv uvms.VehicleGoalPosition ; 0 0 0 1];
-
 
 % defines the goal position for the end-effector/tool position task
 uvms.goalPosition = [12.2025   37.3748  -39.8860]';
@@ -91,18 +87,18 @@ for t = 0:deltat:end_time
     Qp = eye(13); 
     % add all the other tasks here!
     % the sequence of iCAT_task calls defines the priority
-    [Qp, ydotbar] = iCAT_task(uvms.A.ma,   uvms.Jma,  Qp, ydotbar, uvms.xdot.ma,  0.0001,   0.01, 10);  %MINIMUM ALTITUDE TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.ha,   uvms.Jha,  Qp, ydotbar, uvms.xdot.ha,  0.0001,   0.01, 10); %HORIZONTAL TASK
+    [Qp, ydotbar] = iCAT_task(uvms.A.ma,   uvms.Jma,  Qp, ydotbar, uvms.xdot.ma,  0.0001,   0.01, 10);  %MINIMUM ALTITUDE TASK
+    [Qp, ydotbar] = iCAT_task(uvms.A.v,  uvms.Jv, Qp, ydotbar, uvms.xdot.v,  0.0001,   0.01, 10);  % vehicule control TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.landing,    uvms.Jlanding,   Qp, ydotbar, uvms.xdot.landing,  0.0001,   0.01, 10); %landing TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.tool,    uvms.Jtool,   Qp, ydotbar, uvms.xdot.tool,  0.0001,   0.01, 10); %TOOL TASK
-    [Qp, ydotbar] = iCAT_task(uvms.A.v,  uvms.Jv, Qp, ydotbar, uvms.xdot.v,  0.0001,   0.01, 10);  % position control TASK
+  
     [Qp, ydotbar] = iCAT_task(eye(13),     eye(13),   Qp, ydotbar, zeros(13,1),  0.0001,   0.01, 10);    % this task should be the last one
     
     % get the two variables for integration
     uvms.q_dot = ydotbar(1:7);
     uvms.p_dot = ydotbar(8:13);
 
-    
     % Integration
 	uvms.q = uvms.q + uvms.q_dot*deltat;
     % beware: p_dot should be projected on <v>
@@ -121,17 +117,11 @@ for t = 0:deltat:end_time
     %print vars
     % error = [uvms.xdot.v_l/0.2 uvms.xdot.v_a/0.2];
 
-    error = norm((0 - uvms.a)) ;
     phase = mission.phase;
     % add debug prints here
     if (mod(t,0.1) == 0)
         t
-        % uvms.sensorDistance
-        %error
         phase
-        % min_alt_ap = uvms.Ap.ma
-        % alt_ap = uvms.Ap.a
-        %uvms.a
     end
 
     mission.phase_time = mission.phase_time + deltat; %CALCULATE THE mission.phase_time

@@ -64,23 +64,11 @@ uvms.a = [];
 
 uvms.xdot.jl = [];
 
-% move
-uvms.Ap.v = zeros(6);
-uvms.A.v = zeros(6);
-uvms.xdot.v = zeros(6);
-uvms.Jv = zeros(6,13); 
-
-% tool
-uvms.A.tool = zeros(6,6);
-uvms.Ap.tool = zeros(6,6);
-uvms.xdot.tool = [];
-uvms.Jtool = zeros(6);
-
-% landing 
-uvms.Ap.landing= 0;
-uvms.A.landing= 0;
-uvms.xdot.landing = [];
-uvms.Jlanding = [];
+% horizental
+uvms.Ap.ha = 0;
+uvms.A.ha = 0;
+uvms.xdot.ha = [];
+uvms.Jha = [];  
 
 % minimum altitude
 uvms.Ap.ma= 0;
@@ -88,11 +76,24 @@ uvms.A.ma= 0;
 uvms.xdot.ma = [];
 uvms.Jma = [];
 
-% horizental
-uvms.Ap.ha = 0;
-uvms.A.ha = 0;
-uvms.xdot.ha = [];
-uvms.Jha = [];  
+
+% move
+uvms.Ap.v = zeros(6);
+uvms.A.v = zeros(6);
+uvms.xdot.v = zeros(6);
+uvms.Jv = zeros(6,13); 
+
+% landing 
+uvms.Ap.landing= 0;
+uvms.A.landing= 0;
+uvms.xdot.landing = [];
+uvms.Jlanding = [];
+
+% tool
+uvms.A.tool = zeros(6);
+uvms.Ap.tool = 0;
+uvms.xdot.tool = [];
+uvms.Jtool = zeros(6);
 
 end
 
