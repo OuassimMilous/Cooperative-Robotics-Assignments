@@ -20,7 +20,7 @@ pandaArm.ArmL.xdot.joints = zeros(14,1);
 pandaArm.ArmR.xdot.joints = zeros(14,1);       
 for i = 1:7
     pandaArm.ArmL.xdot.joints(i) = (pandaArm.jlmin(i) + pandaArm.jlmax(i)) / 2;
-    pandaArm.ArmR.xdot.joints(i) = (pandaArm.jlmin(i+7) + pandaArm.jlmax(i)) / 2;
+    pandaArm.ArmR.xdot.joints(i+7) = (pandaArm.jlmin(i) + pandaArm.jlmax(i)) / 2;
 end
 
     switch mission.phase
