@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.1.26)  26 JAN 2025 23:32
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.1.26)  1 FEB 2025 10:52
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -421,37 +421,36 @@ Package caption Info: End \AtBeginDocument code.
 
 
 {C:/Users/molla/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
-LaTeX Font Info:    Trying to load font information for U+msa on input line 87.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 72.
  (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 87.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 72.
  (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-) [1
-
-
-] [2
-
-] [3
+) [2
 
 ]
-<dh-diagram.png, id=25, 880.28876pt x 841.1425pt>
+<dh-diagram.png, id=18, 880.28876pt x 841.1425pt>
 File: dh-diagram.png Graphic file (type png)
 <use dh-diagram.png>
-Package pdftex.def Info: dh-diagram.png  used on input line 172.
+Package pdftex.def Info: dh-diagram.png  used on input line 129.
 (pdftex.def)             Requested size: 443.57848pt x 423.8431pt.
-<initial_position.png, id=27, 877.47826pt x 429.40425pt>
+<initial_position.png, id=20, 877.47826pt x 429.40425pt>
 File: initial_position.png Graphic file (type png)
 <use initial_position.png>
-Package pdftex.def Info: initial_position.png  used on input line 177.
+Package pdftex.def Info: initial_position.png  used on input line 134.
 (pdftex.def)             Requested size: 266.14978pt x 130.24408pt.
-<grasping_position.png, id=28, 1440.38126pt x 810.02625pt>
+<grasping_position.png, id=21, 1440.38126pt x 810.02625pt>
 File: grasping_position.png Graphic file (type png)
 <use grasping_position.png>
-Package pdftex.def Info: grasping_position.png  used on input line 187.
+Package pdftex.def Info: grasping_position.png  used on input line 144.
 (pdftex.def)             Requested size: 266.14978pt x 149.6671pt.
- [4 <./dh-diagram.png>] [5 <./initial_position.png> <./grasping_position.png>] [6] [7
+ [3
+
+ <./dh-diagram.png>] [4 <./initial_position.png> <./grasping_position.png>] [5] [6
+
+] [7
 
 ] (cooperative.aux)
  ***********
@@ -460,17 +459,17 @@ L3 programming layer <2024-01-04>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 5619 strings out of 474486
- 94116 string characters out of 5743755
- 1936542 words of memory out of 5000000
- 27785 multiletter control sequences out of 15000+600000
- 570655 words of font info for 81 fonts, out of 8000000 for 9000
+ 5613 strings out of 474486
+ 94003 string characters out of 5743755
+ 1940542 words of memory out of 5000000
+ 27780 multiletter control sequences out of 15000+600000
+ 570320 words of font info for 80 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 57i,12n,65p,812b,338s stack positions out of 10000i,1000n,20000p,200000b,200000s
- <C:\Users\molla\AppData\Local\MiKTeX\fonts/pk/ljfour/jknappen/ec/dpi600\tcrm1000.pk><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on cooperative.pdf (8 pages, 683036 bytes).
+ 57i,11n,65p,812b,335s stack positions out of 10000i,1000n,20000p,200000b,200000s
+<C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on cooperative.pdf (7 pages, 682084 bytes).
 PDF statistics:
- 106 PDF objects out of 1000 (max. 8388607)
+ 98 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
