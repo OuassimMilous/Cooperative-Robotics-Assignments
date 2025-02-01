@@ -64,10 +64,6 @@ pandaArm2.wTg = [pandaArm2.wTt(1:3,1:3)*rotation(0,0.3491,0) [0.53;0;0.59]; 0 0 
 pandaArm1.wTog = [rotation(0,0,0) [0.6;0.4;0.48]; 0 0 0 1];
 pandaArm2.wTog = [rotation(0,0,0) [0.6;0.4;0.48]; 0 0 0 1];
 
-
-% pandaArm1.wTog = [pandaArm1.wTt(1:3,1:3) *rotation(0,pi/6,0) [1.6;-0.35;0.28]; 0 0 0 1];
-% pandaArm2.wTog = [pandaArm1.wTt(1:3,1:3) *rotation(0,pi/6,0) [1.6;-0.35;0.28]; 0 0 0 1];
-
 %% Mission configuration
 
 mission.prev_action = "go_to";
@@ -189,20 +185,13 @@ for t = 0:deltat:end_time
     h1 = ComputeH(pandaArm1);
     h2 = ComputeH(pandaArm2);
 
-
     % NEW XDOT LEFT ARM
-   
     combinedx1 = ComputeCooperativeXdot(desiredx1,desiredx2,x1,x2,h1,h2);
     newx1 =combinedx1(1:6);
 
     % NEW XDOT RIGHT ARM ARM
-
     combinedx2 = ComputeCooperativeXdot(desiredx1,desiredx2,x1,x2,h1,h2);
     newx2 = combinedx2(7:12);
-
-
-
-    
 
     if(mission.phase == 2)
     % Task: Left Arm Cooperation
@@ -219,7 +208,7 @@ for t = 0:deltat:end_time
     [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.tool, tool_jacobian_R, Qp2, ydotbar2, newx2, 0.0001,   0.01, 10);
     end
     % this task should be the last one
-     [Qp2, ydotbar2] = iCAT_task(eye(7), eye(7), Qp2, ydotbar2, zeros(7,1), 0.0001,   0.01, 10);    % this task should be the last one
+    [Qp2, ydotbar2] = iCAT_task(eye(7), eye(7), Qp2, ydotbar2, zeros(7,1), 0.0001,   0.01, 10);    % this task should be the last one
 
     % get the two variables for integration
     pandaArm1.q_dot = ydotbar(1:7);
@@ -232,12 +221,12 @@ for t = 0:deltat:end_time
 	pandaArm1.q = pandaArm1.q(1:7) + pandaArm1.q_dot*deltat;    
     pandaArm2.q = pandaArm2.q(1:7) + pandaArm2.q_dot*deltat;  
 
-    %Send udp packets [q_dot1, ..., q_dot7] DO NOT CHANGE
+    % Send udp packets [q_dot1, ..., q_dot7] DO NOT CHANGE
     if real_robot == false
         pandaArm1.q = pandaArm1.q(1:7) + pandaArm1.q_dot*deltat; 
         pandaArm2.q = pandaArm2.q(1:7) + pandaArm2.q_dot*deltat; 
     end
-    %Send udp packets [q_dot1, ..., q_dot7]
+    % Send udp packets [q_dot1, ..., q_dot7]
     if real_robot == true
         step(hudpsLeft,[t;pandaArm1.q_dot]);
         step(hudpsRight,[t;pandaArm2.q_dot]);

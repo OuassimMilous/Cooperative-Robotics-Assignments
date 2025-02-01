@@ -79,47 +79,95 @@ Use a "safe waypoint navigation action" to reach the following position:
 Then land, aligning to the nodule. In particular, the $x$ axis of the vehicle should align to the projection, on the inertial horizontal plane, of the unit vector joining the vehicle frame to the nodule frame.
 Once landed, implement a ``fixed-based manipulation action'' to reach the target nodule (mimicking the scanning of the nodule). During this manipulation phase, the vehicle should not move for any reason.
 
+
+
 \subsection{Q1: Report the unified hierarchy of tasks used and their priorities in each action.}
 
-This table show us the hierarchy of tasks used and their priorites in each action.
-Why we need to activate and deactivate in each action?
 
+
+$\mathcal{A}_{1}$ - Safe Waypoint Navigation Action. 
+
+
+$\mathcal{A}_{2}$ - Nodule Alignment Action
+
+$\mathcal{A}_{3}$ - Safe Landing Action
+
+$\mathcal{A}_{4}$ - Fixed Base Manipulatin Action
 \begin{table}[htb]
-	\caption{Example of actions/hierarchy table: a number in a given cell represents the priority of the control task (row) in the hierarchy of the control action (column). The type column indicates whether the objective is an equality (E) or inequa4lity (I) one.}
 	\label{tbl:actions_tables}
 	\begin{center}
 		\footnotesize
 		\begin{tabular}{cccccc}
 			\toprule		
-			Task & Type & $\mathcal{A}_{1}$ & $\mathcal{A}_{2}$ & $\mathcal{A}_{3} $ & $\mathcal{A}_{4} $ \\
+			Task & Type & $\mathcal{A}_{1}$ & $\mathcal{A}_{2}$  & $\mathcal{A}_{3}$  & $\mathcal{A}_{4}$ \\
 			\midrule
-			Minimum Altitude Task                    & E & 1 & 1 & 1 & 1  \\
+			Minimum Altitude                    & I & 1 & 1 & 1 & 1  \\
 			\hdashline
-			Horizontal Task                & I & 2 &  & &  \\
+			Horizontal Alignment                & I & 2 &  & &  \\
 			\hdashline
-			                       & E &   &  & 2 & 2   \\
+			Nodue Alignment                       & E &   &  & 2 & 2   \\
 			\hdashline
-			Task D 						& E & & 2 & & 3 \\
-			\hdashline
-			Task E     					& E & 3 & & & \\
-			\hdashline
-			Task F 						& E & 4 & & & \\
+			Landing 						& E & & 2 & & 3 \\
 			\hdashline 
-			Task G 						& E & & & & 4 \\ 
+			Vehicle Stop 						& E & & & & 4 \\ 
+			\hdashline 
+			Tool Manipulatin					& E & 4 & & & \\
+			\hdashline 
+			Position Control 						& E & & & & 4 \\ 
 			
 			\bottomrule
 		\end{tabular}
 	\end{center}
-\end{table}% %
+\caption{Example of actions/hierarchy table: A number in a given cell represents the priority of the control task (row) in the hierarchy of the control action (column). The type column indicates whether the objective is an equality (E) or inequality (I) one.}
+\end{table}
+\\
+Task Defintions\\
+Minimum Altitude - This task maintains the altitude between vehicle and sea floor.\\ 
+Horizontal Alignment - This task responsible to maintain the horizontal position with respect to sea floor. \\
+Rock Alignment - This task is responsible to align the vehicle head with x axis of nodule. \\
+Landing - This task is responsible to land the uvms system  on the sea floor. \\
+Vehicle Stop - To make sure that vehicle will not move during the manipulation task. \\
+Tool Manipulatin - This task move the manipulator arm to the goal position.\\
+Position Control - It controls the vehicle to achieve its desired location.\\
+
 \subsection{Q2: Comment the behaviour of the robots, supported by relevant plots.}
+On the basis of the actions , which are mentioned above, we define our phases and here are our observation. 
+
+Comment 1 - In the action of Safe Waypoint Navigation , vehicle starts from its intial position and goes linearly to its desired position. Keeping the vehicle horizontal stable and the manipulator is still not active. \\
+PLOT OF THE GRAPH\\
+Comment 2 - After reaches the desired position, whole system align itself with the x axis of nodule. Keeping the whole system horizontal stable.  \\
+TOP VIEW\\
+Comment 3 - In this phase, keeping the vehicle aligns with respect nodule x axis and sea floor, whole system goes to the sea floor vertically. 
+PLOT THE GRAPH FOR ALTITUDE.\\
+Comment 4 - Once the vehicle lands the manipulator arm will reach to the noduel, which is its desired position. 
+\\PHOTO and PLOT
 
 \subsection{Q3: What is the Jacobian relationship for the Alignment to Target control task? How was the task reference computed?}
 
+To align the vehicle with the nodule, we calculated the angle difference between vehicle and nodule. \$\
+Here is the calculation step:
+First we calculated the thedistance between the current posiition and the nodule with respect to world frame.\\
+$target_vector = uvms.goalPosition(1:2) - uvms.p(1:2r)$ %Write in mathematical form. \\
+With that distance vector, we find the angle between the current position of the vehicle and the target position of the vehicle with respect to world frame.\\
+%Formula \\
+Once we have the angle difference then we constraint the yaw angular vehicle velocity in like this:\\
+%Formula
+
+The Jacobian we are using is the same we used in the vehicle posiition control task. Because we constrained our velocities only for yaw angular vehicle axis, so only solution we will get is for the yaw angular vehicle velocity. 
+%Jacobian formula
 \subsection{Q4: Try changing the gain of the alignment task. Try three different values: 0.001, 0.1, 1.0. What is the observed behaviour? Implement a solution that is gain-independent guaranteeing that the landing is accomplished aligned to the target.}
+We observed that with gain 1.0, the time taken by vehicle to reduce the angular error between its body and nodule around z-axis with respect to world frame is faster than if we assign the gain 0.1 and 0.001. To be precise the time take in the first case, when gain is 1, is 10.5 seconds. In the second and third case, which are 0.1 and 0.001 respectively, it takes 52 seconds and in the latter case it moves infinitinemaly slow. 
+%PLOT THE GRAPH
 
 \subsection{Q5: After the landing is accomplished, what happens if you try to move the end-effector? Is the distance to the nodule sufficient to reach it with the end-effector? Comment the observed behaviour.}
+After landing task, the manipulator easily achieved its task without vehicle moving. 
 
 \subsection{Q6: Implement a solution that guarantees that, once landed, the nodule is certainly within the manipulator's workspace.}
+To make sure that nodule is always in the work space of the manipulator arm. We need to control the vehicle in such a way it always come closer to the nodule.
+For that first we need to calculate the x and y component of linear error, because we always activate this task after we have done the horizontal alignment, between the rock and tool. \\
+%FORMULA
+After getting the x and y component of linear error, we constrain our vehicle linear x and linear y velocities in such a manner:
+%FORMULA
 
 \clearpage
 \section{Exercise 2: Bimanual manipulation}
@@ -191,6 +239,51 @@ Once the object has been moved to the required position you have to implement a 
 Repeat the simulation, using a goal position or by changing the grasping in such a way that one of the two manipulators activates multiple safety tasks, to stress the constraint task.
 
 \subsection{Q1: Report the unified hierarchy of tasks used and their priorities in each action.}
+
+
+
+$\mathcal{A}_{1}$ - Move to action. 
+
+
+$\mathcal{A}_{2}$ - Bimanumial rigid grasping constraint action
+
+$\mathcal{A}_{3}$ - Halting vehicle action
+
+
+\begin{table}[htb]
+	\label{tbl:actions_tables}
+	\begin{center}
+		\footnotesize
+		\begin{tabular}{cccccc}
+			\toprule		
+			Task & Type & $\mathcal{A}_{1}$ & $\mathcal{A}_{2}$  & $\mathcal{A}_{3}$  & $\mathcal{A}_{4}$ \\
+			\midrule
+			joint limits                      & I & 1 & 1 & 1 & 1  \\
+			\hdashline
+
+			Minimum Altitude						& E & & 2 & & 3 \\
+			\hdashline 
+			Vehicle Stop 						& E & & & & 4 \\ 
+			\hdashline 
+			Tool Manipulatin					& E & 4 & & & \\
+			\hdashline 
+			Position Control 						& E & & & & 4 \\ 
+			
+			\bottomrule
+		\end{tabular}
+	\end{center}
+\caption{Example of actions/hierarchy table: A number in a given cell represents the priority of the control task (row) in the hierarchy of the control action (column). The type column indicates whether the objective is an equality (E) or inequality (I) one.}
+\end{table}
+\\
+Task Defintions\\
+Minimum Altitude - This task maintains the altitude between vehicle and sea floor.\\ 
+Horizontal Alignment - This task responsible to maintain the horizontal position with respect to sea floor. \\
+Rock Alignment - This task is responsible to align the vehicle head with x axis of nodule. \\
+Landing - This task is responsible to land the uvms system  on the sea floor. \\
+Vehicle Stop - To make sure that vehicle will not move during the manipulation task. \\
+Tool Manipulatin - This task move the manipulator arm to the goal position.\\
+Position Control - It controls the vehicle to achieve its desired location.\\
+
 
 \subsection{Q2: What is the Jacobian relationship for the Joint Limits task? How was the task reference computed?}
 
