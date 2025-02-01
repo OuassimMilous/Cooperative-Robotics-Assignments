@@ -26,7 +26,7 @@ function [pandaArm] = InitRobot(model,wTb)
 
     pandaArm.ang = zeros(3,1);
     pandaArm.lin = zeros(3,1);
-    
+
     % move to
     pandaArm.xdot.tool = zeros(6,1);
     pandaArm.A.tool = zeros(6);
@@ -42,8 +42,8 @@ function [pandaArm] = InitRobot(model,wTb)
 
 
     % Fixed joints
-    pandaArm.xdot.joints = zeros(6);
-    pandaArm.A.joints = zeros(6,1);
+    pandaArm.xdot.joints = zeros(6,1);
+    pandaArm.A.joints = zeros(6);
     pandaArm.Ap.joints = 0;
     pandaArm.bJm = zeros(6,7);
 

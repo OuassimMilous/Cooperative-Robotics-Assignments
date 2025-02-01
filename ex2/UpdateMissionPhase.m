@@ -29,6 +29,6 @@ function [pandaArm, mission] = UpdateMissionPhase(pandaArm, mission)
                   disp('Changing to phase 4');
                 end
             % case 4 end
-             end
+        end
 end
 

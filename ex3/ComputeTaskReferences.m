@@ -8,7 +8,7 @@ function [pandaArm] = ComputeTaskReferences(pandaArm,mission)
 
     % Compute joint limits task reference ALWAYS
     % Create a velocity away from the limits => move to the middle between jlmax and jlmin
-    pandaArm.xdot.joints = zeros(14,1);
+    pandaArm.xdot.joints = zeros(7,1);
     for i = 1:7
         pandaArm.xdot.joints(i) = ((pandaArm.jlmin(i) + pandaArm.jlmax(i)) / 2) - pandaArm.q(i);
     end
