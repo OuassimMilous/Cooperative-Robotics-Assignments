@@ -241,13 +241,14 @@ Repeat the simulation, using a goal position or by changing the grasping in such
 \subsection{Q1: Report the unified hierarchy of tasks used and their priorities in each action.}
 
 
+Actions :\\ 
 
-$\mathcal{A}_{1}$ - Move to action. 
+$\mathcal{A}_{1}$ - Move-to.
 
 
-$\mathcal{A}_{2}$ - Bimanumial rigid grasping constraint action
+$\mathcal{A}_{2}$ - Co-operative move-to
 
-$\mathcal{A}_{3}$ - Halting vehicle action
+$\mathcal{A}_{3}$ - Halt manipulator
 
 
 \begin{table}[htb]
@@ -256,36 +257,35 @@ $\mathcal{A}_{3}$ - Halting vehicle action
 		\footnotesize
 		\begin{tabular}{cccccc}
 			\toprule		
-			Task & Type & $\mathcal{A}_{1}$ & $\mathcal{A}_{2}$  & $\mathcal{A}_{3}$  & $\mathcal{A}_{4}$ \\
+			Task & Type & $\mathcal{A}_{1}$ & $\mathcal{A}_{2}$  & $\mathcal{A}_{3}$  \\
 			\midrule
-			joint limits                      & I & 1 & 1 & 1 & 1  \\
+			Joint limits                      & I & 1 & 1 &  \\
 			\hdashline
-
-			Minimum Altitude						& E & & 2 & & 3 \\
+			Minimum Altitude						& I & 2& 2 & \\
 			\hdashline 
-			Vehicle Stop 						& E & & & & 4 \\ 
-			\hdashline 
-			Tool Manipulatin					& E & 4 & & & \\
-			\hdashline 
-			Position Control 						& E & & & & 4 \\ 
+			Bimanumial rigid grasping constraint					& E & & 3 & \\
+			\hdashline
+			Move-To						& E & 3 & 4& \\ 
+			%\hdashline 
+			%\hdashline 
+			%Position Control 						& E & & & & 4 \\ 
 			
 			\bottomrule
 		\end{tabular}
 	\end{center}
 \caption{Example of actions/hierarchy table: A number in a given cell represents the priority of the control task (row) in the hierarchy of the control action (column). The type column indicates whether the objective is an equality (E) or inequality (I) one.}
 \end{table}
-\\
+\noindent
 Task Defintions\\
-Minimum Altitude - This task maintains the altitude between vehicle and sea floor.\\ 
-Horizontal Alignment - This task responsible to maintain the horizontal position with respect to sea floor. \\
-Rock Alignment - This task is responsible to align the vehicle head with x axis of nodule. \\
-Landing - This task is responsible to land the uvms system  on the sea floor. \\
-Vehicle Stop - To make sure that vehicle will not move during the manipulation task. \\
-Tool Manipulatin - This task move the manipulator arm to the goal position.\\
-Position Control - It controls the vehicle to achieve its desired location.\\
+Joint limits - This is safety task to constraint the each joints of the manipulator , which is responsible to maintain the joint angle in its range.\\
+Minimum Altitude -  
+This is the safety task where the tool of the manipulator keeps the minimum distance from the ground. \\
+Bimanual rigid grasping constrain - In this task we constraint our robot to act together. \\
+Move to - this task the manipulator move to the desired position 
 
 
 \subsection{Q2: What is the Jacobian relationship for the Joint Limits task? How was the task reference computed?}
+
 
 \subsection{Q3: What is the Jacobian relationship for the Bimanual Rigid Grasping Constraint task? How was the task reference computed?}
 
