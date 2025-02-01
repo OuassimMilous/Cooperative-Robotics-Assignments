@@ -4,21 +4,24 @@ function [pandaArm] = ComputeActivationFunctions(pandaArm, mission)
 switch mission.phase
     case 1  % Reach the grasping point
         % Move-To
-         pandaArm.ArmR.A.tool = eye(6);
-         pandaArm.ArmL.A.tool = eye(6);
+         pandaArm.ArmR.Ap.tool = 1;
+         pandaArm.ArmL.Ap.tool = 1;
 
         % Rigid Grasp Constraint
-        pandaArm.ArmL.A.grasp=zeros(6);
-        pandaArm.ArmR.A.grasp=zeros(6);
+        pandaArm.ArmL.A.grasp= 0;
+        pandaArm.ArmR.A.grasp= 0;
+
+        % constraint
+        pandaArm.A.con = 0;
 
     case 2 % Move the object holding it firmly
 
          % Move-To
-         pandaArm.ArmR.A.tool = eye(6);
-         pandaArm.ArmL.A.tool = eye(6);
+         pandaArm.ArmR.Ap.tool = 1;
+         pandaArm.ArmL.Ap.tool = 1;
 
          % constraint
-         pandaArm.A.con = eye(6);
+         pandaArm.A.con = 1;
 
         % Rigid Grasp Constraint
         pandaArm.ArmL.A.grasp=eye(6);
@@ -27,17 +30,29 @@ switch mission.phase
     case 3 % STOP any motion 
 
          % Move-To
-         pandaArm.ArmR.A.tool = zeros(6);
-         pandaArm.ArmL.A.tool = zeros(6);
+         pandaArm.ArmR.Ap.tool = 0;
+         pandaArm.ArmL.Ap.tool = 0;
 
          % constraint
-         pandaArm.A.con = zeros(6);
+         pandaArm.Ap.con = 0;
 
         % Rigid Grasp Constraint
-        pandaArm.ArmL.A.grasp=zeros(6);
-        pandaArm.ArmR.A.grasp=zeros(6);
+        pandaArm.ArmL.Ap.grasp= 0;
+        pandaArm.ArmR.Ap.grasp= 0;
 
 end
+
+% Move-To
+pandaArm.ArmR.A.tool = eye(6) * pandaArm.ArmR.Ap.tool;
+pandaArm.ArmL.A.tool = eye(6) * pandaArm.ArmL.Ap.tool;
+
+% Rigid Grasp Constraint
+pandaArm.ArmL.A.grasp = zeros(6) * pandaArm.ArmL.Ap.grasp;
+pandaArm.ArmR.A.grasp = zeros(6) * pandaArm.ArmR.Ap.grasp;
+
+% constraint
+pandaArm.A.con = eye(6) * pandaArm.Ap.con;
+
 % INEQUALITY TASK ACTIVATION
 % Minimum Altitude Task ( > 0.15m, 0.05m delta )
 % pandaArm.A.ma = ...;
