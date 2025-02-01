@@ -56,9 +56,8 @@ uvms.A.ha = IncreasingBellShapedFunction(0.1, 0.2, 0, 1, norm(uvms.v_rho_ha)) * 
 %norm(uvms.v_rho_ha) is theta for make the vehicle horizontal
 
 %MINIMUM ALTITUDE
-uvms.A.ma = DecreasingBellShapedFunction(0.5, 1 , 0, 1, uvms.a) * uvms.Ap.ma;
-%We activate this MINIMUM ALTITUDE function when my vehicle goes below 2m and we dont care
-%about when it goes above 3
+uvms.A.ma = DecreasingBellShapedFunction(1, 2 , 0, 1, uvms.a) * uvms.Ap.ma;
+
 
 %ALTITUDE ACTIVATION FUNCTION
 uvms.A.landing = 1 * uvms.Ap.landing;

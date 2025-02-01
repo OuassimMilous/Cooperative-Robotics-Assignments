@@ -21,10 +21,8 @@ uvms.xdot.closer = Saturate(uvms.xdot.closer, 1);
 %rock
 % [ang_rock, lin_rock] = CartError(uvms.wTg , uvms.wTv);
 
-
 % Compute target vector in the XY plane
 target_vector = uvms.goalPosition(1:2) - uvms.p(1:2);
-
 % Normalize the target vector
 if norm(target_vector) == 0
     error('Target vector is zero, cannot compute yaw angle.');
@@ -38,15 +36,15 @@ yaw_target = atan2(unit_vector(2), unit_vector(1));
 yaw_current = atan2(uvms.wTv(2, 1), uvms.wTv(1, 1));
 
 % Compute yaw error
-uvms.err.rock =  yaw_current - yaw_target;
+uvms.err.rock =  yaw_target-yaw_current;
 
 % Normalize yaw error to [-pi, pi]
-uvms.err.rock  = mod(uvms.err.rock + pi, 2*pi) - pi;
+uvms.err.rock  = mod(uvms.err.rock + pi, 2*pi) - pi; 
 
 % Compute velocity control for yaw
 uvms.xdot.rock = [0;0;1 * uvms.err.rock]; 
 
-uvms.xdot.rock = Saturate(uvms.xdot.rock, -1);
+uvms.xdot.rock = Saturate(uvms.xdot.rock, 1);
 
 % horizental
 uvms.xdot.ha = 1 * (0 - norm(uvms.v_rho_ha)); % norm(v_rho) IS THETA
