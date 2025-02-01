@@ -22,9 +22,7 @@ function [uvms, mission] = UpdateMissionPhase(uvms, mission)
                 disp(' *** change to phase 4');
             end
         case 4 % tool 
-
-            [ang, lin] = CartError(uvms.vTg , uvms.vTt);
-            if ( norm(ang)  < 0.05 &&  norm(lin) <0.1 ) 
+            if ( norm(uvms.err.ang_t)  < 0.05 &&  norm(uvms.err.lin_t) <0.1 ) 
                 mission.phase = 5;
                 mission.phase_time = 0;
                 disp(' *** ENDING');

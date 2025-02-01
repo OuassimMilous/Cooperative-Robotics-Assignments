@@ -72,10 +72,5 @@ uvms.Jma = [zeros(1,7) v_kw' zeros(1,3)];
 % landing
 uvms.Jlanding = [zeros(1,7) v_kw' zeros(1,3)];
 
-%underactuation
-uvms.Jund = [zeros(6,7) eye(6)];
 
-
-% stop
-uvms.Jstop = [zeros(6,7),eye(6)];
 end

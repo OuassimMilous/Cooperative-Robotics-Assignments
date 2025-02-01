@@ -25,13 +25,6 @@ pipe_center = wuRw'*u_pipe_center;     % in world frame coordinates
 pipe_radius = 0.3;
 
 
-% DEFINE THE GOAL FOR NODULE TASK
-% uvms.rock_goal = [12.2025   37.3748  -39.8860]';
-% uvms.wRr = rotation(0, 0, 0);
-% uvms.wTr = [uvms.wRr uvms.rock_goal; 0 0 0 1];
-
-% display(uvms.wTr)
-
 % UDP Connection with Unity viewer v2
 uArm = udp('127.0.0.1',15000,'OutputDatagramPacketSize',28);
 uVehicle = udp('127.0.0.1',15001,'OutputDatagramPacketSize',24);
@@ -98,10 +91,8 @@ for t = 0:deltat:end_time
     Qp = eye(13); 
     % add all the other tasks here!
     % the sequence of iCAT_task calls defines the priority
-    % [Qp, ydotbar] = iCAT_task(uvms.A.und,   uvms.Jund,  Qp, ydotbar, uvms.xdot.und,  0.0001,   0.01, 10);  %ALWAYS PUT UNDERACTUATION PART ON THE TOP
     [Qp, ydotbar] = iCAT_task(uvms.A.ma,   uvms.Jma,  Qp, ydotbar, uvms.xdot.ma,  0.0001,   0.01, 10);  %MINIMUM ALTITUDE TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.ha,   uvms.Jha,  Qp, ydotbar, uvms.xdot.ha,  0.0001,   0.01, 10); %HORIZONTAL TASK
-    [Qp, ydotbar] = iCAT_task(uvms.A.stop,   uvms.Jstop,  Qp, ydotbar, uvms.xdot.stop,  0.0001,   0.01, 10);  %stop TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.rock,   uvms.Jrock,  Qp, ydotbar, uvms.xdot.rock,  0.0001,   0.01, 10); %ROCK TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.landing,    uvms.Jlanding,   Qp, ydotbar, uvms.xdot.landing,  0.0001,   0.01, 10); %landing TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.tool,    uvms.Jtool,   Qp, ydotbar, uvms.xdot.tool,  0.0001,   0.01, 10); %TOOL TASK

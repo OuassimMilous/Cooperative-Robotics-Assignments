@@ -82,12 +82,6 @@ uvms.Ap.tool = zeros(6,6);
 uvms.xdot.tool = [];
 uvms.Jtool = zeros(6);
 
-% stop 
-uvms.A.stop = zeros(6);
-uvms.Ap.stop = zeros(6);
-uvms.xdot.stop=[];
-uvms.Jstop = zeros(6);
-
 % landing 
 uvms.Ap.landing= 0;
 uvms.A.landing= 0;
@@ -105,13 +99,6 @@ uvms.Ap.ha = 0;
 uvms.A.ha = 0;
 uvms.xdot.ha = [];
 uvms.Jha = [];  
-
-% underactuation
-uvms.A.und = zeros(6);
-uvms.xdot.und = [];
-uvms.Jund = [] ;
-
-
 
 end
 

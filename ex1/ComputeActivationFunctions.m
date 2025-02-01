@@ -13,29 +13,27 @@ function [uvms] = ComputeActivationFunctions(uvms, mission)
          case 2
              uvms.Ap.v = 0;
              uvms.Ap.ha = 1; 
-             uvms.Ap.ma= DecreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); %1; 
-             uvms.Ap.landing= 0; %IT IS A LANDING TASK
-             uvms.Ap.tool = 0; % eye(6) * IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time);
-             uvms.Ap.rock = 1; %IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); %ACTIVATING THE ROCK TASK
-             uvms.Ap.closer = 0; 
+             uvms.Ap.ma= 1;
+             uvms.Ap.landing= 0;
+             uvms.Ap.tool = 0;
+             uvms.Ap.rock = 1; 
 
         case 3
-             uvms.Ap.v = IncreasingBellShapedFunction(0,0.6,0,1,norm(uvms.err.lin_closer)); % get closer to the rock
+             uvms.Ap.v = IncreasingBellShapedFunction(0,0.6,0,1,norm(uvms.err.lin_closer));
              uvms.Ap.ha = 0;
-             uvms.Ap.ma= 0; %DecreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); 
-             uvms.Ap.landing= 1; %IT IS A LANDING TASK
-             uvms.Ap.tool = 0; %eye(6) * IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time);
-             uvms.Ap.rock = 0; %ACTIVATING THE ROCK TASK
+             uvms.Ap.ma= 0; 
+             uvms.Ap.landing= 1;
+             uvms.Ap.tool = 0;
+             uvms.Ap.rock = 0; 
              
 
         case 4
-             uvms.Ap.v = 0;
+             uvms.Ap.v = 1;
              uvms.Ap.ha = 0;
-             uvms.Ap.ma= 0; %DecreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); 
-             uvms.Ap.landing= 0; %IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time); %IT IS A LANDING TASK
-             uvms.Ap.tool = IncreasingBellShapedFunction(0, 1, 0, 1, mission.phase_time);
-             uvms.Ap.rock = 0; %ACTIVATING THE ROCK TASK
-             uvms.A.stop = eye(6);
+             uvms.Ap.ma= 0; 
+             uvms.Ap.landing= 0; 
+             uvms.Ap.tool = 1;
+             uvms.Ap.rock = 0;
              uvms.Ap.closer = 0; 
    end 
     
@@ -56,12 +54,8 @@ uvms.A.ha = IncreasingBellShapedFunction(0.1, 0.2, 0, 1, norm(uvms.v_rho_ha)) * 
 
 %MINIMUM ALTITUDE
 uvms.A.ma = DecreasingBellShapedFunction(1, 2 , 0, 1, uvms.a) * uvms.Ap.ma;
-
+display("A.ma");
+display(uvms.A.ma);
 
 %ALTITUDE ACTIVATION FUNCTION
 uvms.A.landing = 1 * uvms.Ap.landing;
-
-
-
-%VECHILCE UNDERACTUATION
-uvms.A.und = diag([0 0 0 1 0 0]); %OMEGA X IS UNDERACUTATED     
