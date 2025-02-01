@@ -21,13 +21,9 @@ pandaArm.ArmR.wTe = pandaArm.ArmR.wTb*pandaArm.ArmR.bTe;
 pandaArm.jlmin = [-2.8973;-1.7628;-2.8973;-3.0718;-2.8973;-0.0175;-2.8973];
 pandaArm.jlmax = [2.8973;1.7628;2.8973;-0.0698;2.8973;3.7525;2.8973];
 
-% pandaArm.jlmin = 9*ones(7,1);
-% pandaArm.jlmax = -9*ones(7,1);
-
 % Init relevance Jacobians
 pandaArm.ArmL.bJe = eye(6,7);
 pandaArm.ArmR.bJe = eye(6,7);
-pandaArm.Jjl = [];
 
 %% ... TO HERE
 
@@ -35,67 +31,58 @@ pandaArm.ArmL.Ste = zeros(6);
 pandaArm.ArmR.Ste = zeros(6);
 
 % move to
-pandaArm.ArmL.xdot.tool = zeros(6);
-pandaArm.ArmR.xdot.tool = zeros(6);
+pandaArm.ArmL.xdot.tool = zeros(6,1);
+pandaArm.ArmR.xdot.tool = zeros(6,1);
 
-pandaArm.ArmL.A.tool=zeros(6);
-pandaArm.ArmR.A.tool=zeros(6);
+pandaArm.ArmL.A.tool = zeros(6);
+pandaArm.ArmR.A.tool = zeros(6);
 
-pandaArm.ArmL.Jma = [];
-pandaArm.ArmR.Jma = [];
+pandaArm.ArmL.Jma = zeros(6,14);
+pandaArm.ArmR.Jma = zeros(6,14);
 
-% minimalt
-
-pandaArm.ArmL.xdot.min = zeros(6);
-pandaArm.ArmR.xdot.min = zeros(6);
+% minimum altitude
+pandaArm.ArmL.xdot.min = zeros(6,1);
+pandaArm.ArmR.xdot.min = zeros(6,1);
 
 pandaArm.ArmL.min_dis = 0;
 pandaArm.ArmR.min_dis = 0;
 
-pandaArm.ArmL.A.min=zeros(6);
-pandaArm.ArmR.A.min=zeros(6);
+pandaArm.ArmL.A.min= zeros(6);
+pandaArm.ArmR.A.min= zeros(6);
 
-pandaArm.ArmR.bJt = [];
-pandaArm.ArmL.bJt = [];
+pandaArm.ArmR.bJt = zeros(6,14);
+pandaArm.ArmL.bJt = zeros(6,14);
 
 
 % Fixed joints
 
-pandaArm.ArmL.xdot.joints = zeros(6);
-pandaArm.ArmR.xdot.joints = zeros(6);
+pandaArm.ArmL.xdot.joints = zeros(6,1);
+pandaArm.ArmR.xdot.joints = zeros(6,1);
 
-pandaArm.ArmL.joints_switch = zeros(7);
-pandaArm.ArmR.joints_switch = zeros(7);
+pandaArm.ArmL.A.joints = zeros(6);
+pandaArm.ArmR.A.joints = zeros(6);
 
-pandaArm.ArmL.A.joints=zeros(6);
-pandaArm.ArmR.A.joints=zeros(6);
-
-
-pandaArm.ArmR.bJm = [];
-pandaArm.ArmL.bJm = [];
-
+pandaArm.ArmR.bJm = zeros(6,14);
+pandaArm.ArmL.bJm = zeros(6,14);
 
 %% PHASE 2
 
-% pandaArms.wTog = 
 % constraint task
-pandaArm.A.con=zeros(6);
+pandaArm.A.con = zeros(6);
 pandaArm.xdot.con = zeros(6,1);
 pandaArm.Jjl = zeros(6,14);
 
-
 % move to 2
-pandaArm.ArmL.wJo= [];
-pandaArm.ArmR.wJo= [];
-
+pandaArm.ArmL.wJo= zeros(6);
+pandaArm.ArmR.wJo= zeros(6);
 
 
 % Grasping
 pandaArm.ArmL.xdot.grasp = zeros(6,1);
 pandaArm.ArmR.xdot.grasp = zeros(6,1);
 
-pandaArm.ArmL.A.grasp=zeros(6);
-pandaArm.ArmR.A.grasp=zeros(6);
+pandaArm.ArmL.A.grasp = zeros(6);
+pandaArm.ArmR.A.grasp = zeros(6);
 
 pandaArm.ArmR.bJt_grasp = zeros(6,14);
 pandaArm.ArmL.bJt_grasp = zeros(6,14);

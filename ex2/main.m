@@ -45,7 +45,6 @@ pandaArms.ArmR.wTo = [w_obj_ori w_obj_pos;0 0 0 1];
 theta = -44.9949;% FIXED ANGLE BETWEEN EE AND TOOL 
 tool_length = 0.2124;% FIXED DISTANCE BETWEEN EE AND TOOL
 % Define trasnformation matrix from ee to tool.
-
 pandaArms.ArmL.eTt = [rotation(0,0,theta) [0; 0; tool_length]; 0 0 0 1];
 pandaArms.ArmR.eTt = [rotation(0,0,theta) [0; 0; tool_length]; 0 0 0 1];
 
@@ -57,7 +56,6 @@ pandaArms.ArmR.wTt = pandaArms.ArmR.wTe*pandaArms.ArmR.eTt;
 % First goal reach the grasping points.
 pandaArms.ArmL.wTg = [pandaArms.ArmL.wTt(1:3,1:3)*rotation(0,pi/6,0) [0.4;0;0.59]; 0 0 0 1];
 pandaArms.ArmR.wTg = [pandaArms.ArmR.wTt(1:3,1:3)*rotation(0,pi/6,0) [0.6;0;0.59]; 0 0 0 1];
-
 
 % Second goal move the object
 pandaArms.wTog = [rotation(0,0,0) [0.65;-0.35;0.28]; 0 0 0 1];
@@ -138,7 +136,6 @@ for t = 0:dt:Tf
     % Bimanual system TPIK
     % ...
 
-
     % % joint limits
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.joints,pandaArms.ArmR.bJm, Qp, ydotbar, pandaArms.ArmR.xdot.joints , 0.0001,   0.01, 10);
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.joints,pandaArms.ArmL.bJm, Qp, ydotbar, pandaArms.ArmL.xdot.joints , 0.0001,   0.01, 10);
@@ -148,25 +145,21 @@ for t = 0:dt:Tf
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.min,pandaArms.ArmR.Jma, Qp, ydotbar, pandaArms.ArmR.xdot.min , 0.0001,   0.01, 10);
    
     % con
-    [Qp, ydotbar] = iCAT_task(pandaArms.A.con,pandaArms.Jjl, Qp, ydotbar, pandaArms.xdot.con , 0.0001,   0.01, 10);
+    [Qp, ydotbar] = iCAT_task(pandaArms.A.con,pandaArms.con, Qp, ydotbar, pandaArms.xdot.con , 0.0001,   0.01, 10);
 
     % Task: Tool Move-To
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.tool, [tool_jacobian_L, zeros(6,7)], Qp, ydotbar, pandaArms.ArmL.xdot.tool, 0.0001,   0.01, 10);
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.tool,[zeros(6,7),tool_jacobian_R], Qp, ydotbar, pandaArms.ArmR.xdot.tool, 0.0001,   0.01, 10);
 
-
     % grasp
     % [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.grasp,pandaArms.ArmL.bJt_grasp, Qp, ydotbar, pandaArms.ArmL.xdot.grasp , 0.0001,   0.01, 10);
     % [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.grasp,pandaArms.ArmR.bJt_grasp, Qp, ydotbar, pandaArms.ArmR.xdot.grasp , 0.0001,   0.01, 10);
-
-
 
     [Qp, ydotbar] = iCAT_task(eye(14), eye(14), Qp, ydotbar, zeros(14,1), 0.0001,   0.01, 10);    % this task should be the last one
 
     % get the two variables for integration
     pandaArms.ArmL.q_dot = ydotbar(1:7);
     pandaArms.ArmR.q_dot = ydotbar(8:14);
-
     
     pandaArms.ArmL.x = tool_jacobian_L * pandaArms.ArmL.q_dot;
     pandaArms.ArmR.x = tool_jacobian_R * pandaArms.ArmR.q_dot;

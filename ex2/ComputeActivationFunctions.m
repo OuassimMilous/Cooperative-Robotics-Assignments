@@ -54,10 +54,7 @@ function [pandaArm] = ComputeActivationFunctions(pandaArm, mission)
     pandaArm.A.con = eye(6) * pandaArm.Ap.con;
 
     % INEQUALITY TASK ACTIVATION
-
     % Minimum Altitude Task ( > 0.15m, 0.05m delta )
-
-    % minimum altitude
     pandaArm.ArmL.A.min = eye(6) * DecreasingBellShapedFunction(0.15, 0.20 , 0, 1, pandaArm.ArmL.min_dis);
     pandaArm.ArmR.A.min = eye(6) * DecreasingBellShapedFunction(0.15, 0.20 , 0, 1, pandaArm.ArmR.min_dis);
 
