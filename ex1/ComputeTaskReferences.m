@@ -2,9 +2,20 @@ function [uvms] = ComputeTaskReferences(uvms, mission)
 % compute the task references here
 
 % move
-[ang_v, lin_v] = CartError(uvms.wTgv , uvms.wTv);
-uvms.xdot.v = [ 1*lin_v;1*ang_v];
+[uvms.err.ang_v, uvms.err.lin_v] = CartError(uvms.wTgv , uvms.wTv);
+uvms.xdot.v = [ 1*uvms.err.lin_v;1*uvms.err.ang_v];
 uvms.xdot.v = Saturate(uvms.xdot.v, 1);
+
+% closer
+% [ang_v,uvms.err.lin_closer] = CartError(uvms.wTg , uvms.wTv);
+% uvms.err.lin_closer = uvms.err.lin_closer(1:2)';
+if mission.phase == 3
+    [ang_v,uvms.err.lin_closer] = CartError(uvms.wTg , uvms.wTt);
+    uvms.err.lin_closer = uvms.err.lin_closer(1:2);
+    uvms.xdot.v = [[uvms.err.lin_closer; 0 ];zeros(3,1)];
+    % uvms.xdot.v = Saturate(uvms.xdot.v, 1);
+end
+
 % display(uvms.xdot.v)
 % tool
 [ang, lin] = CartError(uvms.wTg , uvms.wTt);
@@ -12,11 +23,6 @@ uvms.xdot.tool = 1 * [ang; lin];
 uvms.xdot.tool(1:3) = Saturate(uvms.xdot.tool(1:3), 1);
 uvms.xdot.tool(4:6) = Saturate(uvms.xdot.tool(4:6), 1);
 
-% closer
-
-[ang_closer, uvms.err.lin_closer] = CartError(uvms.wTg , uvms.wTt);
-uvms.xdot.closer = [uvms.err.lin_closer(1:2)];
-uvms.xdot.closer = Saturate(uvms.xdot.closer, 1);
 
 %rock
 % [ang_rock, lin_rock] = CartError(uvms.wTg , uvms.wTv);

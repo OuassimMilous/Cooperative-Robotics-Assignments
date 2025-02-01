@@ -104,10 +104,8 @@ for t = 0:deltat:end_time
     [Qp, ydotbar] = iCAT_task(uvms.A.stop,   uvms.Jstop,  Qp, ydotbar, uvms.xdot.stop,  0.0001,   0.01, 10);  %stop TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.rock,   uvms.Jrock,  Qp, ydotbar, uvms.xdot.rock,  0.0001,   0.01, 10); %ROCK TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.landing,    uvms.Jlanding,   Qp, ydotbar, uvms.xdot.landing,  0.0001,   0.01, 10); %landing TASK
-    [Qp, ydotbar] = iCAT_task(uvms.A.closer,    uvms.Jcloser,   Qp, ydotbar, uvms.xdot.closer,  0.0001,   0.01, 10); %closer TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.tool,    uvms.Jtool,   Qp, ydotbar, uvms.xdot.tool,  0.0001,   0.01, 10); %TOOL TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.v,  uvms.Jv, Qp, ydotbar, uvms.xdot.v,  0.0001,   0.01, 10);  % position control TASK
-  
     [Qp, ydotbar] = iCAT_task(eye(13),     eye(13),   Qp, ydotbar, zeros(13,1),  0.0001,   0.01, 10);    % this task should be the last one
     
     % get the two variables for integration

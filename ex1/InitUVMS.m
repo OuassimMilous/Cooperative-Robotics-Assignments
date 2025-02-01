@@ -111,11 +111,7 @@ uvms.A.und = zeros(6);
 uvms.xdot.und = [];
 uvms.Jund = [] ;
 
-% closer
-uvms.xdot.closer = []; 
-uvms.Ap.closer = 0;
-uvms.A.closer = zeros(3);
-uvms.Jcloser = [];
+
 
 end
 

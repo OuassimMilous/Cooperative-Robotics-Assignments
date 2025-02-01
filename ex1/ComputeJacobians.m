@@ -43,10 +43,6 @@ uvms.Jtool = [uvms.Jt_a uvms.Jt_v];
 uvms.Jv = [zeros(3,7), uvms.wTv(1:3,1:3), zeros(3);
            zeros(3,7), zeros(3),         uvms.wTv(1:3,1:3)];
 
-% closer
-% uvms.Jcloser = [zeros(3,7), uvms.wTr(1:3,1:3), zeros(3,3); zeros(3,13)];
-uvms.Jcloser =  [zeros(2,7)  eye(2,3)  zeros(2,3) ];
-
 % horizental
 v_iv = [1 0 0]';
 r_ir = [1 0 0]';
