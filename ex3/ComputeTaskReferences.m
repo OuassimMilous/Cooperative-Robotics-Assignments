@@ -9,7 +9,7 @@ function [pandaArm] = ComputeTaskReferences(pandaArm,mission)
 
 % End effector minimum altitude for right
 pandaArm.min_dis = [pandaArm.wTt(3,4)];
-pandaArm.xdot.min = -1* (0.15- norm(pandaArm.min_dis));
+pandaArm.xdot.min = -1* (0.15- pandaArm.min_dis);
 pandaArm.xdot.min= [0 0 0 0 0 pandaArm.xdot.min]';
 
 % % Compute joint limits task reference ALWAYS

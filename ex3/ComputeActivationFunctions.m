@@ -19,10 +19,8 @@ end
 % INEQUALITY TASK ACTIVATION
 % Minimum Altitude Task ( > 0.15m, 0.05m delta )
 % pandaArm.A.ma = ...;
- pandaArm.A.min = zeros(6);
- if(pandaArm.xdot.min(6)<0)
-      pandaArm.A.min = eye(6);
- end
+pandaArm.A.ma = DecreasingBellShapedFunction(0.15, 0.20 , 0, 1, pandaArm.min_dis);
+
 
 % Joint Limits Task
 % Activation function: two combined sigmoids, which are at their maximum 
