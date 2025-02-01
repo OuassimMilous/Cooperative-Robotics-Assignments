@@ -2,8 +2,8 @@ function [pandaArm, mission] = UpdateMissionPhase(pandaArm, mission)
         switch mission.phase
             case 1  %Go To Grasping Points
                 % computing the errors for the go-to action defining tasks
-                 if(norm(pandaArm.ArmL.ang_l)<0.0175 && norm(pandaArm.ArmL.lin_l)<0.001 ...
-                         && norm(pandaArm.ArmR.ang_r)<0.0175 && norm(pandaArm.ArmR.lin_r)<0.001)
+                 if(norm(pandaArm.ArmL.ang)<0.0175 && norm(pandaArm.ArmL.lin)<0.001 ...
+                         && norm(pandaArm.ArmR.ang)<0.0175 && norm(pandaArm.ArmR.lin)<0.001)
                      mission.phase = 2;
                      mission.phase_time = 0;
                      disp('Changing to phase 2');
@@ -15,8 +15,8 @@ function [pandaArm, mission] = UpdateMissionPhase(pandaArm, mission)
                 
             case 2 % Cooperative Manipulation Start 
                 % computing the errors for the rigid move-to task
-                 if(norm(pandaArm.ArmL.ang_l)<0.0524 && norm(pandaArm.ArmL.lin_l)<0.001 ...
-                         && norm(pandaArm.ArmR.ang_r)<0.0524 && norm(pandaArm.ArmR.lin_r)<0.001)
+                 if(norm(pandaArm.ArmL.ang)<0.0524 && norm(pandaArm.ArmL.lin)<0.001 ...
+                         && norm(pandaArm.ArmR.ang)<0.0524 && norm(pandaArm.ArmR.lin)<0.001)
                      mission.phase = 3;
                      mission.phase_time = 0;
                      disp('Changing to phase 3');

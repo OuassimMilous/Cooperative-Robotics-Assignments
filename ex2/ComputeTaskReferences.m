@@ -19,8 +19,8 @@ pandaArm.ArmR.xdot.min= [0 0 0 0 0 pandaArm.ArmR.xdot.min]';
 pandaArm.ArmL.xdot.joints = zeros(14,1);
 pandaArm.ArmR.xdot.joints = zeros(14,1);       
 for i = 1:7
-    pandaArm.ArmL.xdot.joints(i) = ((pandaArm.jlmin(i) + pandaArm.jlmax(i)) / 2) - pandaArm.ArmL.q;
-    pandaArm.ArmR.xdot.joints(i+7) = ((pandaArm.jlmin(i) + pandaArm.jlmax(i)) / 2) - pandaArm.ArmR.q;
+    pandaArm.ArmL.xdot.joints(i) = ((pandaArm.jlmin(i) + pandaArm.jlmax(i)) / 2) - pandaArm.ArmL.q(i);
+    pandaArm.ArmR.xdot.joints(i+7) = ((pandaArm.jlmin(i) + pandaArm.jlmax(i)) / 2) - pandaArm.ArmR.q(i);
 end
 
     switch mission.phase
@@ -28,17 +28,17 @@ end
             % LEFT ARM
             % -----------------------------------------------------------------
             % Tool position and orientation task reference
-            [pandaArm.ArmL.ang_l, pandaArm.ArmL.lin_l] = CartError(pandaArm.ArmL.wTg,pandaArm.ArmL.wTt);
+            [pandaArm.ArmL.ang, pandaArm.ArmL.lin] = CartError(pandaArm.ArmL.wTg,pandaArm.ArmL.wTt);
 
-            pandaArm.ArmL.xdot.tool = [pandaArm.ArmL.ang_l;pandaArm.ArmL.lin_l];
+            pandaArm.ArmL.xdot.tool = [pandaArm.ArmL.ang;pandaArm.ArmL.lin];
             pandaArm.ArmL.xdot.tool = Saturate(pandaArm.ArmL.xdot.tool,1);
 
             % RIGHT ARM
             % -----------------------------------------------------------------
             % Tool position and orientation task reference
-            [pandaArm.ArmR.ang_r, pandaArm.ArmR.lin_r] = CartError(pandaArm.ArmR.wTg,pandaArm.ArmR.wTt);
+            [pandaArm.ArmR.ang, pandaArm.ArmR.lin] = CartError(pandaArm.ArmR.wTg,pandaArm.ArmR.wTt);
         
-            pandaArm.ArmR.xdot.tool = [pandaArm.ArmR.ang_r;pandaArm.ArmR.lin_r];
+            pandaArm.ArmR.xdot.tool = [pandaArm.ArmR.ang;pandaArm.ArmR.lin];
             pandaArm.ArmR.xdot.tool = Saturate(pandaArm.ArmR.xdot.tool,1);
 
         case 2
@@ -54,9 +54,9 @@ end
             % Object position and orientation task reference
 
             % move2
-            [pandaArm.ArmL.ang_l, pandaArm.ArmL.lin_l] = CartError(pandaArm.wTog,pandaArm.ArmL.wTo);
+            [pandaArm.ArmL.ang, pandaArm.ArmL.lin] = CartError(pandaArm.wTog,pandaArm.ArmL.wTo);
 
-            pandaArm.ArmL.xdot.tool = 0.35*[pandaArm.ArmL.ang_l;pandaArm.ArmL.lin_l];
+            pandaArm.ArmL.xdot.tool = 0.35*[pandaArm.ArmL.ang;pandaArm.ArmL.lin];
             pandaArm.ArmL.xdot.tool = Saturate(pandaArm.ArmL.xdot.tool,0.35);
 
             % grasp
@@ -67,9 +67,9 @@ end
             % -----------------------------------------------------------------
 
             % move2
-            [pandaArm.ArmR.ang_l, pandaArm.ArmR.lin_l] = CartError(pandaArm.wTog,pandaArm.ArmR.wTo);
+            [pandaArm.ArmR.ang, pandaArm.ArmR.lin] = CartError(pandaArm.wTog,pandaArm.ArmR.wTo);
 
-            pandaArm.ArmR.xdot.tool = 0.35*[pandaArm.ArmR.ang_l;pandaArm.ArmR.lin_l];
+            pandaArm.ArmR.xdot.tool = 0.35*[pandaArm.ArmR.ang;pandaArm.ArmR.lin];
             pandaArm.ArmR.xdot.tool = Saturate(pandaArm.ArmR.xdot.tool,0.35);
 
             % grasp

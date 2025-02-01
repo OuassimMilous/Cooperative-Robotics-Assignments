@@ -37,6 +37,12 @@ pandaArm.ArmR.xdot.tool = zeros(6,1);
 pandaArm.ArmL.A.tool = zeros(6);
 pandaArm.ArmR.A.tool = zeros(6);
 
+pandaArm.ArmL.ang = zeros(3,1);
+pandaArm.ArmL.lin = zeros(3,1);
+
+pandaArm.ArmR.ang = zeros(3,1);
+pandaArm.ArmR.lin = zeros(3,1);
+
 pandaArm.ArmL.Jma = zeros(6,14);
 pandaArm.ArmR.Jma = zeros(6,14);
 
