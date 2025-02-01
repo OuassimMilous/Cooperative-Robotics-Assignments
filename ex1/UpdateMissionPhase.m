@@ -15,6 +15,7 @@ function [uvms, mission] = UpdateMissionPhase(uvms, mission)
                 mission.phase_time = 0;
                 disp(' *** change to phase 3');
             end
+            disp(uvms.err.rock);
         case 3 % safe landing 
            
             if ( norm((0 - uvms.a))  < 0.05 )

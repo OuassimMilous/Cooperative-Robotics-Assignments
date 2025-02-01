@@ -45,13 +45,17 @@ uvms.Jv = [zeros(3,7), uvms.wTv(1:3,1:3), zeros(3);
 
 % closer
 % uvms.Jcloser = [zeros(3,7), uvms.wTr(1:3,1:3), zeros(3,3); zeros(3,13)];
-uvms.Jcloser =  [zeros(3,7)  [eye(2,3); 0 0 0]  zeros(3) ];
-% display(uvms.Jcloser)
-% disp(uvms.Jv)
-% rock
-uvms.Jrock =  [zeros(3,7)    zeros(3)    eye(3)];
+uvms.Jcloser =  [zeros(2,7)  eye(2,3)  zeros(2,3) ];
 
-%IF IT WOULD BE IN VEHICLE FRAME THEN WE NEED TO PUT IDENTITY MATRIX, PG - 23 (IN NOTES)
+% horizental
+v_iv = [1 0 0]';
+r_ir = [1 0 0]';
+v_iw = (uvms.vTw(1:3,1:3) * r_ir); %Z AXIS OF <w> PROJECTED ON <v>
+
+uvms.r_rho_ra = ReducedVersorLemma(v_iv,v_iw);
+uvms.r_n_ra = uvms.r_rho_ra ./ norm(uvms.r_rho_ra); %ONLY AXIS OF ROTATION
+
+uvms.Jrock = [zeros(1,7) zeros(1,3) uvms.r_n_ra'];
 
 % horizental
 v_kv = [0 0 1]';

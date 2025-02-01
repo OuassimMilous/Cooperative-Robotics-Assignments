@@ -44,7 +44,7 @@ function [uvms] = ComputeActivationFunctions(uvms, mission)
 uvms.A.tool = eye(6) * uvms.Ap.tool;
 
 %ACTIVATION FUNCTION FOR ROCK
-uvms.A.rock = eye(3) * uvms.Ap.rock;
+uvms.A.rock = 1 * uvms.Ap.rock;
 
 %ACTIVATION FUNCTION FOR POSITION AND ORIENTATION CONTROL TASK FOR VEHICLE. 
 uvms.A.v = eye(6) * uvms.Ap.v;
@@ -65,7 +65,7 @@ uvms.A.landing = 1 * uvms.Ap.landing;
 
 %closer
 % uvms.A.closer = IncreasingBellShapedFunction(0, 1, 0, 1, norm(uvms.) * uvms.Ap.closer;
-uvms.A.closer = eye(3)*uvms.Ap.closer;
+uvms.A.closer = eye(2)*uvms.Ap.closer;
 
 
 %VECHILCE UNDERACTUATION

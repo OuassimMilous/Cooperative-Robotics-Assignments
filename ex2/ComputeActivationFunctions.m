@@ -72,5 +72,4 @@ for i = 1:7
         + IncreasingBellShapedFunction(pandaArm.jlmax(i) * 0.9, pandaArm.jlmax(i), 0, 1, pandaArm.ArmR.q(i));
 end
 
-
 end
