@@ -102,19 +102,23 @@ Once landed, implement a ``fixed-based manipulation action'' to reach the target
 			\toprule		
 			Task & Type & $\mathcal{A}_{1}$ & $\mathcal{A}_{2}$  & $\mathcal{A}_{3}$  & $\mathcal{A}_{4}$ \\
 			\midrule
-			Minimum Altitude                    & I & 1 & 1 & 1 & 1  \\
+			
+			Horizontal Alignment                & [I, S, P] & 2 &  & &  \\
 			\hdashline
-			Horizontal Alignment                & I & 2 &  & &  \\
+			Minimum Altitude                    & [I, S, P] & 1 & 1 & 1 & 1  \\
+			\hdashline 
+			Vehicle control 						& [E, AD] & & & & 4 \\ 
+			\hdashline 
+			Approach Nodule  						& [E, AD] & & & & 5 \\ 
 			%\hdashline
 			%Nodue Alignment                       & E &   &  & 2 & 2   \\
 			\hdashline
-			Landing 						& E & & 2 & & 3 \\
+			Landing 						& [E, AD] & & 2 & & 3 \\
+			
+			\hdashline 
+			Tool 					& [E, AD,] & 3 & & & \\
 			%\hdashline 
-			%Vehicle Stop 						& E & & & & 4 \\ 
-			\hdashline 
-			Tool Manipulatin					& E & 3 & & & \\
-			\hdashline 
-			Position Control 						& E & & & & 5 \\ 
+			%Position Control 						& E & & & & 5 \\ 
 			
 			\bottomrule
 		\end{tabular}
