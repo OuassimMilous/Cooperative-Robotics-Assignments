@@ -19,7 +19,7 @@ function [uvms] = ComputeActivationFunctions(uvms, mission)
    end 
     
 %HORIZONTAL ACTIVATION FUNCTION DEFINATION
-uvms.A.ha =  IncreasingBellShapedFunction(0.1, 0.2, 0, 1, norm(uvms.v_rho_ha)) * ActionTransition("HA", prev, current, mission.phase_time);
+uvms.A.ha =  IncreasingBellShapedFunction(0.01, 0.02, 0, 1, norm(uvms.v_rho_ha)) * ActionTransition("HA", prev, current, mission.phase_time);
 
 %MINIMUM ALTITUDE
 uvms.A.ma = DecreasingBellShapedFunction(1, 2 , 0, 1, uvms.a) * ActionTransition("MA", prev, current, mission.phase_time);
