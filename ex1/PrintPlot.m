@@ -1,4 +1,4 @@
-function [ ] = PrintPlot( plt )
+gfunction [ ] = PrintPlot( plt )
 
 % some predefined plots
 % you can add your own
