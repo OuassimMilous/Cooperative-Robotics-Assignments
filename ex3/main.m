@@ -6,7 +6,7 @@ real_robot = false;
 %% Initialization - DON'T CHANGE ANYTHING from HERE ... 
 % Simulation variables (integration and final time)
 deltat = 0.005;
-end_time = 100;
+end_time = 20;
 loop = 1;
 maxloops = ceil(end_time/deltat);
 mission.phase = 1;
