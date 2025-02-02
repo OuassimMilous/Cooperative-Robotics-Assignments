@@ -142,13 +142,6 @@ Once landed, implement a ``fixed-based manipulation action'' to reach the target
 
 \subsection{Q2: Comment the behaviour of the robots, supported by relevant plots.}
 Based on the actions mentioned above, we define our phases and present our observations.
-
-\begin{figure}[h]
-	\centering
-	\includegraphics[width=1\textwidth]{imgs/q and qdot.jpg}
-	\caption{\label{fig:1}}
-\end{figure}
-\noindent
 In the action of Safe Waypoint Navigation, the vehicle starts from its initial position and moves linearly to its desired position while remaining horizontally stable. The manipulator is not yet active.
 %PLOT OF THE GRAPH\\
 %After reaches the desired position, the whole UVMS align itself with the rotation of nodule with respect to the world reference frame while keeping the whole system horizontally stable.  \\
@@ -163,10 +156,25 @@ After this, while keeping the vehicle aligned with the nodule's x-axis and the s
 
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1\textwidth]{imgs/x and xdot.jpg}
-	\caption{\label{fig:1}}
+	\includegraphics[width=1\textwidth]{imgs/ex1/activation function labled.jpg}
+	\caption{\label{fig:1} Activation Function}
 \end{figure}
-\clearpage
+\noindent
+where Y Value is the ouput value of actiovation function, which is in between 0 and 1. 
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{imgs/ex1/q and qdot labelled.jpg}
+	\caption{\label{fig:2} Joint position and Joint velocity} 
+\end{figure}
+The above two graph represents the joint posiition and its velocity over the time. 
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{imgs/ex1/x and xdot labelled.jpg}
+	\caption{\label{fig:1}End effector posiition and its velocity} 
+\end{figure}
+
+
 \subsection{Q3: What is the Jacobian relationship for the Alignment to Target control task? How was the task reference computed?}
 To align the vehicle with the nodule, we calculated the yaw angle difference between the vehicle and the nodule. The calculation steps are as follows:
 \\ First, we calculated the distance between the current position and the nodule with respect to the world frame.
