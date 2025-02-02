@@ -25,7 +25,7 @@ function [pandaArm, mission] = UpdateMissionPhase(pandaArm, mission)
             case 3 % Finish motion
                 if(mission.phase_time >= 5)
                     mission.phase_time = 0;
-                  disp('Changing to phase 4');
+                  disp('ending');
                 end
         end
 end
