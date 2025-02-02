@@ -62,6 +62,25 @@ uvms.goalPosition = [12.2025   37.3748  -39.8860]';
 uvms.wRg = rotation(0, pi, pi/2);
 uvms.wTg = [uvms.wRg uvms.goalPosition; 0 0 0 1];
 
+%% Mission configuration
+
+mission.action_name = "go_to";
+mission.phase = 1;
+mission.phase_time = 0;
+% Define the active tasks for each phase of the mission
+% Suggested Name for the task
+% MA = minimum altitude task
+% HA = Horizental Alignemnt task
+% V = move vehicule task
+% L = Landing task
+% T = Tool manipulation task
+% C = get closer to rock task
+mission.actions.go_to.tasks = ["HA","MA","V"];
+mission.actions.align.tasks = ["HA", "MA","V"];
+mission.actions.land.tasks = ["HA","L","C"]; 
+mission.actions.manip.tasks = ["HA", "V","T"]; 
+
+%% Control Loop
 % defines the tool control point
 uvms.eTt = eye(4);
 
@@ -88,6 +107,7 @@ for t = 0:deltat:end_time
     [Qp, ydotbar] = iCAT_task(uvms.A.ha,   uvms.Jha,  Qp, ydotbar, uvms.xdot.ha,  0.0001,   0.01, 10); %HORIZONTAL TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.ma,   uvms.Jma,  Qp, ydotbar, uvms.xdot.ma,  0.0001,   0.01, 10);  %MINIMUM ALTITUDE TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.v,  uvms.Jv, Qp, ydotbar, uvms.xdot.v,  0.0001,   0.01, 10);  % vehicule control TASK
+    [Qp, ydotbar] = iCAT_task(uvms.A.closer,  uvms.Jcloser, Qp, ydotbar, uvms.xdot.closer,  0.0001,   0.01, 10);  % vehicule control TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.landing,    uvms.Jlanding,   Qp, ydotbar, uvms.xdot.landing,  0.0001,   0.01, 10); %landing TASK
     [Qp, ydotbar] = iCAT_task(uvms.A.tool,    uvms.Jtool,   Qp, ydotbar, uvms.xdot.tool,  0.0001,   0.01, 10); %TOOL TASK
   

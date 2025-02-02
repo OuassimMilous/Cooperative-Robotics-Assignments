@@ -53,14 +53,10 @@ function [pandaArm] = InitRobot(model,wTb)
     pandaArm.tTo = zeros(4);
     pandaArm.wTo = zeros(4);
 
-    % constraint task
-    pandaArm.A.con = zeros(6);
-    pandaArm.Ap.con = 0;
-    pandaArm.xdot.con = zeros(6,1);
-    pandaArm.Jjl = zeros(6,14);
-
-    % move to 2
-    pandaArm.ArmL.wJo= [];
+    % coop task
+    pandaArm.A.coop = zeros(6);
+    pandaArm.Ap.coop = 0;
+    pandaArm.ArmL.wJo= zeros(6,7);
 
     % Grasping
     pandaArm.xdot.grasp = zeros(6,1);

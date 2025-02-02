@@ -75,10 +75,11 @@ mission.phase_time = 0;
 % T = move tool task
 % JL = joint limits task
 % MA = minimum altitude task
-% RC = rigid constraint task
-% mission.actions.go_to.tasks = [...];
-% mission.actions.coop_manip.tasks = [...];
-% mission.actions.end_motion.tasks = [...];
+% Coop = cooperative move task
+% G = grasp task
+mission.actions.go_to.tasks = ["MA","JL","T"];
+mission.actions.coop_manip.tasks = ["MA","JL","COOP","G"];
+mission.actions.end_motion.tasks = ["MA", "JL"]; 
 
 %% CONTROL LOOP
 for t = 0:deltat:end_time
@@ -151,10 +152,9 @@ for t = 0:deltat:end_time
     % minimum altitude
     [Qp, ydotbar] = iCAT_task(pandaArm1.A.min, pandaArm1.Jma, Qp, ydotbar, pandaArm1.xdot.min, 0.0001,   0.01, 10);
 
-    if(mission.phase == 1)
     % Task: Tool Move-To
-      [Qp, ydotbar] = iCAT_task(pandaArm1.A.tool, tool_jacobian_L, Qp, ydotbar, pandaArm1.xdot.tool, 0.0001,   0.01, 10);
-    end
+    [Qp, ydotbar] = iCAT_task(pandaArm1.A.tool, tool_jacobian_L, Qp, ydotbar, pandaArm1.xdot.tool, 0.0001,   0.01, 10);
+  
     % grasp
     % [Qp, ydotbar] = iCAT_task(pandaArm1.A.grasp, pandaArm1.bJt_grasp, Qp, ydotbar, pandaArm1.xdot.grasp, 0.0001,   0.01, 10);
 
@@ -165,10 +165,9 @@ for t = 0:deltat:end_time
 
     % minimum altitude
     [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.min, pandaArm2.Jma, Qp2, ydotbar2, pandaArm2.xdot.min, 0.0001,   0.01, 10);
-    if(mission.phase == 1)
     % Task: Tool Move-To
     [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.tool, tool_jacobian_R, Qp2, ydotbar2, pandaArm2.xdot.tool, 0.0001,   0.01, 10);
-    end
+   
     % grasp
     % [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.grasp, pandaArm2.bJt_grasp, Qp2, ydotbar2, pandaArm2.xdot.grasp, 0.0001,   0.01, 10);
 
@@ -193,20 +192,17 @@ for t = 0:deltat:end_time
     combinedx2 = ComputeCooperativeXdot(desiredx1,desiredx2,x1,x2,h1,h2);
     newx2 = combinedx2(7:12);
 
-    if(mission.phase == 2)
     % Task: Left Arm Cooperation
     % ...
     [Qp, ydotbar] = iCAT_task(pandaArm1.A.tool, tool_jacobian_L, Qp, ydotbar, newx1, 0.0001,   0.01, 10);
-    end
+
     % display(ydotbar)
     % this task should be the last one 
     [Qp, ydotbar] = iCAT_task(eye(7), eye(7), Qp, ydotbar, zeros(7,1), 0.0001,   0.01, 10);    % this task should be the last one
 
-    if(mission.phase == 2)
     % Task: Right Arm Cooperation
     % ...
     [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.tool, tool_jacobian_R, Qp2, ydotbar2, newx2, 0.0001,   0.01, 10);
-    end
     % this task should be the last one
     [Qp2, ydotbar2] = iCAT_task(eye(7), eye(7), Qp2, ydotbar2, zeros(7,1), 0.0001,   0.01, 10);    % this task should be the last one
 

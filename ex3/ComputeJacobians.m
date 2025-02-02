@@ -23,13 +23,13 @@ function [pandaArm] = ComputeJacobians(pandaArm,mission)
     % 7 JOINTS OF THE ROBOTIC ARM. 
 
     % tool
-    pandaArm.wJt  = [pandaArm.wTb(1:3,1:3) zeros(3);zeros(3) pandaArm.wTb(1:3,1:3)]* pandaArm.bJe(:,1:7);
-    pandaArm.Ste = [eye(3) zeros(3);  -skew(pandaArm.wTe(1:3,1:3)*pandaArm.eTt(1:3,4)) eye(3)];
-    pandaArm.wJt  = pandaArm.Ste * pandaArm.wJt;
+    pandaArm.wJe  = [pandaArm.wTb(1:3,1:3) zeros(3);zeros(3) pandaArm.wTb(1:3,1:3)]* pandaArm.bJe(:,1:7);
+    pandaArm.Stt = [eye(3) zeros(3);  -skew(pandaArm.wTe(1:3,1:3)*pandaArm.eTt(1:3,4)) eye(3)];
+    pandaArm.wJt  = pandaArm.Stt * pandaArm.wJe;
 
     if mission.phase == 2
-        pandaArm.Ste = [eye(3) zeros(3);  -skew(pandaArm.wTog(1:3,4)) eye(3)];
-        pandaArm.wJo = pandaArm.Ste *pandaArm.wJt;
+        pandaArm.Sto = [eye(3) zeros(3);  -skew(pandaArm.wTo(1:3,4)) eye(3)];
+        pandaArm.wJo = pandaArm.Sto *pandaArm.wJt;
     end
 
     % minimum altitude

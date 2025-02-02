@@ -2,47 +2,42 @@ function [uvms] = ComputeActivationFunctions(uvms, mission)
 % compute the activation functions here
     switch mission.phase
         case 1
-            uvms.Ap.ha = 1; % horizental 
-            uvms.Ap.ma= 1; % minimum altitude
-            uvms.Ap.v = 1; % vehicule control
-            uvms.Ap.landing= 0; % altitude control
-            uvms.Ap.tool = 0; % tool control task
-    
-         case 2
-             uvms.Ap.ha = 1; 
-             uvms.Ap.ma= 1;
-             uvms.Ap.v = 1;
-             uvms.Ap.landing= 0;
-             uvms.Ap.tool = 0;
+            prev = mission.actions.go_to.tasks;
+            current = mission.actions.go_to.tasks;
+            mission.action_name = "go_to";
 
+         case 2
+            prev = mission.actions.go_to.tasks;
+            current = mission.actions.align.tasks;
+            mission.action_name = "align";
+            
         case 3
-             uvms.Ap.ha = 0;
-             uvms.Ap.ma= 0; 
-             uvms.Ap.v = IncreasingBellShapedFunction(0,0.6,0,1,norm(uvms.err.lin_closer));
-             uvms.Ap.landing= 1;
-             uvms.Ap.tool = 0;
-             
+            prev = mission.actions.align.tasks;
+            current = mission.actions.land.tasks;
+            mission.action_name = "land";
+
         case 4
-             uvms.Ap.ha = 1;
-             uvms.Ap.ma= 0; 
-             uvms.Ap.v = 1;
-             uvms.Ap.landing= 0; 
-             uvms.Ap.tool = 1;
+            prev = mission.actions.land.tasks;
+            current = mission.actions.manip.tasks;
+            mission.action_name = "manip";
    end 
     
 %HORIZONTAL ACTIVATION FUNCTION DEFINATION
-uvms.A.ha =  IncreasingBellShapedFunction(0.1, 0.2, 0, 1, norm(uvms.v_rho_ha)) * uvms.Ap.ha;
+uvms.A.ha =  IncreasingBellShapedFunction(0.01, 0.02, 0, 1, norm(uvms.v_rho_ha)) * ActionTransition("HA", prev, current, mission.action_name ,mission.phase_time);
 
 %MINIMUM ALTITUDE
-uvms.A.ma = DecreasingBellShapedFunction(1, 2 , 0, 1, uvms.a) * uvms.Ap.ma;
+uvms.A.ma = DecreasingBellShapedFunction(1, 2 , 0, 1, uvms.a) * ActionTransition("MA", prev, current,  mission.action_name,mission.phase_time);
 
 % vehicule control
-uvms.A.v = eye(6) * uvms.Ap.v;
+uvms.A.v = eye(6) * ActionTransition("V", prev, current, mission.action_name, mission.phase_time);
 
 %ALTITUDE ACTIVATION FUNCTION
-uvms.A.landing = 1 * uvms.Ap.landing;
+uvms.A.landing = 1 * ActionTransition("L", prev, current,  mission.action_name,mission.phase_time);
 
 % arm tool position control
-uvms.A.tool = eye(6) * uvms.Ap.tool;
+uvms.A.tool = eye(6) * ActionTransition("T", prev, current, mission.action_name, mission.phase_time);
+
+% get closer
+uvms.A.closer = eye(3) * IncreasingBellShapedFunction(0,0.6,0,1,norm(uvms.err.lin_closer)) *  ActionTransition("C", prev, current, mission.action_name, mission.phase_time);
 
 end
