@@ -17,6 +17,16 @@ function [plt] = InitDataPlot( maxloops)
     %End effector velocities (Right Arm)
     plt.xdot2 = zeros(6, maxloops);
     plt.qe_dot2 = zeros(6, maxloops);
+
+
+    plt.xdot = zeros(6, maxloops);
+    plt.xdot2 = zeros(6, maxloops);
+
+    plt.qnoncoop = zeros(6, maxloops);
+    plt.qnoncoop2 = zeros(6, maxloops);
+
+    plt.xdotcoop = zeros(6, maxloops);
+    plt.xdotcoop2 = zeros(6, maxloops);
     
 end
 
