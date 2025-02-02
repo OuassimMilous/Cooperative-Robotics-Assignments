@@ -105,12 +105,12 @@ Once landed, implement a ``fixed-based manipulation action'' to reach the target
 			Minimum Altitude                    & I & 1 & 1 & 1 & 1  \\
 			\hdashline
 			Horizontal Alignment                & I & 2 &  & &  \\
-			\hdashline
-			Nodue Alignment                       & E &   &  & 2 & 2   \\
+			%\hdashline
+			%Nodue Alignment                       & E &   &  & 2 & 2   \\
 			\hdashline
 			Landing 						& E & & 2 & & 3 \\
-			\hdashline 
-			Vehicle Stop 						& E & & & & 4 \\ 
+			%\hdashline 
+			%Vehicle Stop 						& E & & & & 4 \\ 
 			\hdashline 
 			Tool Manipulatin					& E & 3 & & & \\
 			\hdashline 
@@ -304,11 +304,11 @@ Repeat the simulation, using a goal position or by changing the grasping in such
 \end{itemize}
 
 \subsection{Q2: What is the Jacobian relationship for the Joint Limits task? How was the task reference computed?}
-The Jacobian for the limits task is the identity matrix. For this task reference, we calculate the velocities in this way, where we constrain the joints to return within their limits. In the formula below,  $jl_{\text{min}_i}$ and $jl_{\text{max}_i}$  represents the lower and upper joint limits of all joints  $i_{\text{th}}$ and $q_i$ is the current of position of $i_{\text{th}}$ joint.
+The Jacobian for the limits task is the identity matrix. For this task reference, we calculate the velocities in this way, where we constrain the joints to return within their limits. In the formula below,  $Jl_{\text{min}_i}$ and $Jl_{\text{max}_i}$  represents the lower and upper joint limits of all joints  $i_{\text{th}}$ and $q_i$ is the current of position of $i_{\text{th}}$ joint.
 
 
 \[
-\dot{q}_i = \left(\frac{jl_{\text{min}_i} + jl_{\text{max}_i}}{2}\right) - q_i
+\dot{q}_i = \left(\frac{Jl_{\text{min}_i} + Jl_{\text{max}_i}}{2}\right) - q_i
 \]
 
 \subsection{Q3: What is the Jacobian relationship for the Bimanual Rigid Grasping Constraint task? How was the task reference computed?}
@@ -408,7 +408,7 @@ We used the hierarchy given below for both arms, maintaining the same order.\\
 	\item \textbf{Minimum Altitude:} This is also a safety task in which we have restricted the robot to a specific distance. This means the robot's end effector will not go below that distance with respect to its base. 
 	\item \textbf{Cooperative Rigid Constraint Move:} In this task, we apply a coordination policy in which we provide velocities to both robots in such a way that they communicate with each other and move together. These velocities are calculated considering all the constraints.
 \end{itemize}
-
+\subsection{Q2: Comment the behaviour of the robots, using relevant plots. In particular, make sure there are differences between the desired object velocity and the non-cooperative Cartesian velocities at least in one simulation. Show also how the cooperative velocities of the two end-effectors behave.}
 \clearpage
 
 %\begin{figure}[t]
