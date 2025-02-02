@@ -173,7 +173,8 @@ for t = 0:deltat:end_time
 
     % COOPERATION hierarchy
     % SAVE THE NON COOPERATIVE VELOCITIES COMPUTED
-
+    pandaArm1.Qp = ydotbar2;
+    pandaArm2.Qp = ydotbar2;
     % DATA EXCHNAGE
     x1 = pandaArm1.wJt * ydotbar;
     x2 = pandaArm2.wJt *ydotbar2;
@@ -186,15 +187,15 @@ for t = 0:deltat:end_time
 
     % NEW XDOT LEFT ARM
     combinedx1 = ComputeCooperativeXdot(desiredx1,desiredx2,x1,x2,h1,h2);
-    newx1 =combinedx1(1:6);
+    pandaArm1.newx =combinedx1(1:6);
 
     % NEW XDOT RIGHT ARM ARM
     combinedx2 = ComputeCooperativeXdot(desiredx1,desiredx2,x1,x2,h1,h2);
-    newx2 = combinedx2(7:12);
+    pandaArm2.newx = combinedx2(7:12);
 
     % Task: Left Arm Cooperation
     % ...
-    [Qp, ydotbar] = iCAT_task(pandaArm1.A.tool, tool_jacobian_L, Qp, ydotbar, newx1, 0.0001,   0.01, 10);
+    [Qp, ydotbar] = iCAT_task(pandaArm1.A.tool, tool_jacobian_L, Qp, ydotbar, pandaArm1.newx, 0.0001,   0.01, 10);
 
     % display(ydotbar)
     % this task should be the last one 
@@ -202,7 +203,7 @@ for t = 0:deltat:end_time
 
     % Task: Right Arm Cooperation
     % ...
-    [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.tool, tool_jacobian_R, Qp2, ydotbar2, newx2, 0.0001,   0.01, 10);
+    [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.tool, tool_jacobian_R, Qp2, ydotbar2, pandaArm2.newx, 0.0001,   0.01, 10);
     % this task should be the last one
     [Qp2, ydotbar2] = iCAT_task(eye(7), eye(7), Qp2, ydotbar2, zeros(7,1), 0.0001,   0.01, 10);    % this task should be the last one
 
