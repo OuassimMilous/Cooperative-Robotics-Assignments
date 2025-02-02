@@ -22,16 +22,18 @@ function [pandaArm] = ComputeJacobians(pandaArm,mission)
     % of the gripper). YOU MUST RESIZE THE MATRIX IN ORDER TO CONTROL ONLY THE
     % 7 JOINTS OF THE ROBOTIC ARM. 
 
-    % tool
-    pandaArm.wJe  = [pandaArm.wTb(1:3,1:3) zeros(3);zeros(3) pandaArm.wTb(1:3,1:3)]* pandaArm.bJe(:,1:7);
-    pandaArm.Stt = [eye(3) zeros(3);  -skew(pandaArm.wTe(1:3,1:3)*pandaArm.eTt(1:3,4)) eye(3)];
+    % tools
+    pandaArm.Stt = [eye(3) zeros(3);  -skew(pandaArm.wTe(1:3,1:3)*pandaArms.ArmR.eTt(1:3,4)) eye(3)];
+    pandaArm.wJe  = [pandaArm.wTb(1:3,1:3) zeros(3);zeros(3) pandaArms.ArmR.wTb(1:3,1:3)]* pandaArm.bJe(:,1:7);
     pandaArm.wJt  = pandaArm.Stt * pandaArm.wJe;
-
+   
     if mission.phase == 2
-        pandaArm.Sto = [eye(3) zeros(3);  -skew(pandaArm.wTo(1:3,4)) eye(3)];
-        pandaArm.wJo = pandaArm.Sto *pandaArm.wJt;
+        pandaArm.Sto = [eye(3) zeros(3);  -skew(pandaArm.wTog(1:3,4)) eye(3)];
+        pandaArm.wJo = pandaArm.Sto * pandaArm.wJt;
+
     end
 
+    
     % minimum altitude
     pandaArm.Jma = [zeros(5,7);0,0,0,0,0, 1 ,0];
 
