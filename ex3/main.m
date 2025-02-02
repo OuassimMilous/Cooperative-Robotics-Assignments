@@ -253,9 +253,6 @@ for t = 0:deltat:end_time
     % time. Remove to go as fast as possible
     % WARNING: MUST BE ENABLED IF CONTROLLING REAL ROBOT !
     SlowdownToRealtime(deltat);
-    if(mission.phase == 4)
-        break;
-    end
 end
 PrintPlot(plt);
 
