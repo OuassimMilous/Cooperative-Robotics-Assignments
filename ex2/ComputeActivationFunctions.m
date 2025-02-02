@@ -52,12 +52,12 @@ function [pandaArm] = ComputeActivationFunctions(pandaArm, mission)
     for i = 1:7
         pandaArm.ArmL.A.joints(i,i) = DecreasingBellShapedFunction(pandaArm.jlmin(i), pandaArm.jlmin(i) * 1.1, 0, 1, pandaArm.ArmL.q(i)) ...
             + IncreasingBellShapedFunction(pandaArm.jlmax(i) * 0.9, pandaArm.jlmax(i), 0, 1, pandaArm.ArmL.q(i));
-        pandaArm.ArmL.A.joints = pandaArm.ArmL.A.joints  *  ActionTransition("JL", prev, current, mission.phase_time);
 
         pandaArm.ArmR.A.joints(i+7, i+7) = DecreasingBellShapedFunction(pandaArm.jlmin(i), pandaArm.jlmin(i) * 1.1, 0, 1, pandaArm.ArmR.q(i)) ...
             + IncreasingBellShapedFunction(pandaArm.jlmax(i) * 0.9, pandaArm.jlmax(i), 0, 1, pandaArm.ArmR.q(i));
-        pandaArm.ArmR.A.joints = pandaArm.ArmR.A.joints  *  ActionTransition("JL", prev, current, mission.phase_time);
 
     end
+    pandaArm.ArmL.A.joints = pandaArm.ArmL.A.joints  *  ActionTransition("JL", prev, current, mission.phase_time);
+    pandaArm.ArmR.A.joints = pandaArm.ArmR.A.joints  *  ActionTransition("JL", prev, current, mission.phase_time);
 
 end
