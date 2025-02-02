@@ -152,10 +152,9 @@ for t = 0:deltat:end_time
     % minimum altitude
     [Qp, ydotbar] = iCAT_task(pandaArm1.A.min, pandaArm1.Jma, Qp, ydotbar, pandaArm1.xdot.min, 0.0001,   0.01, 10);
 
-    if(mission.phase == 1)
     % Task: Tool Move-To
-      [Qp, ydotbar] = iCAT_task(pandaArm1.A.tool, tool_jacobian_L, Qp, ydotbar, pandaArm1.xdot.tool, 0.0001,   0.01, 10);
-    end
+    [Qp, ydotbar] = iCAT_task(pandaArm1.A.tool, tool_jacobian_L, Qp, ydotbar, pandaArm1.xdot.tool, 0.0001,   0.01, 10);
+  
     % grasp
     % [Qp, ydotbar] = iCAT_task(pandaArm1.A.grasp, pandaArm1.bJt_grasp, Qp, ydotbar, pandaArm1.xdot.grasp, 0.0001,   0.01, 10);
 
@@ -201,11 +200,9 @@ for t = 0:deltat:end_time
     % this task should be the last one 
     [Qp, ydotbar] = iCAT_task(eye(7), eye(7), Qp, ydotbar, zeros(7,1), 0.0001,   0.01, 10);    % this task should be the last one
 
-    if(mission.phase == 2)
     % Task: Right Arm Cooperation
     % ...
     [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.tool, tool_jacobian_R, Qp2, ydotbar2, newx2, 0.0001,   0.01, 10);
-    end
     % this task should be the last one
     [Qp2, ydotbar2] = iCAT_task(eye(7), eye(7), Qp2, ydotbar2, zeros(7,1), 0.0001,   0.01, 10);    % this task should be the last one
 
