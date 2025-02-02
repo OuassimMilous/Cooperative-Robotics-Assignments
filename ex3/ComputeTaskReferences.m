@@ -25,7 +25,7 @@ function [pandaArm] = ComputeTaskReferences(pandaArm,mission)
 
         case 2
             % Object position and orientation task reference
-            [pandaArm.ang, pandaArm.lin] = CartError(pandaArm.wTog,pandaArm.wTto);
+            [pandaArm.ang, pandaArm.lin] = CartError(pandaArm.wTog,pandaArm.wTo);
             pandaArm.xdot.tool = [pandaArm.ang;pandaArm.lin];
             pandaArm.xdot.tool = Saturate(pandaArm.xdot.tool,0.2);
 
