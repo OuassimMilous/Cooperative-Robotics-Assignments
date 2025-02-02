@@ -46,7 +46,7 @@ uvms.Jtool = [uvms.Jt_a uvms.Jt_v];
 
 %  move
 uvms.Jv = [zeros(3,7), eye(3), zeros(3);
-           zeros(3,7), zeros(3),         eye(3)];
+           zeros(3,7), zeros(3),   eye(3)];
 
 
 % horizental alignment

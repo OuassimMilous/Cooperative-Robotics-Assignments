@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.2.1)  2 FEB 2025 11:26
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.2.1)  2 FEB 2025 14:11
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -338,6 +338,9 @@ File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
 
 LaTeX Warning: Label `tbl:actions_tables' multiply defined.
 
+
+LaTeX Warning: Label `tbl:actions_tables' multiply defined.
+
 )
 \openout1 = `cooperative.aux'.
 
@@ -426,30 +429,37 @@ Underfull \hbox (badness 10000) in paragraph at lines 155--158
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 158--161
-
- []
-
 [3] [4]
-<dh-diagram.png, id=29, 880.28876pt x 841.1425pt>
+<dh-diagram.png, id=30, 880.28876pt x 841.1425pt>
 File: dh-diagram.png Graphic file (type png)
 <use dh-diagram.png>
-Package pdftex.def Info: dh-diagram.png  used on input line 187.
+Package pdftex.def Info: dh-diagram.png  used on input line 197.
 (pdftex.def)             Requested size: 443.57848pt x 423.8431pt.
-<initial_position.png, id=31, 877.47826pt x 429.40425pt>
+<initial_position.png, id=32, 877.47826pt x 429.40425pt>
 File: initial_position.png Graphic file (type png)
 <use initial_position.png>
-Package pdftex.def Info: initial_position.png  used on input line 192.
+Package pdftex.def Info: initial_position.png  used on input line 202.
 (pdftex.def)             Requested size: 266.14978pt x 130.24408pt.
-<grasping_position.png, id=32, 1440.38126pt x 810.02625pt>
+<grasping_position.png, id=33, 1440.38126pt x 810.02625pt>
 File: grasping_position.png Graphic file (type png)
 <use grasping_position.png>
-Package pdftex.def Info: grasping_position.png  used on input line 202.
+Package pdftex.def Info: grasping_position.png  used on input line 212.
 (pdftex.def)             Requested size: 266.14978pt x 149.6671pt.
  [5
 
- <./dh-diagram.png>] [6 <./initial_position.png> <./grasping_position.png>] [7] [8
+ <./dh-diagram.png>] [6 <./initial_position.png> <./grasping_position.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 316--317
+
+ []
+
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 319--323
+
+ []
+
+[8] [9
+
+] [10
 
 ] (./cooperative.aux)
 
@@ -457,18 +467,18 @@ LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5559 strings out of 480247
- 92660 string characters out of 5896152
- 391133 words of memory out of 5000000
- 23386 multiletter control sequences out of 15000+600000
- 481845 words of font info for 73 fonts, out of 8000000 for 9000
+ 5565 strings out of 480247
+ 92726 string characters out of 5896152
+ 390133 words of memory out of 5000000
+ 23390 multiletter control sequences out of 15000+600000
+ 483244 words of font info for 77 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  55i,11n,63p,775b,309s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/girum/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on cooperative.pdf (8 pages, 697392 bytes).
+ </home/girum/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on cooperative.pdf (10 pages, 720067 bytes).
 PDF statistics:
- 113 PDF objects out of 1000 (max. 8388607)
- 67 compressed objects within 1 object stream
+ 124 PDF objects out of 1000 (max. 8388607)
+ 74 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 
