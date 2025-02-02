@@ -1,4 +1,5 @@
 \documentclass{article}
+\usepackage{amsmath}
 \usepackage[left=3cm,right=3cm,top=2cm,bottom=2cm]{geometry} 
 \usepackage{makeidx}         % allows index generation
 \usepackage[pdftex]{graphicx,color}          % standard LaTeX graphics tool
@@ -285,9 +286,29 @@ Move to - this task the manipulator move to the desired position
 
 
 \subsection{Q2: What is the Jacobian relationship for the Joint Limits task? How was the task reference computed?}
+The Jacobian for the limits task is the identity matrix. For this task reference, we calculate the velocities in this way, where we constrain the joints to return within their limits. In the formula below,  $jl_{\text{min}_i}$ and $jl_{\text{max}_i}$  represents the lower and upper joint limits of all joints  $i_{\text{th}}$ and $q_i$ is the current of position of $i_{\text{th}}$ joint. \\ 
 
-
+\[
+\dot{q}_i = \left(\frac{jl_{\text{min}_i} + jl_{\text{max}_i}}{2}\right) - q_i
+\]
 \subsection{Q3: What is the Jacobian relationship for the Bimanual Rigid Grasping Constraint task? How was the task reference computed?}
+
+We took a reference point, denoted as  \( \mathit{O} \) (which is the center point of the object in our case), and calculated the Jacobian for both of the arm tool ,left arm tool and right arm tool, with respect to the  \( \mathit{<O>} \). \\
+\[
+J_{\text{combined}} = \left[ J_{l,o} \, - \, J_{r,o} \right]\\
+\]
+
+Here, $J_{l,o}$ refers to the Jacobian of the left arm tool with respect to \( \mathit{<O>} \) and  $J_{r,o}$ refers to the Jacobian of the right arm tool with respect to \( \mathit{<O>} \). The negative sign accounts for the opposite direction of motion of the right arm relative to the left.\\
+In the task reference, we aim to make the velocities of both arms equal, meaning that the difference in the end effector velocities should be zero in the context of the Bimanual Rigid Grasping Constraint task. This ensures the synchronization of both arms.\\
+ 
+\[
+{J}_{o,a} \dot{q}_a = {J}_{o,b} \dot{q}_b
+\]
+\[
+[{J}_{o,a} - {J}_{o,b}]\dot{y}  = 0
+\]\\
+The task refrence should be zero in our case.
+
 
 \subsection{Q4: Comment the behaviour of the robots, using relevant plots. In particular, show the difference (if any) between the desired object velocity, and the velocities of the two end-effectors in the two cases.}
 
