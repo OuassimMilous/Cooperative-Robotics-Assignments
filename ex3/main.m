@@ -78,7 +78,7 @@ mission.phase_time = 0;
 % Coop = cooperative move task
 % G = grasp task
 mission.actions.go_to.tasks = ["MA","JL","T"];
-mission.actions.coop_manip.tasks = ["MA","JL","COOP","G"];
+mission.actions.coop_manip.tasks = ["MA","JL","COOP","G","T"];
 mission.actions.end_motion.tasks = ["MA", "JL"]; 
 
 %% CONTROL LOOP
@@ -253,6 +253,7 @@ for t = 0:deltat:end_time
     % time. Remove to go as fast as possible
     % WARNING: MUST BE ENABLED IF CONTROLLING REAL ROBOT !
     SlowdownToRealtime(deltat);
+
 end
 PrintPlot(plt);
 
