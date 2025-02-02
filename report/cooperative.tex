@@ -195,11 +195,32 @@ $${}^{w}J_v = \begin{bmatrix}
 		\mathbf{0}_{6 \times 7} & \mathbf{I}_{6 \times 6} \\
 		\end{bmatrix} $$
 \subsection{Q4: Try changing the gain of the alignment task. Try three different values: 0.001, 0.1, 1.0. What is the observed behaviour? Implement a solution that is gain-independent guaranteeing that the landing is accomplished aligned to the target.}
-We observed that with gain 1.0, the time taken by vehicle to reduce the angular error between its body and nodule around z-axis with respect to world frame is faster than if we assign the gain 0.1 and 0.001. To be precise the time take in the first case, when gain is 1, is 10.5 seconds. In the second and third case, which are 0.1 and 0.001 respectively, it takes 52 seconds and in the latter case it moves infinitinemaly slow. 
-%PLOT THE GRAPH
+We observed that with gain 1.0, the time taken by vehicle to reduce the angular error between its body and nodule around z-axis with respect to world frame is faster than if we assign the gain 0.1 and 0.001. To be precise the time take in the first case, when gain is 1, is 10.5 seconds. In the second and third case, which are 0.1 and 0.001 respectively, it takes 52 seconds and in the latter case it moves infinitinemaly slow. \\
+To get the gain-independent solution we can use the time derivative of point concept. 
+First we need to define the position vector \\
 
+   $${}^a\Delta \mathbf{r}_{P,Q} = {}^aP - {}^aQ $$
+   where $P$ is the desired position and $Q$ is the intial position. $<a>$ is the projection frame. \\
+Then check ${}^a\Delta \mathbf{r}_{P,Q}$ is zero or not. If it is not zero, then find the unit vector (${}^a \widehat{\Delta \mathbf{r}}_{P,Q}$) of the distance vector (${}^a \Delta {r}_{P,Q}$)
+$${}^a \widehat{\Delta \mathbf{r}}_{P,Q} = \frac{{}^a \Delta \mathbf{r}_{P,Q}}{\lVert {}^a \Delta \mathbf{r}_{P,Q} \rVert}$$
+Now take derivative of the distance vector with respect to frame $<a>$ and calculate the velocity along the unit vector.
+$$ \frac{d_a}{dt}({}^a \Delta \mathbf{r}_{P,Q}) $$ 
+$${}^a \dot{P} = \widehat{{}^a \Delta \mathbf{r}}_{P,Q} * v$$
+where v is the velocity give to the point. \\
+Update the position of ${}^a P$ with respect time by using this equation, 
+$${}^a P(t+dt) = {}^a P(t) + {}^a \dot{P} dt + Q(dt)$$
+where ${}^a P(t+dt)$ is the updated position of $P$ point and ${}^a P(t)$ is the position of ${}^a P$ at time $t$. \\
+Iterate this equation till,
+$${}^a P = {}^a Q)$$.
+We can implement this solution on both of the case, where ${}^a P $ is the point at vehicle frame and ${}^a Q$ is the point where we need to go and align. 
+
+
+
+
+%PLOT THE GRAPH
 \subsection{Q5: After the landing is accomplished, what happens if you try to move the end-effector? Is the distance to the nodule sufficient to reach it with the end-effector? Comment the observed behaviour.}
 After landing task, the manipulator easily achieved its task without vehicle moving. \\ 
+
 \subsection{Q6: Implement a solution that guarantees that, once landed, the nodule is certainly within the manipulator's workspace.}
 To ensure that the nodule is always within the workspace of the manipulator arm, we need to control the vehicle in such a way that it moves closer to the nodule while landing. To do this, we need to control the linear x and linear y velocities so that the arm is always in the projection of the nodule. Here are the steps we followed:
 First we need to find the linear distance between the current position of vehicle and the nodule.   
@@ -303,9 +324,9 @@ Repeat the simulation, using a goal position or by changing the grasping in such
 			\toprule		
 			Task & Type & $\mathcal{A}_{1}$ & $\mathcal{A}_{2}$  & $\mathcal{A}_{3}$  \\
 			\midrule
-			Joint limits                      & [I,S] & 1 & 1 &  \\
+			Joint limits                      & [I,S] & 1 & 1 & 1 \\
 			\hdashline
-			Minimum Altitude						& [I,S & 2& 2 & \\
+			Minimum Altitude						& [I,S & 2& 2 & 2\\
 			\hdashline 
 			Bimanumial rigid grasping constraint					& [E] & & 3 & \\
 			\hdashline
@@ -413,9 +434,9 @@ We used the hierarchy given below for both arms, maintaining the same order.\\
 			\toprule		
 			Task & Type & $\mathcal{A}_{1}$ & $\mathcal{A}_{2}$  & $\mathcal{A}_{3}$  \\
 			\midrule
-			Joint limits                      & [I,S] & 1 & 1 &  \\
+			Joint limits                      & [I,S] & 1 & 1 &  1\\
 			\hdashline
-			Minimum Altitude						&[I,S] & 2& 2 & \\
+			Minimum Altitude						&[I,S] & 2& 2 & 2\\
 			\hdashline 
 			Move-To					&[AD, E] &3 & & \\
 			\hdashline 

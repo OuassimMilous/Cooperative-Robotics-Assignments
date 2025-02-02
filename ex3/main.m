@@ -247,7 +247,6 @@ for t = 0:deltat:end_time
     if (mod(t,0.1) == 0)
         t 
         phase
-        % disp(pandaArm1.wTg);
    end
     
     % enable this to have the simulation approximately evolving like real
