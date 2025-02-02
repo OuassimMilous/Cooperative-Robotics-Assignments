@@ -27,10 +27,6 @@ legend('xdot', 'ydot','zdot','omega_x','omega_y','omega_z');
 
 figure(3);
 hplot = plot(plt.t, plt.A(1:6,:));
-% hplot = plot(plt.t, plt.A);
-% hplot = plot(plt.t, plt.A, 'LineWidth', 2);
-
-% 
 set(hplot, 'LineWidth', 2);
 legend('ha', 'ma', 'v', 'landing', 'tool', 'closer');
 

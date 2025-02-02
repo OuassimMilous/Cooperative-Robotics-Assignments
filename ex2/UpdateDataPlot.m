@@ -14,18 +14,22 @@ plt.q_dot(:, loop) = pandaArm.ArmL.q_dot;
 plt.q2(:, loop) = pandaArm.ArmR.q;
 plt.q_dot2(:, loop) = pandaArm.ArmR.q_dot;
 
-% activation functions
-
-
 % Plot: desired object velocity
+plt.xdot(:, loop) = pandaArm.ArmL.xdot.tool;
+plt.qe_dot(:, loop) = pandaArm.ArmL.wJt(1:7) * pandaArm.ArmL.q;
 
-%End effector velocities (Left Arm)
-
-
-%End effector velocities (Right Arm)
-
+plt.xdot2(:, loop) = pandaArm.ArmR.xdot.tool;
+plt.qe_dot2(:, loop) = pandaArm.ArmR.wJt(8:14) * pandaArm.ArmR.q;
 
 % Plot: manipulability task activation function
+plt.A(1, loop) = mean(diag(pandaArm.ArmL.A.joints));
+plt.A(2, loop) = mean(diag(pandaArm.ArmL.A.min));
+plt.A(3, loop)= mean(diag(pandaArm.ArmL.A.tool));
+plt.A(4, loop) = mean(diag(pandaArm.A.con));
 
+plt.A2(1, loop) = mean(diag(pandaArm.ArmR.A.joints));
+plt.A2(2, loop) = mean(diag(pandaArm.ArmR.A.min));
+plt.A2(3, loop)= mean(diag(pandaArm.ArmR.A.tool));
+plt.A2(4, loop) = mean(diag(pandaArm.A.con));
 
 end

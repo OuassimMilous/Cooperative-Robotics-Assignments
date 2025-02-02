@@ -8,7 +8,7 @@ real_robot = false;
 %% Initialization - DON'T CHANGE ANYTHING from HERE ... 
 % Simulation variables (integration and final time)
 dt = 0.005;
-Tf = 100; %simulation time
+Tf = 20; %simulation time
 loop = 1;
 maxloops = ceil(Tf/dt);
 mission.phase = 1;
@@ -187,14 +187,12 @@ for t = 0:dt:Tf
     % Update data plot
     plt = UpdateDataPlot(plt,pandaArms,t,loop, mission);
     loop = loop + 1;
-    error = pandaArms.ArmL.xdot.tool/0.2;
     % add debug prints here
     if (mod(t,0.1) == 0)
         t 
         phase = mission.phase
         if (mission.phase == 1)
             %add debug prints phase 1 here
-            % display(error)
         elseif (mission.phase == 2)
             %add debug prints phase 2 here
         end
@@ -204,9 +202,7 @@ for t = 0:dt:Tf
     % time. Remove to go as fast as possible
     % WARNING: MUST BE ENABLED IF CONTROLLING REAL ROBOT !
     SlowdownToRealtime(dt);
-    if(mission.phase == 4)
-        break;
-    end
+
 end
 
 PrintPlot(plt, pandaArms);
