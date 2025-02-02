@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.2.1)  2 FEB 2025 23:18
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.2.1)  2 FEB 2025 23:54
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -365,30 +365,6 @@ LaTeX Warning: Label `fig:1' multiply defined.
 
 LaTeX Warning: Label `tbl:actions_tables' multiply defined.
 
-
-LaTeX Warning: Label `fig:1' multiply defined.
-
-
-LaTeX Warning: Label `fig:1' multiply defined.
-
-
-LaTeX Warning: Label `fig:1' multiply defined.
-
-
-LaTeX Warning: Label `fig:1' multiply defined.
-
-
-LaTeX Warning: Label `fig:1' multiply defined.
-
-
-LaTeX Warning: Label `fig:1' multiply defined.
-
-
-LaTeX Warning: Label `fig:1' multiply defined.
-
-
-LaTeX Warning: Label `fig:1' multiply defined.
-
 )
 \openout1 = `cooperative.aux'.
 
@@ -473,28 +449,28 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ) [2
 
 ]
-<imgs/ex1/activation function labled.jpg, id=22, 1856.9375pt x 964.60374pt>
-File: imgs/ex1/activation function labled.jpg Graphic file (type jpg)
-<use imgs/ex1/activation function labled.jpg>
-Package pdftex.def Info: imgs/ex1/activation function labled.jpg  used on input line 159.
-(pdftex.def)             Requested size: 443.57848pt x 230.42044pt.
-<imgs/ex1/q and qdot labelled.jpg, id=23, 1856.9375pt x 964.60374pt>
-File: imgs/ex1/q and qdot labelled.jpg Graphic file (type jpg)
-<use imgs/ex1/q and qdot labelled.jpg>
-Package pdftex.def Info: imgs/ex1/q and qdot labelled.jpg  used on input line 167.
-(pdftex.def)             Requested size: 443.57848pt x 230.42044pt.
-<imgs/ex1/x and xdot labelled.jpg, id=24, 1856.9375pt x 964.60374pt>
-File: imgs/ex1/x and xdot labelled.jpg Graphic file (type jpg)
-<use imgs/ex1/x and xdot labelled.jpg>
-Package pdftex.def Info: imgs/ex1/x and xdot labelled.jpg  used on input line 173.
-(pdftex.def)             Requested size: 443.57848pt x 230.42044pt.
+<imgs/ex1/activation function.jpg, id=22, 1927.2pt x 958.58125pt>
+File: imgs/ex1/activation function.jpg Graphic file (type jpg)
+<use imgs/ex1/activation function.jpg>
+Package pdftex.def Info: imgs/ex1/activation function.jpg  used on input line 159.
+(pdftex.def)             Requested size: 443.57848pt x 220.62994pt.
+<imgs/ex1/q and qdot.jpg, id=23, 1927.2pt x 958.58125pt>
+File: imgs/ex1/q and qdot.jpg Graphic file (type jpg)
+<use imgs/ex1/q and qdot.jpg>
+Package pdftex.def Info: imgs/ex1/q and qdot.jpg  used on input line 167.
+(pdftex.def)             Requested size: 443.57848pt x 220.62994pt.
+<imgs/ex1/x and xdot.jpg, id=24, 1927.2pt x 958.58125pt>
+File: imgs/ex1/x and xdot.jpg Graphic file (type jpg)
+<use imgs/ex1/x and xdot.jpg>
+Package pdftex.def Info: imgs/ex1/x and xdot.jpg  used on input line 173.
+(pdftex.def)             Requested size: 443.57848pt x 220.62994pt.
 
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [3
 
- <./imgs/ex1/activation function labled.jpg> <./imgs/ex1/q and qdot labelled.jpg>]
+ <./imgs/ex1/activation function.jpg> <./imgs/ex1/q and qdot.jpg>]
 Underfull \hbox (badness 10000) in paragraph at lines 181--184
 
  []
@@ -504,7 +480,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 198--201
 
  []
 
-[4 <./imgs/ex1/x and xdot labelled.jpg>]
+[4 <./imgs/ex1/x and xdot.jpg>]
 Underfull \hbox (badness 10000) in paragraph at lines 222--223
 
  []
@@ -537,24 +513,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 366--370
 
  []
 
-<imgs/ex2/activation right.jpg, id=54, 1856.9375pt x 964.60374pt>
+<imgs/ex2/activation right.jpg, id=54, 1927.2pt x 958.58125pt>
 File: imgs/ex2/activation right.jpg Graphic file (type jpg)
 <use imgs/ex2/activation right.jpg>
 Package pdftex.def Info: imgs/ex2/activation right.jpg  used on input line 383.
-(pdftex.def)             Requested size: 443.57848pt x 230.42044pt.
-<imgs/ex2/activation left .jpg, id=55, 1856.9375pt x 964.60374pt>
+(pdftex.def)             Requested size: 443.57848pt x 220.62994pt.
+<imgs/ex2/activation left .jpg, id=55, 1927.2pt x 958.58125pt>
 File: imgs/ex2/activation left .jpg Graphic file (type jpg)
 <use imgs/ex2/activation left .jpg>
 Package pdftex.def Info: imgs/ex2/activation left .jpg  used on input line 389.
-(pdftex.def)             Requested size: 443.57848pt x 230.42044pt.
+(pdftex.def)             Requested size: 443.57848pt x 220.62994pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<imgs/ex2/joint_velocity right.jpg, id=56, 1856.9375pt x 964.60374pt>
+<imgs/ex2/joint_velocity right.jpg, id=56, 1927.2pt x 958.58125pt>
 File: imgs/ex2/joint_velocity right.jpg Graphic file (type jpg)
 <use imgs/ex2/joint_velocity right.jpg>
 Package pdftex.def Info: imgs/ex2/joint_velocity right.jpg  used on input line 394.
-(pdftex.def)             Requested size: 443.57848pt x 230.42044pt.
+(pdftex.def)             Requested size: 443.57848pt x 220.62994pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
@@ -566,110 +542,112 @@ Package pdftex.def Info: imgs/ex2/joint_velocity left.jpg  used on input line 39
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<imgs/ex2/velocity right.jpg, id=58, 1856.9375pt x 964.60374pt>
+<imgs/ex2/velocity right.jpg, id=58, 1927.2pt x 958.58125pt>
 File: imgs/ex2/velocity right.jpg Graphic file (type jpg)
 <use imgs/ex2/velocity right.jpg>
 Package pdftex.def Info: imgs/ex2/velocity right.jpg  used on input line 405.
-(pdftex.def)             Requested size: 443.57848pt x 230.42044pt.
+(pdftex.def)             Requested size: 443.57848pt x 220.62994pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
-<imgs/ex2/velocity left .jpg, id=59, 1856.9375pt x 964.60374pt>
+<imgs/ex2/velocity left .jpg, id=59, 1927.2pt x 958.58125pt>
 File: imgs/ex2/velocity left .jpg Graphic file (type jpg)
 <use imgs/ex2/velocity left .jpg>
 Package pdftex.def Info: imgs/ex2/velocity left .jpg  used on input line 411.
-(pdftex.def)             Requested size: 443.57848pt x 230.42044pt.
+(pdftex.def)             Requested size: 443.57848pt x 220.62994pt.
 
 LaTeX Warning: `h' float specifier changed to `ht'.
 
 [9 <./imgs/ex2/activation right.jpg>] [10 <./imgs/ex2/activation left .jpg> <./imgs/ex2/joint_velocity right.jpg>] [11 <./imgs/ex2/joint_velocity left.jpg> <./imgs/ex2/velocity right.jpg>] [12 <./imgs/ex2/velocity left .jpg>] [13
 
 ]
-<imgs/ex3/activation right.jpg, id=76, 1856.9375pt x 964.60374pt>
-File: imgs/ex3/activation right.jpg Graphic file (type jpg)
-<use imgs/ex3/activation right.jpg>
-Package pdftex.def Info: imgs/ex3/activation right.jpg  used on input line 498.
-(pdftex.def)             Requested size: 443.57848pt x 230.42044pt.
+Underfull \hbox (badness 10000) in paragraph at lines 494--495
 
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<imgs/ex3/activation left.jpg, id=77, 1856.9375pt x 964.60374pt>
-File: imgs/ex3/activation left.jpg Graphic file (type jpg)
-<use imgs/ex3/activation left.jpg>
-Package pdftex.def Info: imgs/ex3/activation left.jpg  used on input line 503.
-(pdftex.def)             Requested size: 443.57848pt x 230.42044pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<imgs/ex3/joint velocity right neither.jpg, id=78, 1856.9375pt x 964.60374pt>
-File: imgs/ex3/joint velocity right neither.jpg Graphic file (type jpg)
-<use imgs/ex3/joint velocity right neither.jpg>
-Package pdftex.def Info: imgs/ex3/joint velocity right neither.jpg  used on input line 509.
-(pdftex.def)             Requested size: 443.57848pt x 230.42044pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<imgs/ex3/joint velocity left.jpg, id=79, 1856.9375pt x 964.60374pt>
-File: imgs/ex3/joint velocity left.jpg Graphic file (type jpg)
-<use imgs/ex3/joint velocity left.jpg>
-Package pdftex.def Info: imgs/ex3/joint velocity left.jpg  used on input line 515.
-(pdftex.def)             Requested size: 443.57848pt x 230.42044pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<imgs/ex3/non coop velocity right.jpg, id=80, 1856.9375pt x 964.60374pt>
-File: imgs/ex3/non coop velocity right.jpg Graphic file (type jpg)
-<use imgs/ex3/non coop velocity right.jpg>
-Package pdftex.def Info: imgs/ex3/non coop velocity right.jpg  used on input line 521.
-(pdftex.def)             Requested size: 443.57848pt x 230.42044pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<imgs/ex3/non coop velocity left.jpg, id=81, 1856.9375pt x 964.60374pt>
-File: imgs/ex3/non coop velocity left.jpg Graphic file (type jpg)
-<use imgs/ex3/non coop velocity left.jpg>
-Package pdftex.def Info: imgs/ex3/non coop velocity left.jpg  used on input line 526.
-(pdftex.def)             Requested size: 443.57848pt x 230.42044pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<imgs/ex3/desired object velocity and the cooperative Catrisian velocity right .jpg, id=82, 1856.9375pt x 964.60374pt>
-File: imgs/ex3/desired object velocity and the cooperative Catrisian velocity right .jpg Graphic file (type jpg)
-<use imgs/ex3/desired object velocity and the cooperative Catrisian velocity right .jpg>
-Package pdftex.def Info: imgs/ex3/desired object velocity and the cooperative Catrisian velocity right .jpg  used on input line 532.
-(pdftex.def)             Requested size: 443.57848pt x 230.42044pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
-<imgs/ex3/desired object velocity and the cooperative Catrisian velocity left .jpg, id=83, 1856.9375pt x 964.60374pt>
-File: imgs/ex3/desired object velocity and the cooperative Catrisian velocity left .jpg Graphic file (type jpg)
-<use imgs/ex3/desired object velocity and the cooperative Catrisian velocity left .jpg>
-Package pdftex.def Info: imgs/ex3/desired object velocity and the cooperative Catrisian velocity left .jpg  used on input line 537.
-(pdftex.def)             Requested size: 443.57848pt x 230.42044pt.
-
-LaTeX Warning: `h' float specifier changed to `ht'.
+ []
 
 [14
 
-] [15 <./imgs/ex3/activation right.jpg> <./imgs/ex3/activation left.jpg>] [16 <./imgs/ex3/joint velocity right neither.jpg> <./imgs/ex3/joint velocity left.jpg>] [17 <./imgs/ex3/non coop velocity right.jpg> <./imgs/ex3/non coop velocity left.jpg>] [18 <./imgs/ex3/desired object velocity and the cooperative Catrisian velocity right .jpg> <./imgs/ex3/desired object velocity and the cooperative Catrisian velocity left .jpg>] (./cooperative.aux)
+]
+<imgs/ex3/activation right.jpg, id=80, 1856.9375pt x 964.60374pt>
+File: imgs/ex3/activation right.jpg Graphic file (type jpg)
+<use imgs/ex3/activation right.jpg>
+Package pdftex.def Info: imgs/ex3/activation right.jpg  used on input line 527.
+(pdftex.def)             Requested size: 443.57848pt x 230.42044pt.
+<imgs/ex3/activation left.jpg, id=81, 1856.9375pt x 964.60374pt>
+File: imgs/ex3/activation left.jpg Graphic file (type jpg)
+<use imgs/ex3/activation left.jpg>
+Package pdftex.def Info: imgs/ex3/activation left.jpg  used on input line 535.
+(pdftex.def)             Requested size: 443.57848pt x 230.42044pt.
+
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<imgs/ex3/joint velocity right neither.jpg, id=82, 1856.9375pt x 964.60374pt>
+File: imgs/ex3/joint velocity right neither.jpg Graphic file (type jpg)
+<use imgs/ex3/joint velocity right neither.jpg>
+Package pdftex.def Info: imgs/ex3/joint velocity right neither.jpg  used on input line 543.
+(pdftex.def)             Requested size: 443.57848pt x 230.42044pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<imgs/ex3/joint velocity left.jpg, id=83, 1856.9375pt x 964.60374pt>
+File: imgs/ex3/joint velocity left.jpg Graphic file (type jpg)
+<use imgs/ex3/joint velocity left.jpg>
+Package pdftex.def Info: imgs/ex3/joint velocity left.jpg  used on input line 551.
+(pdftex.def)             Requested size: 443.57848pt x 230.42044pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<imgs/ex3/non coop velocity right.jpg, id=84, 1927.2pt x 958.58125pt>
+File: imgs/ex3/non coop velocity right.jpg Graphic file (type jpg)
+<use imgs/ex3/non coop velocity right.jpg>
+Package pdftex.def Info: imgs/ex3/non coop velocity right.jpg  used on input line 559.
+(pdftex.def)             Requested size: 443.57848pt x 220.62994pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<imgs/ex3/non coop velocity left.jpg, id=85, 1856.9375pt x 964.60374pt>
+File: imgs/ex3/non coop velocity left.jpg Graphic file (type jpg)
+<use imgs/ex3/non coop velocity left.jpg>
+Package pdftex.def Info: imgs/ex3/non coop velocity left.jpg  used on input line 567.
+(pdftex.def)             Requested size: 443.57848pt x 230.42044pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<imgs/ex3/desired object velocity and the cooperative Catrisian velocity right .jpg, id=86, 1856.9375pt x 964.60374pt>
+File: imgs/ex3/desired object velocity and the cooperative Catrisian velocity right .jpg Graphic file (type jpg)
+<use imgs/ex3/desired object velocity and the cooperative Catrisian velocity right .jpg>
+Package pdftex.def Info: imgs/ex3/desired object velocity and the cooperative Catrisian velocity right .jpg  used on input line 574.
+(pdftex.def)             Requested size: 443.57848pt x 230.42044pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+<imgs/ex3/desired object velocity and the cooperative Catrisian velocity left .jpg, id=87, 1927.2pt x 958.58125pt>
+File: imgs/ex3/desired object velocity and the cooperative Catrisian velocity left .jpg Graphic file (type jpg)
+<use imgs/ex3/desired object velocity and the cooperative Catrisian velocity left .jpg>
+Package pdftex.def Info: imgs/ex3/desired object velocity and the cooperative Catrisian velocity left .jpg  used on input line 582.
+(pdftex.def)             Requested size: 443.57848pt x 220.62994pt.
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
+[15 <./imgs/ex3/activation right.jpg>] [16 <./imgs/ex3/activation left.jpg> <./imgs/ex3/joint velocity right neither.jpg>] [17 <./imgs/ex3/joint velocity left.jpg> <./imgs/ex3/non coop velocity right.jpg>] [18 <./imgs/ex3/non coop velocity left.jpg> <./imgs/ex3/desired object velocity and the cooperative Catrisian velocity right .jpg>] [19 <./imgs/ex3/desired object velocity and the cooperative Catrisian velocity left .jpg>] (./cooperative.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5688 strings out of 480247
- 97662 string characters out of 5896152
- 388151 words of memory out of 5000000
- 23493 multiletter control sequences out of 15000+600000
- 483244 words of font info for 77 fonts, out of 8000000 for 9000
+ 5690 strings out of 480247
+ 97508 string characters out of 5896152
+ 388149 words of memory out of 5000000
+ 23494 multiletter control sequences out of 15000+600000
+ 483412 words of font info for 78 fonts, out of 8000000 for 9000
  14 hyphenation exceptions out of 8191
  55i,11n,63p,775b,309s stack positions out of 5000i,500n,10000p,200000b,80000s
- </home/girum/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on cooperative.pdf (18 pages, 2631265 bytes).
+ </home/girum/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
+Output written on cooperative.pdf (19 pages, 2643308 bytes).
 PDF statistics:
- 166 PDF objects out of 1000 (max. 8388607)
- 91 compressed objects within 1 object stream
+ 175 PDF objects out of 1000 (max. 8388607)
+ 97 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  101 words of extra memory for PDF output out of 10000 (max. 10000000)
 
