@@ -25,7 +25,6 @@ hplot = plot(plt.t, plt.q_dot2);
 set(hplot, 'LineWidth', 1);
 legend('qdot_1','qdot_2','qdot_3','qdot_4','qdot_5','qdot_6','qdot_7');
 
-% ... 
 
 end
 

@@ -8,7 +8,7 @@ real_robot = false;
 %% Initialization - DON'T CHANGE ANYTHING from HERE ... 
 % Simulation variables (integration and final time)
 dt = 0.005;
-Tf = 100; %simulation time
+Tf = 20; %simulation time
 loop = 1;
 maxloops = ceil(Tf/dt);
 mission.phase = 1;
@@ -204,9 +204,7 @@ for t = 0:dt:Tf
     % time. Remove to go as fast as possible
     % WARNING: MUST BE ENABLED IF CONTROLLING REAL ROBOT !
     SlowdownToRealtime(dt);
-    if(mission.phase == 4)
-        break;
-    end
+
 end
 
 PrintPlot(plt, pandaArms);

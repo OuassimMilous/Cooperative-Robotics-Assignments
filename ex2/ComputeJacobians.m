@@ -29,7 +29,7 @@ function [pandaArms] = ComputeJacobians(pandaArms,mission)
     pandaArms.ArmL.wJe  = [pandaArms.ArmL.wTb(1:3,1:3) zeros(3);zeros(3) pandaArms.ArmL.wTb(1:3,1:3)]* pandaArms.ArmL.bJe(:,1:7);
     pandaArms.ArmL.wJt  = pandaArms.ArmL.Stt * pandaArms.ArmL.wJe;
 
-    pandaArms.ArmR.Ste = [eye(3) zeros(3);  -skew(pandaArms.ArmR.wTe(1:3,1:3)*pandaArms.ArmR.eTt(1:3,4)) eye(3)];
+    pandaArms.ArmR.Stt = [eye(3) zeros(3);  -skew(pandaArms.ArmR.wTe(1:3,1:3)*pandaArms.ArmR.eTt(1:3,4)) eye(3)];
     pandaArms.ArmR.wJe  = [pandaArms.ArmR.wTb(1:3,1:3) zeros(3);zeros(3) pandaArms.ArmR.wTb(1:3,1:3)]* pandaArms.ArmR.bJe(:,1:7);
     pandaArms.ArmR.wJt  = pandaArms.ArmR.Stt * pandaArms.ArmR.wJe;
    
