@@ -6,7 +6,7 @@ close all
 
 % Simulation variables (integration and final time)
 deltat = 0.005;
-end_time = 100;
+end_time = 25;
 loop = 1;
 maxloops = ceil(end_time/deltat);
 
@@ -146,9 +146,7 @@ for t = 0:deltat:end_time
     % enable this to have the simulation approximately evolving like real
     % time. Remove to go as fast as possible
     SlowdownToRealtime(deltat);
-    if( mission.phase == 5)
-        break;
-    end
+
 end
 
 fclose(uVehicle);
