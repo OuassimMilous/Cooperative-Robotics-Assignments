@@ -35,29 +35,21 @@
 \newlabel{fig:1}{{9}{x}}
 \@writefile{lof}{\contentsline {figure}{\numberline {10}{\ignorespaces  Joint velocity for left arm}}{xi}{}\protected@file@percent }
 \newlabel{fig:1}{{10}{xi}}
-\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces  Endeffector velocity for right arm}}{xi}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {11}{\ignorespaces  End effector velocity for right arm}}{xi}{}\protected@file@percent }
 \newlabel{fig:1}{{11}{xi}}
-\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces  Endeffector velocity for left arm}}{xii}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {12}{\ignorespaces  End effector velocity for left arm}}{xii}{}\protected@file@percent }
 \newlabel{fig:1}{{12}{xii}}
 \@writefile{toc}{\contentsline {section}{\numberline {3}Exercise 3: Cooperative manipulation}{xiii}{}\protected@file@percent }
 \@writefile{toc}{\contentsline {subsection}{\numberline {3.1}Q1: Report the unified hierarchy of tasks used and their priorities in each action, and report clearly the actions used in the two phases of the cooperation algorithm.}{xiv}{}\protected@file@percent }
 \newlabel{tbl:actions_tables}{{3.1}{xiv}}
 \@writefile{lot}{\contentsline {table}{\numberline {3}{\ignorespaces A number in a given cell represents the priority of the control task (row) in the hierarchy of the control action (column). The type column indicates whether the objective is an equality (E) or inequality (I) one.}}{xiv}{}\protected@file@percent }
-\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Q2: Comment the behaviour of the robots, using relevant plots. In particular, make sure there are differences between the desired object velocity and the non-cooperative Cartesian velocities at least in one simulation. Show also how the cooperative velocities of the two end-effectors behave.}{xiv}{}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces  Activation Function for right arm}}{xv}{}\protected@file@percent }
-\newlabel{fig:1}{{13}{xv}}
-\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces  Activation Function for left arm}}{xv}{}\protected@file@percent }
-\newlabel{fig:1}{{14}{xv}}
-\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces  Joint velocity for right arm}}{xvi}{}\protected@file@percent }
-\newlabel{fig:1}{{15}{xvi}}
-\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces  Joint velocity for left arm}}{xvi}{}\protected@file@percent }
-\newlabel{fig:1}{{16}{xvi}}
-\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces  Endeffector velocity for right arm}}{xvii}{}\protected@file@percent }
-\newlabel{fig:1}{{17}{xvii}}
-\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces  End effector velocity for left arm}}{xvii}{}\protected@file@percent }
-\newlabel{fig:1}{{18}{xvii}}
-\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces  Desired object velocity and the cooperative Catrisian velocity right}}{xviii}{}\protected@file@percent }
-\newlabel{fig:1}{{19}{xviii}}
-\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces  Desired object velocity and the cooperative Catrisian velocity right}}{xviii}{}\protected@file@percent }
-\newlabel{fig:1}{{20}{xviii}}
-\gdef \@abspage@last{18}
+\@writefile{toc}{\contentsline {subsection}{\numberline {3.2}Q2: Comment on the behavior of the robots, using relevant plots. In particular, make sure there are differences between the desired object velocity and the non-cooperative Cartesian velocities at least in one simulation. Show also how the cooperative velocities of the two end-effectors behave.}{xiv}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {13}{\ignorespaces Activation Function for the right arm.\\ The figure above shows the activation function for the right arm. We notice a behavior similar to that observed in the second exercise. However, in this case, we are using a cooperative task instead of a move-to and constraint task. }}{xv}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {14}{\ignorespaces Activation Function for the left arm.\\ The figure above shows the activation function for the left arm. We observe the same trend as in the right arm, where the cooperation task ensures the movements are coordinated between both arms. }}{xvi}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {15}{\ignorespaces Joint velocity for the right arm.\\ The plot above illustrates the joint velocities of the right arm. In the beginning of each phase, we assign a new task reference, resulting in high error, which the robot minimizes exponentially over time. In the final phase, the robot halts movement. }}{xvi}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {16}{\ignorespaces Joint velocity for the left arm.\\ This plot shows the joint velocities for the left arm. Similar to the right arm, we observe a high error at the beginning of each phase, followed by exponential minimization of the error. In the last phase, the movement stops. }}{xvii}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {17}{\ignorespaces End effector velocity for the right arm.\\ This figure shows the non-cooperative end-effector velocity for the right arm. The plot compares the desired velocities and the actual velocities over time. }}{xvii}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {18}{\ignorespaces End effector velocity for the left arm. }}{xviii}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {19}{\ignorespaces Desired object velocity and the cooperative Cartesian velocity for the right arm.\\ In this figure, we compare the desired object velocity with the cooperative Cartesian velocity for the right arm. We observe that in the first phase, the results are quite similar. However, in the second phase, when cooperation is used, we notice a higher velocity on the y-axis, indicating how the cooperative task constrains the movement. }}{xviii}{}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {20}{\ignorespaces Desired object velocity and the cooperative Cartesian velocity for the left arm.\\ This figure shows the desired object velocity and the cooperative Cartesian velocity for the left arm. As with the right arm, we see a similar behavior in the second phase, where cooperation results in higher velocities, particularly on the y-axis, illustrating the constraint introduced by the cooperative task. }}{xix}{}\protected@file@percent }
+\gdef \@abspage@last{19}
