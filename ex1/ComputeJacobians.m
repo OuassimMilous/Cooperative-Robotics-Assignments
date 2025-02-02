@@ -49,6 +49,9 @@ uvms.Jv = [zeros(3,7), eye(3), zeros(3);
            zeros(3,7), zeros(3),         eye(3)];
 
 
+%  get closer
+uvms.Jcloser = [zeros(3,7), eye(3), zeros(3)];
+
 % horizental alignment
 uvms.v_rho_ha = ReducedVersorLemma(v_kw, v_kv);
 uvms.v_n_ha = uvms.v_rho_ha ./ norm(uvms.v_rho_ha); 

@@ -41,31 +41,31 @@ uvms.a = [];
 
 
 % horizental
-uvms.Ap.ha = 0;
 uvms.A.ha = 0;
 uvms.xdot.ha = 0;
 uvms.Jha = zeros(1,13);  
 
 % minimum altitude
-uvms.Ap.ma= 0;
 uvms.A.ma= 0;
 uvms.xdot.ma = 0;
 uvms.Jma = zeros(1,13);
 
 % vehicule control
-uvms.Ap.v = 0;
 uvms.A.v = zeros(6);
 uvms.xdot.v = zeros(6,1);
 uvms.Jv = zeros(6,13); 
 
+% get closer
+uvms.A.closer = zeros(3);
+uvms.xdot.closer = zeros(3,1);
+uvms.Jcloser = zeros(3,13); 
+
 % landing 
-uvms.Ap.landing= 0;
 uvms.A.landing= 0;
 uvms.xdot.landing = 0;
 uvms.Jlanding = zeros(1,13);
 
 % tool
-uvms.Ap.tool = 0;
 uvms.A.tool = zeros(6);
 uvms.xdot.tool = zeros(6,1);
 uvms.Jtool = zeros(6,13);

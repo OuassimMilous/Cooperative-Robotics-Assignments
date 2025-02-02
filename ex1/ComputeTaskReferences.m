@@ -32,16 +32,18 @@ elseif mission.phase ==2
 
     uvms.xdot.v = Saturate(uvms.xdot.v, 1);
 
-elseif mission.phase == 3
-    [ang_v,uvms.err.lin_closer] = CartError(uvms.wTg , uvms.wTt);
-    uvms.err.lin_closer = uvms.err.lin_closer(1:2);
-    uvms.xdot.v = [[uvms.err.lin_closer; 0 ];zeros(3,1)];
-    uvms.xdot.v = Saturate(uvms.xdot.v, 1);
 elseif mission.phase == 4
     uvms.xdot.v = zeros(6,1);
     uvms.xdot.v = Saturate(uvms.xdot.v, 1);
 else
 end
+
+
+% get closer
+[ang_v,uvms.err.lin_closer] = CartError(uvms.wTg , uvms.wTt);
+uvms.err.lin_closer = uvms.err.lin_closer(1:2);
+uvms.xdot.closer = [[uvms.err.lin_closer; 0 ]];
+uvms.xdot.closer = Saturate(uvms.xdot.closer, 1);
 
 % landing
 uvms.xdot.landing = 0.8* (0 - uvms.a);
