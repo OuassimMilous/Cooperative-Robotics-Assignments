@@ -45,8 +45,7 @@ uvms.Jt_v = [zeros(3) eye(3); eye(3) -skew(uvms.vTt(1:3,4))];
 uvms.Jtool = [uvms.Jt_a uvms.Jt_v];
 
 %  move
-uvms.Jv = [zeros(3,7), eye(3), zeros(3);
-           zeros(3,7), zeros(3),         eye(3)];
+uvms.Jv = [zeros(6,7), eye(6)];
 
 
 %  get closer

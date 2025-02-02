@@ -31,9 +31,9 @@ elseif mission.phase ==2
     uvms.xdot.v = [0;0;0; 0;0; 1 * uvms.err.rock];  % Compute velocity control for yaw gain is 1/uvms.wTv(3,3) because of the jacobian
 
     uvms.xdot.v = Saturate(uvms.xdot.v, 1);
-
+    % uvms.stopping = uvms.p_dot;
 elseif mission.phase == 4
-    uvms.xdot.v = zeros(6,1);
+    uvms.xdot.v = 1*(zeros(6,1) );
     uvms.xdot.v = Saturate(uvms.xdot.v, 1);
 else
 end

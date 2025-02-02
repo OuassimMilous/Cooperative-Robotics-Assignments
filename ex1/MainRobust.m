@@ -64,9 +64,7 @@ uvms.wTg = [uvms.wRg uvms.goalPosition; 0 0 0 1];
 
 %% Mission configuration
 
-mission.prev_action = "go_to";
-mission.current_action = "go_to";
-
+mission.action_name = "go_to";
 mission.phase = 1;
 mission.phase_time = 0;
 % Define the active tasks for each phase of the mission
@@ -78,7 +76,7 @@ mission.phase_time = 0;
 % T = Tool manipulation task
 % C = get closer to rock task
 mission.actions.go_to.tasks = ["HA","MA","V"];
-mission.actions.align.tasks = ["HA","MA","V"];
+mission.actions.align.tasks = ["HA", "MA","V"];
 mission.actions.land.tasks = ["HA","L","C"]; 
 mission.actions.manip.tasks = ["HA", "V","T"]; 
 
