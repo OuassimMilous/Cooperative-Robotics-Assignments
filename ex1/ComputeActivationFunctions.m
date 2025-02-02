@@ -20,6 +20,7 @@ function [uvms] = ComputeActivationFunctions(uvms, mission)
             prev = mission.actions.land.tasks;
             current = mission.actions.manip.tasks;
             mission.action_name = "manip";
+
    end 
     
 %HORIZONTAL ACTIVATION FUNCTION DEFINATION
