@@ -1,97 +1,97 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.1.26)  2 FEB 2025 01:02
+This is pdfTeX, Version 3.141592653-2.6-1.40.22 (TeX Live 2022/dev/Debian) (preloaded format=pdflatex 2025.2.1)  2 FEB 2025 16:15
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**"d:/Robotics Engineering-UniGe/2 anno/First semester/Cooperative Robotics/Project/Cooperative-Robotics-Assignments/report/cooperative.tex"
-(d:/Robotics Engineering-UniGe/2 anno/First semester/Cooperative Robotics/Project/Cooperative-Robotics-Assignments/report/cooperative.tex
-LaTeX2e <2023-11-01> patch level 1
-L3 programming layer <2024-01-04>
-(C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/base\article.cls
-Document Class: article 2023/05/17 v1.4n Standard LaTeX document class
-(C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/base\size10.clo
-File: size10.clo 2023/05/17 v1.4n Standard LaTeX file (size option)
+**"/home/girum/Robotics @ UniGe/Cooperative_robotics/Project/Cooperative-Robotics-Assignments/report/cooperative.tex"
+(/home/girum/Robotics @ UniGe/Cooperative_robotics/Project/Cooperative-Robotics-Assignments/report/cooperative.tex
+LaTeX2e <2021-11-15> patch level 1
+L3 programming layer <2022-01-21> (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
+Document Class: article 2021/10/04 v1.4n Standard LaTeX document class
+(/usr/share/texlive/texmf-dist/tex/latex/base/size10.clo
+File: size10.clo 2021/10/04 v1.4n Standard LaTeX file (size option)
 )
-\c@part=\count187
-\c@section=\count188
-\c@subsection=\count189
-\c@subsubsection=\count190
-\c@paragraph=\count191
-\c@subparagraph=\count192
-\c@figure=\count193
-\c@table=\count194
-\abovecaptionskip=\skip48
-\belowcaptionskip=\skip49
-\bibindent=\dimen140
-) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.sty
+\c@part=\count185
+\c@section=\count186
+\c@subsection=\count187
+\c@subsubsection=\count188
+\c@paragraph=\count189
+\c@subparagraph=\count190
+\c@figure=\count191
+\c@table=\count192
+\abovecaptionskip=\skip47
+\belowcaptionskip=\skip48
+\bibindent=\dimen138
+) (/usr/share/texlive/texmf-dist/tex/latex/geometry/geometry.sty
 Package: geometry 2020/01/02 v5.9 Page Geometry
- (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/graphics\keyval.sty
-Package: keyval 2022/05/29 v1.15 key=value parser (DPC)
-\KV@toks@=\toks17
-) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/generic/iftex\ifvtex.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/keyval.sty
+Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
+\KV@toks@=\toks16
+) (/usr/share/texlive/texmf-dist/tex/generic/iftex/ifvtex.sty
 Package: ifvtex 2019/10/25 v1.7 ifvtex legacy package. Use iftex instead.
- (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/generic/iftex\iftex.sty
-Package: iftex 2022/02/03 v1.0f TeX engine tests
+ (/usr/share/texlive/texmf-dist/tex/generic/iftex/iftex.sty
+Package: iftex 2020/03/06 v1.0d TeX engine tests
 ))
-\Gm@cnth=\count195
-\Gm@cntv=\count196
-\c@Gm@tempcnt=\count197
-\Gm@bindingoffset=\dimen141
-\Gm@wd@mp=\dimen142
-\Gm@odd@mp=\dimen143
-\Gm@even@mp=\dimen144
-\Gm@layoutwidth=\dimen145
-\Gm@layoutheight=\dimen146
-\Gm@layouthoffset=\dimen147
-\Gm@layoutvoffset=\dimen148
-\Gm@dimlist=\toks18
- (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/geometry\geometry.cfg)) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/base\makeidx.sty
+\Gm@cnth=\count193
+\Gm@cntv=\count194
+\c@Gm@tempcnt=\count195
+\Gm@bindingoffset=\dimen139
+\Gm@wd@mp=\dimen140
+\Gm@odd@mp=\dimen141
+\Gm@even@mp=\dimen142
+\Gm@layoutwidth=\dimen143
+\Gm@layoutheight=\dimen144
+\Gm@layouthoffset=\dimen145
+\Gm@layoutvoffset=\dimen146
+\Gm@dimlist=\toks17
+) (/usr/share/texlive/texmf-dist/tex/latex/base/makeidx.sty
 Package: makeidx 2021/10/04 v1.0m Standard LaTeX package
-) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphicx.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphicx.sty
 Package: graphicx 2021/09/16 v1.2d Enhanced LaTeX Graphics (DPC,SPQR)
- (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/graphics\graphics.sty
-Package: graphics 2022/03/10 v1.4e Standard LaTeX Graphics (DPC,SPQR)
- (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/graphics\trig.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/graphics.sty
+Package: graphics 2021/03/04 v1.4d Standard LaTeX Graphics (DPC,SPQR)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics/trig.sty
 Package: trig 2021/08/11 v1.11 sin cos tan (DPC)
-) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\graphics.cfg
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/graphics.cfg
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 107.
- (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/graphics-def\pdftex.def
-File: pdftex.def 2022/09/22 v1.2b Graphics/color driver for pdftex
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics-def/pdftex.def
+File: pdftex.def 2020/10/05 v1.2a Graphics/color driver for pdftex
 ))
-\Gin@req@height=\dimen149
-\Gin@req@width=\dimen150
-) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/graphics\color.sty
-Package: color 2022/01/06 v1.3d Standard LaTeX Color (DPC)
- (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/graphics-cfg\color.cfg
+\Gin@req@height=\dimen147
+\Gin@req@width=\dimen148
+) (/usr/share/texlive/texmf-dist/tex/latex/graphics/color.sty
+Package: color 2021/12/07 v1.3c Standard LaTeX Color (DPC)
+ (/usr/share/texlive/texmf-dist/tex/latex/graphics-cfg/color.cfg
 File: color.cfg 2016/01/02 v1.6 sample color configuration
 )
 Package color Info: Driver file: pdftex.def on input line 149.
- (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/graphics\mathcolor.ltx)) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/tools\multicol.sty
-Package: multicol 2023/03/30 v1.9f multicolumn formatting (FMi)
-\c@tracingmulticols=\count198
-\mult@box=\box51
-\multicol@leftmargin=\dimen151
-\c@unbalance=\count199
-\c@collectmore=\count266
-\doublecol@number=\count267
-\multicoltolerance=\count268
-\multicolpretolerance=\count269
-\full@width=\dimen152
-\page@free=\dimen153
-\premulticols=\dimen154
-\postmulticols=\dimen155
-\multicolsep=\skip50
-\multicolbaselineskip=\skip51
-\partial@page=\box52
-\last@line=\box53
-\mc@boxedresult=\box54
-\maxbalancingoverflow=\dimen156
-\mult@rightbox=\box55
-\mult@grightbox=\box56
-\mult@firstbox=\box57
-\mult@gfirstbox=\box58
+) (/usr/share/texlive/texmf-dist/tex/latex/tools/multicol.sty
+Package: multicol 2021/10/28 v1.9b multicolumn formatting (FMi)
+\c@tracingmulticols=\count196
+\mult@box=\box50
+\multicol@leftmargin=\dimen149
+\c@unbalance=\count197
+\c@collectmore=\count198
+\doublecol@number=\count199
+\multicoltolerance=\count266
+\multicolpretolerance=\count267
+\full@width=\dimen150
+\page@free=\dimen151
+\premulticols=\dimen152
+\postmulticols=\dimen153
+\multicolsep=\skip49
+\multicolbaselineskip=\skip50
+\partial@page=\box51
+\last@line=\box52
+\maxbalancingoverflow=\dimen154
+\mult@rightbox=\box53
+\mult@grightbox=\box54
+\mult@firstbox=\box55
+\mult@gfirstbox=\box56
+\@tempa=\box57
+\@tempa=\box58
 \@tempa=\box59
 \@tempa=\box60
 \@tempa=\box61
@@ -126,154 +126,142 @@ Package: multicol 2023/03/30 v1.9f multicolumn formatting (FMi)
 \@tempa=\box90
 \@tempa=\box91
 \@tempa=\box92
-\@tempa=\box93
-\@tempa=\box94
-\c@minrows=\count270
-\c@columnbadness=\count271
-\c@finalcolumnbadness=\count272
-\last@try=\dimen157
-\multicolovershoot=\dimen158
-\multicolundershoot=\dimen159
-\mult@nat@firstbox=\box95
-\colbreak@box=\box96
-\mc@col@check@num=\count273
-) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/footmisc\footmisc.sty
-Package: footmisc 2024/12/24 v6.0g a miscellany of footnote facilities
-\FN@temptoken=\toks19
-\footnotemargin=\dimen160
-\@outputbox@depth=\dimen161
-Package footmisc Info: Declaring symbol style bringhurst on input line 699.
-Package footmisc Info: Declaring symbol style chicago on input line 707.
-Package footmisc Info: Declaring symbol style wiley on input line 716.
-Package footmisc Info: Declaring symbol style lamport-robust on input line 727.
-Package footmisc Info: Declaring symbol style lamport* on input line 747.
-Package footmisc Info: Declaring symbol style lamport*-robust on input line 768.
-) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/booktabs\booktabs.sty
+\c@minrows=\count268
+\c@columnbadness=\count269
+\c@finalcolumnbadness=\count270
+\last@try=\dimen155
+\multicolovershoot=\dimen156
+\multicolundershoot=\dimen157
+\mult@nat@firstbox=\box93
+\colbreak@box=\box94
+\mc@col@check@num=\count271
+) (/usr/share/texlive/texmf-dist/tex/latex/footmisc/footmisc.sty
+Package: footmisc 2011/06/06 v5.5b a miscellany of footnote facilities
+\FN@temptoken=\toks18
+\footnotemargin=\dimen158
+\c@pp@next@reset=\count272
+Package footmisc Info: Declaring symbol style bringhurst on input line 855.
+Package footmisc Info: Declaring symbol style chicago on input line 863.
+Package footmisc Info: Declaring symbol style wiley on input line 872.
+Package footmisc Info: Declaring symbol style lamport-robust on input line 883.
+Package footmisc Info: Declaring symbol style lamport* on input line 903.
+Package footmisc Info: Declaring symbol style lamport*-robust on input line 924.
+) (/usr/share/texlive/texmf-dist/tex/latex/booktabs/booktabs.sty
 Package: booktabs 2020/01/12 v1.61803398 Publication quality tables
-\heavyrulewidth=\dimen162
-\lightrulewidth=\dimen163
-\cmidrulewidth=\dimen164
-\belowrulesep=\dimen165
-\belowbottomsep=\dimen166
-\aboverulesep=\dimen167
-\abovetopsep=\dimen168
-\cmidrulesep=\dimen169
-\cmidrulekern=\dimen170
-\defaultaddspace=\dimen171
-\@cmidla=\count274
-\@cmidlb=\count275
-\@aboverulesep=\dimen172
-\@belowrulesep=\dimen173
-\@thisruleclass=\count276
-\@lastruleclass=\count277
-\@thisrulewidth=\dimen174
-) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/arydshln\arydshln.sty
+\heavyrulewidth=\dimen159
+\lightrulewidth=\dimen160
+\cmidrulewidth=\dimen161
+\belowrulesep=\dimen162
+\belowbottomsep=\dimen163
+\aboverulesep=\dimen164
+\abovetopsep=\dimen165
+\cmidrulesep=\dimen166
+\cmidrulekern=\dimen167
+\defaultaddspace=\dimen168
+\@cmidla=\count273
+\@cmidlb=\count274
+\@aboverulesep=\dimen169
+\@belowrulesep=\dimen170
+\@thisruleclass=\count275
+\@lastruleclass=\count276
+\@thisrulewidth=\dimen171
+) (/usr/share/texlive/texmf-dist/tex/latex/arydshln/arydshln.sty
 Package: arydshln 2019/02/21 v1.76 
-\dashlinedash=\dimen175
-\dashlinegap=\dimen176
-\adl@box=\box97
-\adl@height=\dimen177
-\adl@heightsave=\dimen178
-\adl@depth=\dimen179
-\adl@depthsave=\dimen180
-\adl@finaldepth=\dimen181
-\adl@columns=\count278
-\adl@ncol=\count279
-\adl@currentcolumn=\count280
-\adl@currentcolumnsave=\count281
-\adl@totalheight=\count282
-\adl@totalheightsave=\count283
-\adl@dash=\count284
-\adl@gap=\count285
-\adl@cla=\count286
-\adl@clb=\count287
-\adl@everyvbox=\toks20
-\adl@LTpagetotal=\dimen182
-) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amssymb.sty
+\dashlinedash=\dimen172
+\dashlinegap=\dimen173
+\adl@box=\box95
+\adl@height=\dimen174
+\adl@heightsave=\dimen175
+\adl@depth=\dimen176
+\adl@depthsave=\dimen177
+\adl@finaldepth=\dimen178
+\adl@columns=\count277
+\adl@ncol=\count278
+\adl@currentcolumn=\count279
+\adl@currentcolumnsave=\count280
+\adl@totalheight=\count281
+\adl@totalheightsave=\count282
+\adl@dash=\count283
+\adl@gap=\count284
+\adl@cla=\count285
+\adl@clb=\count286
+\adl@everyvbox=\toks19
+\adl@LTpagetotal=\dimen179
+) (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amssymb.sty
 Package: amssymb 2013/01/14 v3.01 AMS font symbols
- (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\amsfonts.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/amsfonts.sty
 Package: amsfonts 2013/01/14 v3.01 Basic AMSFonts support
-\@emptytoks=\toks21
+\@emptytoks=\toks20
 \symAMSa=\mathgroup4
 \symAMSb=\mathgroup5
 LaTeX Font Info:    Redeclaring math symbol \hbar on input line 98.
 LaTeX Font Info:    Overwriting math alphabet `\mathfrak' in version `bold'
 (Font)                  U/euf/m/n --> U/euf/b/n on input line 106.
-)) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsmath.sty
-Package: amsmath 2023/05/13 v2.17o AMS math features
-\@mathmargin=\skip52
+)) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
+Package: amsmath 2021/10/15 v2.17l AMS math features
+\@mathmargin=\skip51
 
 For additional information on amsmath, use the `?' option.
-(C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amstext.sty
+(/usr/share/texlive/texmf-dist/tex/latex/amsmath/amstext.sty
 Package: amstext 2021/08/26 v2.01 AMS text
- (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsgen.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsgen.sty
 File: amsgen.sty 1999/11/30 v2.0 generic functions
-\@emptytoks=\toks22
-\ex@=\dimen183
-)) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsbsy.sty
+\@emptytoks=\toks21
+\ex@=\dimen180
+)) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsbsy.sty
 Package: amsbsy 1999/11/29 v1.2d Bold Symbols
-\pmbraise@=\dimen184
-) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/amsmath\amsopn.sty
-Package: amsopn 2022/04/08 v2.04 operator names
+\pmbraise@=\dimen181
+) (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsopn.sty
+Package: amsopn 2021/08/26 v2.02 operator names
 )
-\inf@bad=\count288
+\inf@bad=\count287
 LaTeX Info: Redefining \frac on input line 234.
-\uproot@=\count289
-\leftroot@=\count290
+\uproot@=\count288
+\leftroot@=\count289
 LaTeX Info: Redefining \overline on input line 399.
-LaTeX Info: Redefining \colon on input line 410.
-\classnum@=\count291
-\DOTSCASE@=\count292
+\classnum@=\count290
+\DOTSCASE@=\count291
 LaTeX Info: Redefining \ldots on input line 496.
 LaTeX Info: Redefining \dots on input line 499.
 LaTeX Info: Redefining \cdots on input line 620.
-\Mathstrutbox@=\box98
-\strutbox@=\box99
-LaTeX Info: Redefining \big on input line 722.
-LaTeX Info: Redefining \Big on input line 723.
-LaTeX Info: Redefining \bigg on input line 724.
-LaTeX Info: Redefining \Bigg on input line 725.
-\big@size=\dimen185
+\Mathstrutbox@=\box96
+\strutbox@=\box97
+\big@size=\dimen182
 LaTeX Font Info:    Redeclaring font encoding OML on input line 743.
 LaTeX Font Info:    Redeclaring font encoding OMS on input line 744.
-\macc@depth=\count293
-LaTeX Info: Redefining \bmod on input line 905.
-LaTeX Info: Redefining \pmod on input line 910.
-LaTeX Info: Redefining \smash on input line 940.
-LaTeX Info: Redefining \relbar on input line 970.
-LaTeX Info: Redefining \Relbar on input line 971.
-\c@MaxMatrixCols=\count294
+\macc@depth=\count292
+\c@MaxMatrixCols=\count293
 \dotsspace@=\muskip16
-\c@parentequation=\count295
-\dspbrk@lvl=\count296
-\tag@help=\toks23
-\row@=\count297
-\column@=\count298
-\maxfields@=\count299
-\andhelp@=\toks24
-\eqnshift@=\dimen186
-\alignsep@=\dimen187
-\tagshift@=\dimen188
-\tagwidth@=\dimen189
-\totwidth@=\dimen190
-\lineht@=\dimen191
-\@envbody=\toks25
-\multlinegap=\skip53
-\multlinetaggap=\skip54
-\mathdisplay@stack=\toks26
-LaTeX Info: Redefining \[ on input line 2953.
-LaTeX Info: Redefining \] on input line 2954.
-) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\pifont.sty
+\c@parentequation=\count294
+\dspbrk@lvl=\count295
+\tag@help=\toks22
+\row@=\count296
+\column@=\count297
+\maxfields@=\count298
+\andhelp@=\toks23
+\eqnshift@=\dimen183
+\alignsep@=\dimen184
+\tagshift@=\dimen185
+\tagwidth@=\dimen186
+\totwidth@=\dimen187
+\lineht@=\dimen188
+\@envbody=\toks24
+\multlinegap=\skip52
+\multlinetaggap=\skip53
+\mathdisplay@stack=\toks25
+LaTeX Info: Redefining \[ on input line 2938.
+LaTeX Info: Redefining \] on input line 2939.
+) (/usr/share/texlive/texmf-dist/tex/latex/psnfss/pifont.sty
 Package: pifont 2020/03/25 PSNFSS-v9.3 Pi font support (SPQR) 
 LaTeX Font Info:    Trying to load font information for U+pzd on input line 63.
- (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\upzd.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/upzd.fd
 File: upzd.fd 2001/06/04 font definitions for U/pzd.
 )
 LaTeX Font Info:    Trying to load font information for U+psy on input line 64.
- (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/psnfss\upsy.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/psnfss/upsy.fd
 File: upsy.fd 2001/06/04 font definitions for U/psy.
-)) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/tools\bm.sty
-Package: bm 2023/07/08 v1.2f Bold Symbol Support (DPC/FMi)
+)) (/usr/share/texlive/texmf-dist/tex/latex/tools/bm.sty
+Package: bm 2021/04/25 v1.2e Bold Symbol Support (DPC/FMi)
 \symboldoperators=\mathgroup6
 \symboldletters=\mathgroup7
 \symboldsymbols=\mathgroup8
@@ -281,73 +269,75 @@ Package bm Info: No bold for \OMX/cmex/m/n, using \pmb.
 Package bm Info: No bold for \U/msa/m/n, using \pmb.
 Package bm Info: No bold for \U/msb/m/n, using \pmb.
 LaTeX Font Info:    Redeclaring math alphabet \mathbf on input line 149.
-) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/cancel\cancel.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/cancel/cancel.sty
 Package: cancel 2013/04/12 v2.2 Cancel math terms
-) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/multirow\multirow.sty
-Package: multirow 2024/11/12 v2.9 Span multiple rows of a table
-\multirow@colwidth=\skip55
-\multirow@cntb=\count300
-\multirow@dima=\skip56
-\bigstrutjot=\dimen192
-) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/multirow/multirow.sty
+Package: multirow 2021/03/15 v2.8 Span multiple rows of a table
+\multirow@colwidth=\skip54
+\multirow@cntb=\count299
+\multirow@dima=\skip55
+\bigstrutjot=\dimen189
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf.sty
 Package: epstopdf 2020-01-24 v2.11 Conversion with epstopdf on the fly (HO)
- (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/generic/infwarerr\infwarerr.sty
+ (/usr/share/texlive/texmf-dist/tex/generic/infwarerr/infwarerr.sty
 Package: infwarerr 2019/12/03 v1.5 Providing info/warning/error messages (HO)
-) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/grfext\grfext.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/grfext/grfext.sty
 Package: grfext 2019/12/03 v1.3 Manage graphics extensions (HO)
- (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/generic/kvdefinekeys\kvdefinekeys.sty
+ (/usr/share/texlive/texmf-dist/tex/generic/kvdefinekeys/kvdefinekeys.sty
 Package: kvdefinekeys 2019-12-19 v1.6 Define keys (HO)
-)) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/kvoptions\kvoptions.sty
-Package: kvoptions 2022-06-15 v3.15 Key value format for package options (HO)
- (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/generic/ltxcmds\ltxcmds.sty
-Package: ltxcmds 2023-12-04 v1.26 LaTeX kernel commands for general use (HO)
-) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/kvsetkeys\kvsetkeys.sty
-Package: kvsetkeys 2022-10-05 v1.19 Key value parser (HO)
-)) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/generic/pdftexcmds\pdftexcmds.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/kvoptions/kvoptions.sty
+Package: kvoptions 2020-10-07 v3.14 Key value format for package options (HO)
+ (/usr/share/texlive/texmf-dist/tex/generic/ltxcmds/ltxcmds.sty
+Package: ltxcmds 2020-05-10 v1.25 LaTeX kernel commands for general use (HO)
+) (/usr/share/texlive/texmf-dist/tex/generic/kvsetkeys/kvsetkeys.sty
+Package: kvsetkeys 2019/12/15 v1.18 Key value parser (HO)
+)) (/usr/share/texlive/texmf-dist/tex/generic/pdftexcmds/pdftexcmds.sty
 Package: pdftexcmds 2020-06-27 v0.33 Utility functions of pdfTeX for LuaTeX (HO)
 Package pdftexcmds Info: \pdf@primitive is available.
 Package pdftexcmds Info: \pdf@ifprimitive is available.
 Package pdftexcmds Info: \pdfdraftmode found.
-) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/epstopdf-pkg\epstopdf-base.sty
+) (/usr/share/texlive/texmf-dist/tex/latex/epstopdf-pkg/epstopdf-base.sty
 Package: epstopdf-base 2020-01-24 v2.11 Base part for package epstopdf
 Package epstopdf-base Info: Redefining graphics rule for `.eps' on input line 485.
 Package grfext Info: Graphics extension search list:
 (grfext)             [.pdf,.png,.jpg,.mps,.jpeg,.jbig2,.jb2,.PDF,.PNG,.JPG,.JPEG,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 504.
- (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/00miktex\epstopdf-sys.cfg
-File: epstopdf-sys.cfg 2021/03/18 v2.0 Configuration of epstopdf for MiKTeX
-))) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/subfig\subfig.sty
+ (/usr/share/texlive/texmf-dist/tex/latex/latexconfig/epstopdf-sys.cfg
+File: epstopdf-sys.cfg 2010/07/13 v1.3 Configuration of (r)epstopdf for TeX Live
+))) (/usr/share/texlive/texmf-dist/tex/latex/subfig/subfig.sty
 Package: subfig 2005/06/28 ver: 1.3 subfig package
- (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/caption\caption3.sty
-Package: caption3 2023/07/31 v2.4d caption3 kernel (AR)
+ (/usr/share/texlive/texmf-dist/tex/latex/caption/caption3.sty
+Package: caption3 2020/10/21 v2.2e caption3 kernel (AR)
+\captionmargin=\dimen190
+\captionmargin@=\dimen191
+\captionwidth=\dimen192
 \caption@tempdima=\dimen193
-\captionmargin=\dimen194
-\caption@leftmargin=\dimen195
-\caption@rightmargin=\dimen196
-\caption@width=\dimen197
-\caption@indent=\dimen198
-\caption@parindent=\dimen199
-\caption@hangindent=\dimen256
+\caption@indent=\dimen194
+\caption@parindent=\dimen195
+\caption@hangindent=\dimen196
 Package caption Info: Standard document class detected.
 )
-\c@KVtest=\count301
-\sf@farskip=\skip57
-\sf@captopadj=\dimen257
-\sf@capskip=\skip58
-\sf@nearskip=\skip59
-\c@subfigure=\count302
-\c@subfigure@save=\count303
-\c@lofdepth=\count304
-\c@subtable=\count305
-\c@subtable@save=\count306
-\c@lotdepth=\count307
-\sf@top=\skip60
-\sf@bottom=\skip61
-) (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/l3backend\l3backend-pdftex.def
-File: l3backend-pdftex.def 2024-01-04 L3 backend support: PDF output (pdfTeX)
-\l__color_backend_stack_int=\count308
-\l__pdf_internal_box=\box100
-) (cooperative.aux
+\c@KVtest=\count300
+\sf@farskip=\skip56
+\sf@captopadj=\dimen197
+\sf@capskip=\skip57
+\sf@nearskip=\skip58
+\c@subfigure=\count301
+\c@subfigure@save=\count302
+\c@lofdepth=\count303
+\c@subtable=\count304
+\c@subtable@save=\count305
+\c@lotdepth=\count306
+\sf@top=\skip59
+\sf@bottom=\skip60
+) (/usr/share/texlive/texmf-dist/tex/latex/l3backend/l3backend-pdftex.def
+File: l3backend-pdftex.def 2022-01-12 L3 backend support: PDF output (pdfTeX)
+\l__color_backend_stack_int=\count307
+\l__pdf_internal_box=\box98
+) (./cooperative.aux
+
+LaTeX Warning: Label `tbl:actions_tables' multiply defined.
+
 
 LaTeX Warning: Label `tbl:actions_tables' multiply defined.
 
@@ -403,19 +393,19 @@ LaTeX Font Info:    ... okay on input line 48.
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-(C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/context/base/mkii\supp-pdf.mkii
+(/usr/share/texlive/texmf-dist/tex/context/base/mkii/supp-pdf.mkii
 [Loading MPS to PDF converter (version 2006.09.02).]
-\scratchcounter=\count309
-\scratchdimen=\dimen258
-\scratchbox=\box101
-\nofMPsegments=\count310
-\nofMParguments=\count311
-\everyMPshowfont=\toks27
-\MPscratchCnt=\count312
-\MPscratchDim=\dimen259
-\MPnumerator=\count313
-\makeMPintoPDFobject=\count314
-\everyMPtoPDFconversion=\toks28
+\scratchcounter=\count308
+\scratchdimen=\dimen198
+\scratchbox=\box99
+\nofMPsegments=\count309
+\nofMParguments=\count310
+\everyMPshowfont=\toks26
+\MPscratchCnt=\count311
+\MPscratchDim=\dimen199
+\MPnumerator=\count312
+\makeMPintoPDFobject=\count313
+\everyMPtoPDFconversion=\toks27
 )
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: subfig package v1.3 is loaded.
@@ -424,83 +414,71 @@ Package caption Info: End \AtBeginDocument code.
 
 
 
-{C:/Users/molla/AppData/Local/MiKTeX/fonts/map/pdftex/pdftex.map}]
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
 LaTeX Font Info:    Trying to load font information for U+msa on input line 74.
- (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsa.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
 LaTeX Font Info:    Trying to load font information for U+msb on input line 74.
- (C:\Users\molla\AppData\Local\Programs\MiKTeX\tex/latex/amsfonts\umsb.fd
+ (/usr/share/texlive/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
-)
-Underfull \hbox (badness 10000) in paragraph at lines 97--134
-
- []
-
-[2
+) [2
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 148--151
+Underfull \hbox (badness 10000) in paragraph at lines 159--162
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 151--154
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 154--157
-
- []
-
-[3]
-<dh-diagram.png, id=24, 880.28876pt x 841.1425pt>
+[3] [4]
+<dh-diagram.png, id=30, 880.28876pt x 841.1425pt>
 File: dh-diagram.png Graphic file (type png)
 <use dh-diagram.png>
-Package pdftex.def Info: dh-diagram.png  used on input line 183.
+Package pdftex.def Info: dh-diagram.png  used on input line 201.
 (pdftex.def)             Requested size: 443.57848pt x 423.8431pt.
-<initial_position.png, id=26, 877.47826pt x 429.40425pt>
+<initial_position.png, id=32, 877.47826pt x 429.40425pt>
 File: initial_position.png Graphic file (type png)
 <use initial_position.png>
-Package pdftex.def Info: initial_position.png  used on input line 188.
+Package pdftex.def Info: initial_position.png  used on input line 206.
 (pdftex.def)             Requested size: 266.14978pt x 130.24408pt.
-<grasping_position.png, id=27, 1440.38126pt x 810.02625pt>
+<grasping_position.png, id=33, 1440.38126pt x 810.02625pt>
 File: grasping_position.png Graphic file (type png)
 <use grasping_position.png>
-Package pdftex.def Info: grasping_position.png  used on input line 198.
+Package pdftex.def Info: grasping_position.png  used on input line 216.
 (pdftex.def)             Requested size: 266.14978pt x 149.6671pt.
- [4
+ [5
 
- <./dh-diagram.png>] [5 <./initial_position.png> <./grasping_position.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 250--251
+ <./dh-diagram.png>] [6 <./initial_position.png> <./grasping_position.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 320--321
 
  []
 
-[6] [7
+[7]
+Underfull \hbox (badness 10000) in paragraph at lines 323--327
 
-] (cooperative.aux)
- ***********
-LaTeX2e <2023-11-01> patch level 1
-L3 programming layer <2024-01-04>
- ***********
+ []
 
+[8] [9
+
+] [10
+
+] (./cooperative.aux)
 
 LaTeX Warning: There were multiply-defined labels.
 
  ) 
 Here is how much of TeX's memory you used:
- 5613 strings out of 474486
- 94003 string characters out of 5743755
- 1942542 words of memory out of 5000000
- 27780 multiletter control sequences out of 15000+600000
- 570320 words of font info for 80 fonts, out of 8000000 for 9000
- 1141 hyphenation exceptions out of 8191
- 57i,12n,65p,812b,316s stack positions out of 10000i,1000n,20000p,200000b,200000s
-<C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmcsc10.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmex10.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi10.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmmi7.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr6.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr7.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmr8.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy7.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmsy8.pfb><C:/Users/molla/AppData/Local/Programs/MiKTeX/fonts/type1/public/amsfonts/cm/cmti10.pfb>
-Output written on cooperative.pdf (7 pages, 705179 bytes).
+ 5565 strings out of 480247
+ 92726 string characters out of 5896152
+ 390133 words of memory out of 5000000
+ 23390 multiletter control sequences out of 15000+600000
+ 483244 words of font info for 77 fonts, out of 8000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 55i,11n,63p,775b,309s stack positions out of 5000i,500n,10000p,200000b,80000s
+ </home/girum/.texlive2021/texmf-var/fonts/pk/ljfour/jknappen/ec/tcrm1000.600pk></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmcsc10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi5.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr6.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmr8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></usr/share/texlive/texmf-dist/fonts/type1/public/amsfonts/cm/cmti10.pfb>
+Output written on cooperative.pdf (10 pages, 720477 bytes).
 PDF statistics:
- 103 PDF objects out of 1000 (max. 8388607)
+ 124 PDF objects out of 1000 (max. 8388607)
+ 74 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

@@ -60,8 +60,8 @@
 
 \normalsize
 Authors:  \hspace{7cm} Email: \\  
-Dikshant Thakur \hspace{6.8cm} s5938924@studenti.unige.it\\
-Ouassim Milous \hspace{7cm}  s5943225@studenti.unige.it\\
+Dikshant Thakur \hspace{6.8cm} s5943225@studenti.unige.it\\     
+Ouassim Milous \hspace{7cm}  s5938924@studenti.unige.it\\
 Girum Molla Desalegn \hspace{6cm} s6020433@studenti.unige.it\\
 \vskip 13cm
 Date: 02/02/2025 \\
@@ -86,51 +86,60 @@ Once landed, implement a ``fixed-based manipulation action'' to reach the target
 \subsection{Q1: Report the unified hierarchy of tasks used and their priorities in each action.}
 
 \noindent
+\textbf{Actions list}:
+\begin{itemize}
+	\item $\mathcal{A}_{1}$ - Safe Waypoint Navigation Action 
+	\item $\mathcal{A}_{2}$ - Nodule Alignment Action 
+	\item $\mathcal{A}_{3}$ - Safe Landing Action 
+	\item $\mathcal{A}_{4}$ - Fixed Base Manipulatin Action
+\end{itemize}
 
-$\mathcal{A}_{1}$ - Safe Waypoint Navigation Action. 
-
-
-$\mathcal{A}_{2}$ - Nodule Alignment Action
-
-$\mathcal{A}_{3}$ - Safe Landing Action
-
-$\mathcal{A}_{4}$ - Fixed Base Manipulatin Action
 \begin{table}[htb]
 	\label{tbl:actions_tables}
 	\begin{center}
 		\footnotesize
-		\begin{tabular}{cccccc}
+		\begin{tabular}{lcccccc}
 			\toprule		
 			Task & Type & $\mathcal{A}_{1}$ & $\mathcal{A}_{2}$  & $\mathcal{A}_{3}$  & $\mathcal{A}_{4}$ \\
 			\midrule
-			Minimum Altitude                    & I & 1 & 1 & 1 & 1  \\
+			
+			Horizontal Alignment                & [I, S, P] & 2 &  & &  \\
 			\hdashline
-			Horizontal Alignment                & I & 2 &  & &  \\
+			Minimum Altitude                    & [I, S, P] & 1 & 1 & 1 & 1  \\
+			\hdashline 
+			Vehicle control 						& [E, AD] & & & & 4 \\ 
+			\hdashline 
+			Approach Nodule  						& [E, AD] & & & & 5 \\ 
+			%\hdashline
+			%Nodue Alignment                       & E &   &  & 2 & 2   \\
 			\hdashline
-			Nodue Alignment                       & E &   &  & 2 & 2   \\
-			\hdashline
-			Landing 						& E & & 2 & & 3 \\
+			Landing 						& [E, AD] & & 2 & & 3 \\
+			
 			\hdashline 
-			Vehicle Stop 						& E & & & & 4 \\ 
-			\hdashline 
-			Tool Manipulatin					& E & 3 & & & \\
-			\hdashline 
-			Position Control 						& E & & & & 5 \\ 
+			Tool 					& [E, AD,] & 3 & & & \\
+			%\hdashline 
+			%Position Control 						& E & & & & 5 \\ 
 			
 			\bottomrule
 		\end{tabular}
 	\end{center}
-\caption{Example of actions/hierarchy table: A number in a given cell represents the priority of the control task (row) in the hierarchy of the control action (column). The type column indicates whether the objective is an equality (E) or inequality (I) one.}
+\caption{The numbers in the table represent the priority of each action, with the first task having the highest priority and the last task having the lowest. For example, in Action 2, only the Minimum Altitude and Landing task are activated, so they have priority numbers. A number next to an action indicates that the task is activated for that particular action.The higher the number, the lower the priority for that action. The "type" column indicates whether the objective is an equality (E) or inequality (I).}
 \end{table}
-\\
-Task Defintions\\
-Minimum Altitude - This task maintains the altitude between vehicle and sea floor.\\ 
-Horizontal Alignment - This task responsible to maintain the horizontal position with respect to sea floor. \\
-Rock Alignment - This task is responsible to align the vehicle head with x axis of nodule. \\
-Landing - This task is responsible to land the uvms system  on the sea floor. \\
-Vehicle Stop - To make sure that vehicle will not move during the manipulation task. \\
-Tool Manipulatin - This task move the manipulator arm to the goal position.\\
-Position Control - It controls the vehicle to achieve its desired location.\\
+
+\noindent
+\textbf{Tasks' Defintion}
+\begin{itemize}
+	\item \textbf{Minimum Altitude}—This task maintains the altitude between the vehicle and the sea floor.
+	\item \textbf{Horizontal Alignment}—This task is responsible for maintaining the horizontal position with respect to the sea floor. 
+	\item \textbf{Rock Alignment} - This task is responsible for aligning the vehicle head with the axis of the nodule. 
+	\item \textbf{Landing} - This task is responsible for landing the UVMS system on the sea floor. 
+	\item \textbf{Vehicle Stop} - To make sure that the vehicle will not move during the manipulation task. 
+	\item \textbf{Tool Manipulation} - This task moves the manipulator arm to the goal position.
+	\item \textbf{Position Control} - It controls the vehicle to achieve its desired location.
+\end{itemize}
+
+
+
 
 \subsection{Q2: Comment the behaviour of the robots, supported by relevant plots.}
 On the basis of the actions , which are mentioned above, we define our phases and here are our observation. 
@@ -145,21 +154,23 @@ Comment 4 - Once the vehicle lands the manipulator arm will reach to the noduel,
 \\PHOTO and PLOT
 
 \subsection{Q3: What is the Jacobian relationship for the Alignment to Target control task? How was the task reference computed?}
-To align the vehicle with the nodule, we calculated the angle difference between vehicle and nodule.
-Here is the calculation step:
-First we calculated the the distance between the current posiition and the nodule with respect to world frame.\\
-$${}^{w}v_t = {}^{w}v_{goal} - {}^{w}v_{current} $$  %We should add the right mathematical formula
+To align the vehicle with the nodule, we calculated the yaw angle difference between the vehicle and the nodule. The calculation steps are as follows:
+\\ First, we calculated the distance between the current position and the nodule with respect to the world frame.
+$${}^{w}v_{target} = {}^{w}v_{goal} - {}^{w}v_{current} $$  %We should add the right mathematical formula
 \noindent
-With that distance vector, we find the angle between the current position of the vehicle and the target position of the vehicle with respect to world frame.\\
-$${}^{w}v_t = {}^{w}v_{goal} - {}^{w}v_{current} $$ %Write in mathematical form. 
-Once we have the angle difference then we constraint the yaw angular vehicle velocity in like this:\\
+With this target vector, we find the yaw angle between the current position of the vehicle and the position of the nodule with respect to the world frame. \\
+$$\psi_{target} = tan^{-1}\left[\frac{{}^{w}v_{target}(y_{component})}{{}^{w}v_{target}(x_{component})}\right]$$ %Write in mathematical form. 
+
+Once we have the $\psi_{target}$, we then constrain the yaw angular velocity of the vehicle as follows:
 %Formula
-$$\dot{x}_{yaw}=\psi_{taget}-\psi_{current}$$
-The Jacobian we are using is the same we used in the vehicle posiition control task. Because we constrained our velocities only for yaw angular vehicle axis, so only solution we will get is for the yaw angular vehicle velocity. 
+$$\dot{x}_{yaw}=\psi_{target}-\psi_{current}$$
+$$\dot{x} = \begin{bmatrix}
+		\mathbf{0}_{5 \times 1} \\ \dot{x}_{yaw}
+		\end{bmatrix} $$
+The Jacobian we are using is the same one we used in the vehicle position control task. Since we constrained our velocities only for the yaw angular velocity of the vehicle, the only solution we will get is for the yaw angular vehicle velocity. 
  %Jacobian formula
 $${}^{w}J_v = \begin{bmatrix}
-		\mathbf{0}_{3 \times 7} & \mathbf{I}_{3 \times 3} & \mathbf{0}_{3 \times 3} \\
-		\mathbf{0}_{3 \times 7} & \mathbf{0}_{3 \times 3} & \mathbf{I}_{3 \times 3}
+		\mathbf{0}_{6 \times 7} & \mathbf{I}_{6 \times 6} \\
 		\end{bmatrix} $$
 \subsection{Q4: Try changing the gain of the alignment task. Try three different values: 0.001, 0.1, 1.0. What is the observed behaviour? Implement a solution that is gain-independent guaranteeing that the landing is accomplished aligned to the target.}
 We observed that with gain 1.0, the time taken by vehicle to reduce the angular error between its body and nodule around z-axis with respect to world frame is faster than if we assign the gain 0.1 and 0.001. To be precise the time take in the first case, when gain is 1, is 10.5 seconds. In the second and third case, which are 0.1 and 0.001 respectively, it takes 52 seconds and in the latter case it moves infinitinemaly slow. 
@@ -167,12 +178,19 @@ We observed that with gain 1.0, the time taken by vehicle to reduce the angular 
 
 \subsection{Q5: After the landing is accomplished, what happens if you try to move the end-effector? Is the distance to the nodule sufficient to reach it with the end-effector? Comment the observed behaviour.}
 After landing task, the manipulator easily achieved its task without vehicle moving. 
-
+lol my name is 
 \subsection{Q6: Implement a solution that guarantees that, once landed, the nodule is certainly within the manipulator's workspace.}
-To make sure that nodule is always in the work space of the manipulator arm. We need to control the vehicle in such a way it always come closer to the nodule.
-For that first we need to calculate the x and y component of linear error, because we always activate this task after we have done the horizontal alignment, between the rock and tool. \\
-%FORMULA
-After getting the x and y component of linear error, we constrain our vehicle linear x and linear y velocities in such a manner:
+To ensure that the nodule is always within the workspace of the manipulator arm, we need to control the vehicle in such a way that it always moves closer to the nodule. To do this, we need to control the linear x and linear y velocities so that the arm is always in the projection of the nodule. Here are the steps we followed:
+First we need to find the linear distance between the current position of vehicle and the nodule.   
+    $$e_{linear}  = {}^{w}T_{g} - {}^{w}T_{t}$$
+where $e_{linear}$ is the linear error, which is 3x1 matrix, $<w>$ is world frame, and $g$ and $t$ represent the goal and the tool of the arm, respectively.
+
+$$\dot{x} = \begin{bmatrix}
+		e_{linear_x} \\
+            e_{linear_y} \\
+            0
+		\end{bmatrix} $$
+
 %FORMULA
 
 \clearpage
@@ -247,21 +265,20 @@ Repeat the simulation, using a goal position or by changing the grasping in such
 \subsection{Q1: Report the unified hierarchy of tasks used and their priorities in each action.}
 
 
-Actions :\\ 
+\textbf{Actions list:}
 
-$\mathcal{A}_{1}$ - Move-to.
-
-
-$\mathcal{A}_{2}$ - Co-operative move-to
-
-$\mathcal{A}_{3}$ - Halt manipulator
+\begin{itemize}
+	\item $\mathcal{A}_{1}$ - Move-to.
+	\item $\mathcal{A}_{2}$ - Co-operative move-to
+	\item $\mathcal{A}_{3}$ - Halt manipulator
+\end{itemize}
 
 
 \begin{table}[htb]
 	\label{tbl:actions_tables}
 	\begin{center}
 		\footnotesize
-		\begin{tabular}{cccccc}
+		\begin{tabular}{lcccc}
 			\toprule		
 			Task & Type & $\mathcal{A}_{1}$ & $\mathcal{A}_{2}$  & $\mathcal{A}_{3}$  \\
 			\midrule
@@ -274,27 +291,47 @@ $\mathcal{A}_{3}$ - Halt manipulator
 			Move-To						& E & 3 & 4& \\ 
 			%\hdashline 
 			%\hdashline 
-			%Position Control 						& E & & & & 4 \\ 
+			%Position Control 						& E & & & & 4 \\
 			
 			\bottomrule
 		\end{tabular}
 	\end{center}
-\caption{Example of actions/hierarchy table: A number in a given cell represents the priority of the control task (row) in the hierarchy of the control action (column). The type column indicates whether the objective is an equality (E) or inequality (I) one.}
+\caption{A number in a given cell represents the priority of the control task (row) in the hierarchy of the control action (column). The type column indicates whether the objective is an equality (E) or inequality (I) one.}
 \end{table}
 \noindent
-Task Defintions\\
-Joint limits - This is safety task to constraint the each joints of the manipulator , which is responsible to maintain the joint angle in its range.\\
-Minimum Altitude -  
-This is the safety task where the tool of the manipulator keeps the minimum distance from the ground. \\
-Bimanual rigid grasping constrain - In this task we constraint our robot to act together. \\
-Move to - this task the manipulator move to the desired position 
-
+\textbf{Tasks' Definition}
+\begin{itemize}
+	\item \textbf{Joint limits:} This is safety task to constraint the each joints of the manipulator , which is responsible to maintain the joint angle in its range.
+	\item \textbf{Minimum Altitude:} This is the safety task where the tool of the manipulator keeps the minimum distance from the ground. 
+	\item \textbf{Bimanual rigid grasping constrain:} In this task we constraint our robot to act together. 
+	\item \textbf{Move to:} this task the manipulator move to the desired position 
+\end{itemize}
 
 \subsection{Q2: What is the Jacobian relationship for the Joint Limits task? How was the task reference computed?}
+The Jacobian for the limits task is the identity matrix. For this task reference, we calculate the velocities in this way, where we constrain the joints to return within their limits. In the formula below,  $Jl_{\text{min}_i}$ and $Jl_{\text{max}_i}$  represents the lower and upper joint limits of all joints  $i_{\text{th}}$ and $q_i$ is the current of position of $i_{\text{th}}$ joint.
 
+
+\[
+\dot{q}_i = \left(\frac{Jl_{\text{min}_i} + Jl_{\text{max}_i}}{2}\right) - q_i
+\]
 
 \subsection{Q3: What is the Jacobian relationship for the Bimanual Rigid Grasping Constraint task? How was the task reference computed?}
 
+We took a reference point, denoted as  \( \mathit{O} \) (which is the center point of the object in our case), and calculated the Jacobian for both of the arm tool ,left arm tool and right arm tool, with respect to the  \( \mathit{<O>} \). \\
+\[
+J_{\text{combined}} = \left[ J_{l,o} \, - \, J_{r,o} \right]\\
+\]
+\noindent
+Here, $J_{l,o}$ refers to the Jacobian of the left arm tool with respect to \( \mathit{<O>} \) and  $J_{r,o}$ refers to the Jacobian of the right arm tool with respect to \( \mathit{<O>} \). The negative sign accounts for the opposite direction of motion of the right arm relative to the left.\\
+In the task reference, we aim to make the velocities of both arms equal, meaning that the difference in the end effector velocities should be zero in the context of the Bimanual Rigid Grasping Constraint task. This ensures the synchronization of both arms.\\
+ 
+\[
+{J}_{o,a} \dot{q}_a = {J}_{o,b} \dot{q}_b
+\]
+\[
+[{J}_{o,a} - {J}_{o,b}]\dot{y}  = 0
+\]\\
+The task refrence should be zero in our case.
 \subsection{Q4: Comment the behaviour of the robots, using relevant plots. In particular, show the difference (if any) between the desired object velocity, and the velocities of the two end-effectors in the two cases.}
 
 \clearpage
@@ -335,9 +372,48 @@ Note that the transition for the \textit{Cooperative Rigid Constraint} should be
 
  Again, test it twice, once with the provided (reachable) goal, and then with a goal or with a different grasp configuration that triggers the activation of multiple joint limits or a joint limit and minimum altitude by one manipulator. The idea is that this second position should trigger the cooperation policy (i.e., the cooperative velocity should be different than the original desired object velocity).
 
+\clearpage
 \subsection{Q1: Report the unified hierarchy of tasks used and their priorities in each action, and report clearly the actions used in the two phases of the cooperation algorithm.}
+We used the hierarchy given below for both arms, maintaining the same order.\\
+\noindent
+\textbf{Actions list:}
+\begin{itemize}
+	\item $\mathcal{A}_{1}$ - Move-to : This action is responsible for moving the robot without cooperation, meaning the robot will only follow joint limits and maintain a minimum altitude
+	\item $\mathcal{A}_{2}$ - Co-operative move-to : In this action, we constrained both robots to move together while respecting each other's individual constraints
+	\item $\mathcal{A}_{3}$ - Halt manipulator : In this action, we deactivate all tasks for both robots so that they reach the rest position and remain there
+\end{itemize}
 
+\begin{table}[htb]
+	\label {tbl:actions_tables}
+	\begin{center}
+		\footnotesize
+		\begin{tabular}{lcccccc}
+			\toprule		
+			Task & Type & $\mathcal{A}_{1}$ & $\mathcal{A}_{2}$  & $\mathcal{A}_{3}$  \\
+			\midrule
+			Joint limits                      & I & 1 & 1 &  \\
+			\hdashline
+			Minimum Altitude						& I & 2& 2 & \\
+			\hdashline 
+			Move-To					& E &3 & & \\
+			\hdashline 
+			Cooperative Rigid Constraint move					& E & & 3 & \\
+			
+			\bottomrule
+		\end{tabular}
+	\end{center}
+	\caption{A number in a given cell represents the priority of the control task (row) in the hierarchy of the control action (column). The type column indicates whether the objective is an equality (E) or inequality (I) one.}
+\end{table}
+
+\noindent
+\textbf{Tasks' definition}
+\begin{itemize}
+	\item \textbf{Joint Limits :} This is a safety task in which we keep the joints within their range.
+	\item \textbf{Minimum Altitude:} This is also a safety task in which we have restricted the robot to a specific distance. This means the robot's end effector will not go below that distance with respect to its base. 
+	\item \textbf{Cooperative Rigid Constraint Move:} In this task, we apply a coordination policy in which we provide velocities to both robots in such a way that they communicate with each other and move together. These velocities are calculated considering all the constraints.
+\end{itemize}
 \subsection{Q2: Comment the behaviour of the robots, using relevant plots. In particular, make sure there are differences between the desired object velocity and the non-cooperative Cartesian velocities at least in one simulation. Show also how the cooperative velocities of the two end-effectors behave.}
+\clearpage
 
 %\begin{figure}[t]
 %	\centering

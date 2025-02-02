@@ -44,7 +44,7 @@ uvms.Jt_v = [zeros(3) eye(3); eye(3) -skew(uvms.vTt(1:3,4))];
 % juxtapose the two Jacobians to obtain the global one
 uvms.Jtool = [uvms.Jt_a uvms.Jt_v];
 
-%  move
+
 uvms.Jv = [zeros(6,7), eye(6)];
 
 
