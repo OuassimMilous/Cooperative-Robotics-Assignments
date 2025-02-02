@@ -86,15 +86,19 @@ Once landed, implement a ``fixed-based manipulation action'' to reach the target
 \subsection{Q1: Report the unified hierarchy of tasks used and their priorities in each action.}
 
 \noindent
-$\mathcal{A}_{1}$ - Safe Waypoint Navigation Action \\
-$\mathcal{A}_{2}$ - Nodule Alignment Action \\
-$\mathcal{A}_{3}$ - Safe Landing Action \\
-$\mathcal{A}_{4}$ - Fixed Base Manipulatin Action
+\textbf{Actions list}:
+\begin{itemize}
+	\item $\mathcal{A}_{1}$ - Safe Waypoint Navigation Action 
+	\item $\mathcal{A}_{2}$ - Nodule Alignment Action 
+	\item $\mathcal{A}_{3}$ - Safe Landing Action 
+	\item $\mathcal{A}_{4}$ - Fixed Base Manipulatin Action
+\end{itemize}
+
 \begin{table}[htb]
 	\label{tbl:actions_tables}
 	\begin{center}
 		\footnotesize
-		\begin{tabular}{cccccc}
+		\begin{tabular}{lcccccc}
 			\toprule		
 			Task & Type & $\mathcal{A}_{1}$ & $\mathcal{A}_{2}$  & $\mathcal{A}_{3}$  & $\mathcal{A}_{4}$ \\
 			\midrule
@@ -151,7 +155,7 @@ First we calculated the the distance between the current posiition and the nodul
 $${}^{w}v_{target} = {}^{w}v_{goal} - {}^{w}v_{current} $$  %We should add the right mathematical formula
 \noindent
 With this target vector, we find the angle between the current position of the vehicle and the nodule position of the vehicle with respect to world frame. Then take x and y component of the target vector because to align vehicle to nodule\\
-$$\psi_{target} = tan^{-1}\left(\frac{{}^{w}v_{target}(2)}{{}^{wgut}v_{target}(1)}\right)$$ %Write in mathematical form. 
+$$\psi_{target} = tan^{-1}\left[\frac{{}^{w}v_{target}(2)}{{}^{w}v_{target}(1)}\right]$$ %Write in mathematical form. 
 Once we have the angle difference then we constraint the yaw angular vehicle velocity in like this:\\
 %Formula
 $$\dot{x}_{yaw}=\psi_{target}-\psi_{current}$$
@@ -247,14 +251,16 @@ Repeat the simulation, using a goal position or by changing the grasping in such
 \subsection{Q1: Report the unified hierarchy of tasks used and their priorities in each action.}
 
 
-Actions :\\ 
+\textbf{Actions list:}
 
-$\mathcal{A}_{1}$ - Move-to.
-
+\begin{itemize}
+	\item $\mathcal{A}_{1}$ - Move-to.
 
 $\mathcal{A}_{2}$ - Co-operative move-to
 
 $\mathcal{A}_{3}$ - Halt manipulator
+
+\end{itemize}
 
 
 \begin{table}[htb]
@@ -274,7 +280,7 @@ $\mathcal{A}_{3}$ - Halt manipulator
 			Move-To						& E & 3 & 4& \\ 
 			%\hdashline 
 			%\hdashline 
-			%Position Control 						& E & & & & 4 \\ 
+			%Position Control 						& E & & & & 4 \\
 			
 			\bottomrule
 		\end{tabular}
