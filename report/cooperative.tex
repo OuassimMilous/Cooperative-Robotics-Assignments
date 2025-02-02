@@ -59,10 +59,12 @@
 \vskip 5cm
 
 \normalsize
-Authors: ``names'' \\
-Ouassim Milous
-Email: ``email'' \\
-Date: ``date'' \\
+Authors:  \hspace{7cm} Email: \\  
+Dikshant Thakur \hspace{6.8cm} s5938924@studenti.unige.it\\
+Ouassim Milous \hspace{7cm}  s5943225@studenti.unige.it\\
+Girum Molla Desalegn \hspace{6cm} s6020433@studenti.unige.it\\
+\vskip 13cm
+Date: 02/02/2025 \\
 \end{center}
 \clearpage
 \section{Exercise 1: Implement a Complete Mission}
@@ -83,7 +85,7 @@ Once landed, implement a ``fixed-based manipulation action'' to reach the target
 
 \subsection{Q1: Report the unified hierarchy of tasks used and their priorities in each action.}
 
-
+\noindent
 
 $\mathcal{A}_{1}$ - Safe Waypoint Navigation Action. 
 
@@ -111,9 +113,9 @@ $\mathcal{A}_{4}$ - Fixed Base Manipulatin Action
 			\hdashline 
 			Vehicle Stop 						& E & & & & 4 \\ 
 			\hdashline 
-			Tool Manipulatin					& E & 4 & & & \\
+			Tool Manipulatin					& E & 3 & & & \\
 			\hdashline 
-			Position Control 						& E & & & & 4 \\ 
+			Position Control 						& E & & & & 5 \\ 
 			
 			\bottomrule
 		\end{tabular}
@@ -143,18 +145,22 @@ Comment 4 - Once the vehicle lands the manipulator arm will reach to the noduel,
 \\PHOTO and PLOT
 
 \subsection{Q3: What is the Jacobian relationship for the Alignment to Target control task? How was the task reference computed?}
-
-To align the vehicle with the nodule, we calculated the angle difference between vehicle and nodule. \$\
+To align the vehicle with the nodule, we calculated the angle difference between vehicle and nodule.
 Here is the calculation step:
-First we calculated the thedistance between the current posiition and the nodule with respect to world frame.\\
-$target_vector = uvms.goalPosition(1:2) - uvms.p(1:2r)$ %Write in mathematical form. \\
+First we calculated the the distance between the current posiition and the nodule with respect to world frame.\\
+$${}^{w}v_t = {}^{w}v_{goal} - {}^{w}v_{current} $$  %We should add the right mathematical formula
+\noindent
 With that distance vector, we find the angle between the current position of the vehicle and the target position of the vehicle with respect to world frame.\\
-%Formula \\
+$${}^{w}v_t = {}^{w}v_{goal} - {}^{w}v_{current} $$ %Write in mathematical form. 
 Once we have the angle difference then we constraint the yaw angular vehicle velocity in like this:\\
 %Formula
-
+$$\dot{x}_{yaw}=\psi_{taget}-\psi_{current}$$
 The Jacobian we are using is the same we used in the vehicle posiition control task. Because we constrained our velocities only for yaw angular vehicle axis, so only solution we will get is for the yaw angular vehicle velocity. 
-%Jacobian formula
+ %Jacobian formula
+$${}^{w}J_v = \begin{bmatrix}
+		\mathbf{0}_{3 \times 7} & \mathbf{I}_{3 \times 3} & \mathbf{0}_{3 \times 3} \\
+		\mathbf{0}_{3 \times 7} & \mathbf{0}_{3 \times 3} & \mathbf{I}_{3 \times 3}
+		\end{bmatrix} $$
 \subsection{Q4: Try changing the gain of the alignment task. Try three different values: 0.001, 0.1, 1.0. What is the observed behaviour? Implement a solution that is gain-independent guaranteeing that the landing is accomplished aligned to the target.}
 We observed that with gain 1.0, the time taken by vehicle to reduce the angular error between its body and nodule around z-axis with respect to world frame is faster than if we assign the gain 0.1 and 0.001. To be precise the time take in the first case, when gain is 1, is 10.5 seconds. In the second and third case, which are 0.1 and 0.001 respectively, it takes 52 seconds and in the latter case it moves infinitinemaly slow. 
 %PLOT THE GRAPH
@@ -352,10 +358,6 @@ Note that the transition for the \textit{Cooperative Rigid Constraint} should be
 %			\label{fig_tri_trial_maiorca_img}
 %		\end{figure}
 \clearpage
-
-
-\subsection{Question-2}
-I need to explain the behavior the robots, what is the movement of the robots, describe the plots and the behaviror of the plots.
 
 
 \end{document}
