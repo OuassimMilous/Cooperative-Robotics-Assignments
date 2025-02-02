@@ -73,9 +73,9 @@ mission.phase_time = 0;
 % JL = joint limits task
 % MA = minimum altitude task
 % RC = rigid constraint task
-%mission.actions.go_to.tasks = [...];
-% mission.actions.coop_manip.tasks = [...];
-% mission.actions.end_motion.tasks = [...];
+mission.actions.go_to.tasks = ["MA","JL","T"];
+mission.actions.coop_manip.tasks = ["MA","JL","CON","G","T"];
+mission.actions.end_motion.tasks = ["MA", "JL","T"]; 
 
 %% CONTROL LOOP
 disp('STARTED THE SIMULATION');
