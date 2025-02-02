@@ -86,14 +86,9 @@ Once landed, implement a ``fixed-based manipulation action'' to reach the target
 \subsection{Q1: Report the unified hierarchy of tasks used and their priorities in each action.}
 
 \noindent
-
-$\mathcal{A}_{1}$ - Safe Waypoint Navigation Action. 
-
-
-$\mathcal{A}_{2}$ - Nodule Alignment Action
-
-$\mathcal{A}_{3}$ - Safe Landing Action
-
+$\mathcal{A}_{1}$ - Safe Waypoint Navigation Action \\
+$\mathcal{A}_{2}$ - Nodule Alignment Action \\
+$\mathcal{A}_{3}$ - Safe Landing Action \\
 $\mathcal{A}_{4}$ - Fixed Base Manipulatin Action
 \begin{table}[htb]
 	\label{tbl:actions_tables}
@@ -122,15 +117,21 @@ $\mathcal{A}_{4}$ - Fixed Base Manipulatin Action
 	\end{center}
 \caption{Example of actions/hierarchy table: A number in a given cell represents the priority of the control task (row) in the hierarchy of the control action (column). The type column indicates whether the objective is an equality (E) or inequality (I) one.}
 \end{table}
-\\
-Task Defintions\\
-Minimum Altitude - This task maintains the altitude between vehicle and sea floor.\\ 
-Horizontal Alignment - This task responsible to maintain the horizontal position with respect to sea floor. \\
-Rock Alignment - This task is responsible to align the vehicle head with x axis of nodule. \\
-Landing - This task is responsible to land the uvms system  on the sea floor. \\
-Vehicle Stop - To make sure that vehicle will not move during the manipulation task. \\
-Tool Manipulatin - This task move the manipulator arm to the goal position.\\
-Position Control - It controls the vehicle to achieve its desired location.\\
+
+\noindent
+Task Defintions
+\begin{itemize}
+	\item \textbf{Minimum Altitude}—This task maintains the altitude between the vehicle and the sea floor.
+	\item \textbf{Horizontal Alignment}—This task is responsible for maintaining the horizontal position with respect to the sea floor. 
+	\item \textbf{Rock Alignment} - This task is responsible for aligning the vehicle head with the axis of the nodule. 
+	\item \textbf{Landing} - This task is responsible for landing the UVMS system on the sea floor. 
+	\item \textbf{Vehicle Stop} - To make sure that the vehicle will not move during the manipulation task. 
+	\item \textbf{Tool Manipulation} - This task moves the manipulator arm to the goal position.
+	\item \textbf{Position Control} - It controls the vehicle to achieve its desired location.
+\end{itemize}
+
+
+
 
 \subsection{Q2: Comment the behaviour of the robots, supported by relevant plots.}
 On the basis of the actions , which are mentioned above, we define our phases and here are our observation. 
@@ -145,16 +146,15 @@ Comment 4 - Once the vehicle lands the manipulator arm will reach to the noduel,
 \\PHOTO and PLOT
 
 \subsection{Q3: What is the Jacobian relationship for the Alignment to Target control task? How was the task reference computed?}
-To align the vehicle with the nodule, we calculated the angle difference between vehicle and nodule.
-Here is the calculation step:
-First we calculated the the distance between the current posiition and the nodule with respect to world frame.\\
-$${}^{w}v_t = {}^{w}v_{goal} - {}^{w}v_{current} $$  %We should add the right mathematical formula
+To align the vehicle with the nodule, we calculated the angle difference between vehicle and nodule. Here is the calculation step:
+First we calculated the the distance between the current posiition and the nodule with respect to world frame.
+$${}^{w}v_{target} = {}^{w}v_{goal} - {}^{w}v_{current} $$  %We should add the right mathematical formula
 \noindent
-With that distance vector, we find the angle between the current position of the vehicle and the target position of the vehicle with respect to world frame.\\
-$${}^{w}v_t = {}^{w}v_{goal} - {}^{w}v_{current} $$ %Write in mathematical form. 
+With this target vector, we find the angle between the current position of the vehicle and the nodule position of the vehicle with respect to world frame. Then take x and y component of the target vector because to align vehicle to nodule\\
+$$\psi_{target} = tan^{-1}\left(\frac{{}^{w}v_{target}(2)}{{}^{wgut}v_{target}(1)}\right)$$ %Write in mathematical form. 
 Once we have the angle difference then we constraint the yaw angular vehicle velocity in like this:\\
 %Formula
-$$\dot{x}_{yaw}=\psi_{taget}-\psi_{current}$$
+$$\dot{x}_{yaw}=\psi_{target}-\psi_{current}$$
 The Jacobian we are using is the same we used in the vehicle posiition control task. Because we constrained our velocities only for yaw angular vehicle axis, so only solution we will get is for the yaw angular vehicle velocity. 
  %Jacobian formula
 $${}^{w}J_v = \begin{bmatrix}
