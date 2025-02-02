@@ -33,7 +33,7 @@ legend('xdot', 'ydot','zdot','omega_x','omega_y','omega_z');
 figure(4);
 hplot = plot(plt.t, plt.a(8:9,:));
 set(hplot, 'LineWidth', 2);
-legend('Amu', 'Aha');
+legend('Amalat', 'Aha');
     
 
 
