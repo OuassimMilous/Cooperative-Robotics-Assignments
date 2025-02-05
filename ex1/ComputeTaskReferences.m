@@ -42,7 +42,7 @@ end
 % get closer
 [ang_v,uvms.err.lin_closer] = CartError(uvms.wTg , uvms.wTt);
 uvms.err.lin_closer = uvms.err.lin_closer(1:2);
-uvms.xdot.closer = [[uvms.err.lin_closer; 0 ]];
+uvms.xdot.closer = [[uvms.err.lin_closer]];
 uvms.xdot.closer = Saturate(uvms.xdot.closer, 1);
 
 % landing

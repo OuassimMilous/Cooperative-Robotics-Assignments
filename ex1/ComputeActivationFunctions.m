@@ -39,6 +39,6 @@ uvms.A.landing = 1 * ActionTransition("L", prev, current,  mission.action_name,m
 uvms.A.tool = eye(6) * ActionTransition("T", prev, current, mission.action_name, mission.phase_time);
 
 % get closer
-uvms.A.closer = eye(3) * IncreasingBellShapedFunction(0,0.6,0,1,norm(uvms.err.lin_closer)) *  ActionTransition("C", prev, current, mission.action_name, mission.phase_time);
+uvms.A.closer = eye(2) * IncreasingBellShapedFunction(0,0.6,0,1,norm(uvms.err.lin_closer)) *  ActionTransition("C", prev, current, mission.action_name, mission.phase_time);
 
 end
