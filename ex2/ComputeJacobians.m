@@ -37,7 +37,7 @@ function [pandaArms] = ComputeJacobians(pandaArms,mission)
         pandaArms.ArmL.Sto = [eye(3) zeros(3);  -skew(pandaArms.wTog(1:3,4)) eye(3)];
         pandaArms.ArmR.Sto = [eye(3) zeros(3);  -skew(pandaArms.wTog(1:3,4)) eye(3)];
 
-        pandaArms.ArmL.wJo = pandaArms.ArmR.Sto * pandaArms.ArmL.wJt;
+        pandaArms.ArmL.wJo = pandaArms.ArmL.Sto * pandaArms.ArmL.wJt;
         pandaArms.ArmR.wJo = pandaArms.ArmR.Sto * pandaArms.ArmR.wJt;
 
     end
@@ -55,5 +55,7 @@ function [pandaArms] = ComputeJacobians(pandaArms,mission)
     pandaArms.ArmR.bJt_grasp(:,14) = [0 0 0 0 1 0];
     
     % con
-    pandaArms.con = [pandaArms.ArmL.wJt  -pandaArms.ArmR.wJt ];
+    
+    pandaArms.con = [pandaArms.ArmL.wJo  -pandaArms.ArmR.wJo ];
+
 end
