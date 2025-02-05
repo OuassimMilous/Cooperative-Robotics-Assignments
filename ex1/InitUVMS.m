@@ -56,9 +56,9 @@ uvms.xdot.v = zeros(6,1);
 uvms.Jv = zeros(6,13); 
 
 % get closer
-uvms.A.closer = zeros(3);
-uvms.xdot.closer = zeros(3,1);
-uvms.Jcloser = zeros(3,13); 
+uvms.A.closer = zeros(2);
+uvms.xdot.closer = zeros(2,1);
+uvms.Jcloser = zeros(2,13); 
 
 % landing 
 uvms.A.landing= 0;
