@@ -76,11 +76,11 @@ pandaArm.ArmL.bJm = zeros(6,14);
 % constraint task
 pandaArm.A.con = zeros(6);
 pandaArm.xdot.con = zeros(6,1);
-pandaArm.Jjl = zeros(6,14);
+pandaArm.con = zeros(6,14);
 
 % move to 2
-pandaArm.ArmL.wJo= zeros(6);
-pandaArm.ArmR.wJo= zeros(6);
+pandaArm.ArmL.wJo= zeros(6,7);
+pandaArm.ArmR.wJo= zeros(6,7);
 
 
 % Grasping
