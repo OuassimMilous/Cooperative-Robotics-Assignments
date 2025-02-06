@@ -173,11 +173,12 @@ for t = 0:deltat:end_time
 
     % COOPERATION hierarchy
     % SAVE THE NON COOPERATIVE VELOCITIES COMPUTED
-    pandaArm1.Qp = ydotbar2;
+    pandaArm1.Qp = ydotbar;
     pandaArm2.Qp = ydotbar2;
+    
     % DATA EXCHNAGE
-    x1 = pandaArm1.wJt * ydotbar;
-    x2 = pandaArm2.wJt *ydotbar2;
+    x1 = tool_jacobian_L * ydotbar;
+    x2 = tool_jacobian_R *ydotbar2;
     
     desiredx1 = pandaArm1.xdot.tool;
     desiredx2 = pandaArm2.xdot.tool;

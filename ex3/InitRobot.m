@@ -56,7 +56,7 @@ function [pandaArm] = InitRobot(model,wTb)
     % coop task
     pandaArm.A.coop = zeros(6);
     pandaArm.Ap.coop = 0;
-    pandaArm.ArmL.wJo= zeros(6,7);
+    pandaArm.wJo= zeros(6,7);
 
     % Grasping
     pandaArm.xdot.grasp = zeros(6,1);
