@@ -137,6 +137,9 @@ for t = 0:dt:Tf
     % Bimanual system TPIK
     % ...
 
+    % con
+    [Qp, ydotbar] = iCAT_task(pandaArms.A.con,pandaArms.con, Qp, ydotbar, pandaArms.xdot.con , 0.0001,   0.01, 10);
+
     % % joint limits
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.joints,pandaArms.ArmR.bJm, Qp, ydotbar, pandaArms.ArmR.xdot.joints , 0.0001,   0.01, 10);
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.joints,pandaArms.ArmL.bJm, Qp, ydotbar, pandaArms.ArmL.xdot.joints , 0.0001,   0.01, 10);
@@ -144,10 +147,7 @@ for t = 0:dt:Tf
     % minimum altitude
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.min,pandaArms.ArmL.Jma, Qp, ydotbar, pandaArms.ArmL.xdot.min , 0.0001,   0.01, 10);
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.min,pandaArms.ArmR.Jma, Qp, ydotbar, pandaArms.ArmR.xdot.min , 0.0001,   0.01, 10);
-   
-    % con
-    [Qp, ydotbar] = iCAT_task(pandaArms.A.con,pandaArms.con, Qp, ydotbar, pandaArms.xdot.con , 0.0001,   0.01, 10);
-
+    
     % Task: Tool Move-To
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmL.A.tool, [tool_jacobian_L, zeros(6,7)], Qp, ydotbar, pandaArms.ArmL.xdot.tool, 0.0001,   0.01, 10);
     [Qp, ydotbar] = iCAT_task(pandaArms.ArmR.A.tool,[zeros(6,7),tool_jacobian_R], Qp, ydotbar, pandaArms.ArmR.xdot.tool, 0.0001,   0.01, 10);

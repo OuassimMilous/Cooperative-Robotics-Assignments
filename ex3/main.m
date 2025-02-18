@@ -194,20 +194,49 @@ for t = 0:deltat:end_time
     combinedx2 = ComputeCooperativeXdot(desiredx1,desiredx2,x1,x2,h1,h2);
     pandaArm2.newx = combinedx2(7:12);
 
-    % Task: Left Arm Cooperation
-    % ...
-    [Qp, ydotbar] = iCAT_task(pandaArm1.A.tool, tool_jacobian_L, Qp, ydotbar, pandaArm1.newx, 0.0001,   0.01, 10);
+    if(mission.phase == 2){
 
-    % display(ydotbar)
-    % this task should be the last one 
-    [Qp, ydotbar] = iCAT_task(eye(7), eye(7), Qp, ydotbar, zeros(7,1), 0.0001,   0.01, 10);    % this task should be the last one
+        % Reinitialize the variables
+        ydotbar = zeros(7,1);
+        Qp = eye(7);
+        ydotbar2 = zeros(7,1);
+        Qp2 = eye(7);
 
-    % Task: Right Arm Cooperation
-    % ...
-    [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.tool, tool_jacobian_R, Qp2, ydotbar2, pandaArm2.newx, 0.0001,   0.01, 10);
-    % this task should be the last one
-    [Qp2, ydotbar2] = iCAT_task(eye(7), eye(7), Qp2, ydotbar2, zeros(7,1), 0.0001,   0.01, 10);    % this task should be the last one
+        % Task: Left Arm Cooperation
+        % ...
+        [Qp, ydotbar] = iCAT_task(pandaArm1.A.tool, tool_jacobian_L, Qp, ydotbar, pandaArm1.newx, 0.0001,   0.01, 10);
 
+        % joint limitaions
+        [Qp, ydotbar] = iCAT_task(pandaArm1.A.joints, pandaArm1.bJm, Qp, ydotbar, pandaArm1.xdot.joints, 0.0001,   0.01, 10);
+
+        % minimum altitude
+        [Qp, ydotbar] = iCAT_task(pandaArm1.A.min, pandaArm1.Jma, Qp, ydotbar, pandaArm1.xdot.min, 0.0001,   0.01, 10);
+
+        % grasp
+        % [Qp, ydotbar] = iCAT_task(pandaArm1.A.grasp, pandaArm1.bJt_grasp, Qp, ydotbar, pandaArm1.xdot.grasp, 0.0001,   0.01, 10);
+
+        % this task should be the last one 
+        [Qp, ydotbar] = iCAT_task(eye(7), eye(7), Qp, ydotbar, zeros(7,1), 0.0001,   0.01, 10);    % this task should be the last one
+
+
+
+        % Task: Right Arm Cooperation
+        % ...
+        [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.tool, tool_jacobian_R, Qp2, ydotbar2, pandaArm2.newx, 0.0001,   0.01, 10);
+
+        % joint limitaions
+        [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.joints, pandaArm2.bJm, Qp2, ydotbar2, pandaArm1.xdot.joints, 0.0001,   0.01, 10);
+
+        % minimum altitude
+        [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.min, pandaArm2.Jma, Qp2, ydotbar2, pandaArm2.xdot.min, 0.0001,   0.01, 10);
+
+        % grasp
+        % [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.grasp, pandaArm2.bJt_grasp, Qp2, ydotbar2, pandaArm2.xdot.grasp, 0.0001,   0.01, 10);
+
+        % this task should be the last one
+        [Qp2, ydotbar2] = iCAT_task(eye(7), eye(7), Qp2, ydotbar2, zeros(7,1), 0.0001,   0.01, 10);    % this task should be the last one
+    }
+    
     % get the two variables for integration
     pandaArm1.q_dot = ydotbar(1:7);
     pandaArm2.q_dot = ydotbar2(1:7);
