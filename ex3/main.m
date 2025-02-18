@@ -194,7 +194,7 @@ for t = 0:deltat:end_time
     combinedx2 = ComputeCooperativeXdot(desiredx1,desiredx2,x1,x2,h1,h2);
     pandaArm2.newx = combinedx2(7:12);
 
-    if(mission.phase == 2){
+    if mission.phase == 2
 
         % Reinitialize the variables
         ydotbar = zeros(7,1);
@@ -215,9 +215,6 @@ for t = 0:deltat:end_time
         % grasp
         % [Qp, ydotbar] = iCAT_task(pandaArm1.A.grasp, pandaArm1.bJt_grasp, Qp, ydotbar, pandaArm1.xdot.grasp, 0.0001,   0.01, 10);
 
-        % this task should be the last one 
-        [Qp, ydotbar] = iCAT_task(eye(7), eye(7), Qp, ydotbar, zeros(7,1), 0.0001,   0.01, 10);    % this task should be the last one
-
 
 
         % Task: Right Arm Cooperation
@@ -233,10 +230,13 @@ for t = 0:deltat:end_time
         % grasp
         % [Qp2, ydotbar2] = iCAT_task(pandaArm2.A.grasp, pandaArm2.bJt_grasp, Qp2, ydotbar2, pandaArm2.xdot.grasp, 0.0001,   0.01, 10);
 
-        % this task should be the last one
-        [Qp2, ydotbar2] = iCAT_task(eye(7), eye(7), Qp2, ydotbar2, zeros(7,1), 0.0001,   0.01, 10);    % this task should be the last one
-    }
-    
+
+    end
+    % this task should be the last one 
+    [Qp, ydotbar] = iCAT_task(eye(7), eye(7), Qp, ydotbar, zeros(7,1), 0.0001,   0.01, 10);    % this task should be the last one
+
+    % this task should be the last one
+    [Qp2, ydotbar2] = iCAT_task(eye(7), eye(7), Qp2, ydotbar2, zeros(7,1), 0.0001,   0.01, 10);    % this task should be the last one
     % get the two variables for integration
     pandaArm1.q_dot = ydotbar(1:7);
     pandaArm2.q_dot = ydotbar2(1:7);
